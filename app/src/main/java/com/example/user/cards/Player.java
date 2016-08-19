@@ -17,6 +17,7 @@ public class Player extends AppCompatActivity {
     private Integer mScore;
     private Integer mKicker;
     private boolean mFolded;
+    private boolean mFirstToBet;
 
     public Player(String name, int playerNumber) {
         mName = name;
@@ -116,6 +117,14 @@ public class Player extends AppCompatActivity {
 
     public void setLastBet() {
         mLastBet = 0;
+    }
+
+    public void setFirstBet() {
+        mFirstToBet = true;
+    }
+
+    public boolean seeFirstBet() {
+        return mFirstToBet;
     }
 
     public void winChips(int chips) {
