@@ -137,20 +137,22 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                mGame = new Game(2);
+                mGame = new Game(3);
                 mCards = new TestCards();
 
                 mJeff.takeCard(mCards.deal());
                 mJeff.takeCard(mCards.deal());
 
                 mSteve.takeCard(mCards.deal());
-                mSteve.takeCard(mCards.deal());
+                mDave.takeCard( mCards.deal());
 
                 mDave.takeCard( mCards.deal());
-                mDave.takeCard( mCards.deal());
+                mSteve.takeCard(mCards.deal());
+
 
                 mPlayerOneCards.setText(mJeff.seeHand().toString());
                 mPlayerTwoCards.setText(mSteve.seeHand().toString());
+                mPlayerThreeCards.setText(mDave.seeHand().toString());
 
                 mGame.takeCard(mCards.deal());
                 mGame.takeCard(mCards.deal());
@@ -217,7 +219,7 @@ public class MainActivity extends AppCompatActivity{
                         playerTwoEndTurn();
                     }
                 } else if (mPlayerThreeText.getVisibility() == View.VISIBLE) {
-                    if( mGame.seeLastBet() <= mJeff.countChips() ) {
+                    if( mGame.seeLastBet() <= mDave.countChips() ) {
                         playerThreeCall();
                         playerThreeBet();
                         playerThreeEndTurn();
@@ -249,6 +251,19 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 mCommunityCards.setVisibility(View.VISIBLE);
                 mCheck.setVisibility(View.INVISIBLE);
+                if( mPlayerOneText.getVisibility() == View.VISIBLE ) {
+                    if( mGame.seeLastBet() <= mJeff.countChips() ) {
+                        playerOneEndTurn();
+                    }
+                } else if (mPlayerTwoText.getVisibility() == View.VISIBLE) {
+                    if( mGame.seeLastBet() <= mSteve.countChips() ) {
+                        playerTwoEndTurn();
+                    }
+                } else if (mPlayerThreeText.getVisibility() == View.VISIBLE) {
+                    if( mGame.seeLastBet() <= mDave.countChips() ) {
+                        playerThreeEndTurn();
+                    }
+                }
             }
         });
     }
@@ -342,7 +357,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void playerThreeBet() {
-        mDave.placeBet( mPTwoBet );
+        mDave.placeBet( mPThreeBet );
         mGame.addBet(mDave);
         mPThreeBet = 0;
         String cash = mPThreeBet.toString();
