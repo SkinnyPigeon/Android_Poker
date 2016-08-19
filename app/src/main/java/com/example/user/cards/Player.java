@@ -26,8 +26,8 @@ public class Player extends AppCompatActivity {
         mBet = 0;
         mPlayerNumber = playerNumber;
         mScore = 0;
-        mSmallBlindValue = 5;
-        mBigBlindValue = 10;
+        mSmallBlindValue = 10;
+        mBigBlindValue = 20;
         mFolded = true;
         mLastBet = 0;
     }

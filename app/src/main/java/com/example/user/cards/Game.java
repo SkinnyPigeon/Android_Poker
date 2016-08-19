@@ -187,63 +187,73 @@ public class Game  {
 
     public void megaCheck( Player one, Player two, Player three, Player four ) {
         if( one.status() && two.status() ) {
-            setFold(one, two, three, four);
-            setFold(one, two, three, four);
-
-            firstTurn(three, four);
+            setFold( one, two, three, four );
+            foldMaster( one, two, three, four );
+            firstTurn( three, four );
         } else if( one.status() && three.status() ) {
             setFold( one, two, three, four );
-            setFold( one, two, three, four );
+            foldMaster( one, two, three, four );
 
             firstTurn( two, four );
         } else if( one.status() && four.status() ) {
             setFold( one, two, three, four );
-            setFold( one, two, three, four );
+            foldMaster( one, two, three, four );
 
             firstTurn( two, three );
         } else if( two.status() && three.status() ) {
             setFold( one, two, three, four );
-            setFold( one, two, three, four );
+            foldMaster( one, two, three, four );
 
             firstTurn( one, four );
         } else if( two.status() && four.status() ) {
             setFold( one, two, three, four );
-            setFold( one, two, three, four );
+            foldMaster( one, two, three, four );
 
             firstTurn( one, three );
         } else if( three.status() && four.status() ) {
             setFold( one, two, three, four );
-            setFold( one, two, three, four );
+            foldMaster( one, two, three, four );
 
             firstTurn( one, two );
         } else if( one.status() ) {
             setFold( one, two, three, four );
-            setFold( one, two, three, four );
+            foldMaster( one, two, three, four );
 
             firstTurn( two, three, four );
         } else if( two.status() ) {
             setFold( one, two, three, four );
-            setFold( one, two, three, four );
+            foldMaster( one, two, three, four );
 
             firstTurn( one, three, four );
         } else if( three.status() ) {
             setFold( one, two, three, four );
-            setFold( one, two, three, four );
+            foldMaster( one, two, three, four );
 
             firstTurn( one, two, four );
         } else if( four.status() ) {
             setFold( one, two, three, four );
-            setFold( one, two, three, four );
+            foldMaster( one, two, three, four );
 
             firstTurn( one, two, three );
         } else {
             firstTurn( one, two, three, four );
+            foldMaster( one, two, three, four );
+
         }
     }
 
-    public void foldMaster( Player player ) {
-        foldCheck( player );
-        foldWin( player );
+    public void foldMaster( Player one, Player two, Player three, Player four ) {
+        foldCheck( one );
+        foldWin( one );
+
+        foldCheck( two );
+        foldWin( two );
+
+        foldCheck( three );
+        foldWin( three );
+
+        foldCheck( four );
+        foldWin( four );
     }
 
     public void setFoldedPlayerCount() {
@@ -271,7 +281,7 @@ public class Game  {
     }
 
     public void addBet( Player player ) {
-        if( ( playerCheck( player ) == true ) && ( mlastBet <= player.giveBet() )) {
+        if( ( playerCheck( player ) ) && ( mlastBet <= player.giveBet() )) {
             mPot += player.giveBet();
             mlastBet = player.giveBet();
         }

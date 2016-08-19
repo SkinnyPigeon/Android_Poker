@@ -169,25 +169,25 @@ public class MainActivity extends AppCompatActivity{
                 mGame = new Game(4);
                 mCards = new TestCards();
 
-                if( mPOneReady == true ) {
+                if( mPOneReady ) {
                     mJeff.takeCard(mCards.deal());
                     mJeff.takeCard(mCards.deal());
                     mPlayerOneCards.setText(mJeff.seeHand().toString());
                 }
 
-                if( mPTwoReady == true ) {
+                if( mPTwoReady ) {
                     mSteve.takeCard(mCards.deal());
                     mSteve.takeCard(mCards.deal());
                     mPlayerTwoCards.setText(mSteve.seeHand().toString());
                 }
 
-                if( mPThreeReady == true ) {
+                if( mPThreeReady ) {
                     mDave.takeCard( mCards.deal());
                     mDave.takeCard(mCards.deal());
                     mPlayerThreeCards.setText(mDave.seeHand().toString());
                 }
 
-                if( mPFourReady == true ) {
+                if( mPFourReady ) {
                     mBob.takeCard( mCards.deal() );
                     mBob.takeCard( mCards.deal() );
                     mPlayerFourCards.setText(mBob.seeHand().toString() );
