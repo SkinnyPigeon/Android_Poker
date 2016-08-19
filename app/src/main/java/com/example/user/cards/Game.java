@@ -11,6 +11,7 @@ public class Game  {
     private int mPlayerTurn;
     private int mPlayerStart;
     private int mFirstBet;
+    private int mBetPlayer;
     private int mNoOfPlayers;
     private int mNoOfFoldedPlayers;
     private ArrayList< String > mSharedCards;
@@ -176,6 +177,12 @@ public class Game  {
 
     public int seeFirstBet() {
         return mFirstBet;
+    }
+
+    public void setBetPlayer() {
+        if( mPlayerStart + 2 > mNoOfPlayers ) {
+            mBetPlayer = mPlayerStart + 1;
+        }
     }
 
 }
