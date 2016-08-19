@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Cards</string>
+    <string name="player_one_button">Player One</string>
+    <string name="player_two_button">Player Two</string>
+    <string name="player_three_button">Player Three</string>
+
+    <string name="player_one">Jeff</string>
+    <string name="player_two">Steve</string>
+    <string name="player_three">Dave</string>
+
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <integer name="player_one_bet">0</integer>
+    <integer name="player_two_bet">0</integer>
+    <integer name="player_three_bet">0</integer>
+
+    <integer name="pot">0</integer>
+
+    <string name="place_bet">Bet</string>
+
+    <string name="start">Start</string>
+
 </resources>
