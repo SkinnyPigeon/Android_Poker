@@ -4,10 +4,16 @@ import org.junit.*;
 
 public class BettingTest {
   Betting bets;
+  Player one;
+  Player two;
+  Player three;
 
   @Before
   public void before() {
     bets = new Betting(3);
+    one = new Player(1);
+    two = new Player(2);
+    three = new Player(3);
   }
 
   @Test
@@ -29,5 +35,18 @@ public class BettingTest {
     assertEquals( 1, bets.seeCurrentPlayer() );
   }
 
-  
+  @Test
+  public void firstBetIsSet() {
+    bets.firstTurn( one, two, three );
+    assertEquals( true, three.seeFirstBet() );
+  }
+
+  @Test
+  public void firstBetWrapsRound() {
+    bets.endHand();
+    bets.firstTurn( one, two, three );
+    assertEquals( true, one.seeFirstBet() );
+  }
+
+
 }

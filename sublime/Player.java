@@ -6,6 +6,7 @@ public class Player {
   private int mBigBlindValue;
   private int mPlayerNumber;
   private boolean mFolded;
+  private boolean mFirstToBet;
 
   public Player( int playerNumber ) {
     mPlayerNumber = playerNumber;
@@ -13,6 +14,7 @@ public class Player {
     mSmallBlindValue = 5;
     mBigBlindValue = 10;
     mFolded = false;
+    mFirstToBet = false;
   }
 
   public int seePlayerNo() {
@@ -41,6 +43,14 @@ public class Player {
 
   public boolean seeFolded() {
     return mFolded;
+  }
+
+  public void setFirstBet() {
+    mFirstToBet = true;
+  }
+
+  public boolean seeFirstBet() {
+    return mFirstToBet;
   }
 
 }

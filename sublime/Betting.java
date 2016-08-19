@@ -43,6 +43,30 @@ public class Betting {
     }
   }
 
+  public void endHand() {
+    if( mCurrentPlayer == mNoPlayers ) {
+      mPlayerStart = 1;
+    } else {
+      mPlayerStart += 1;
+    }
+  }
+
+  public void firstTurn(Player one, Player two, Player three) {
+    if( one.seePlayerNo() == mPlayerStart ) {
+      one.smallBlind();
+      two.bigBlind();
+      three.setFirstBet();
+    } else if ( two.seePlayerNo() == mPlayerStart ) {
+      two.smallBlind();
+      three.bigBlind();
+      one.setFirstBet();
+    } else {
+      three.smallBlind();
+      one.bigBlind();
+      two.setFirstBet();
+    }
+  }
+
 
 
 
