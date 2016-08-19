@@ -29,7 +29,6 @@
         android:layout_marginTop="130dp"
         />
 
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -123,6 +122,34 @@
         android:id="@+id/bet"
         android:layout_marginTop="130dp"
         android:layout_marginLeft="200dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/player_one_cards"
+        android:textSize="40dp"
+        android:layout_marginTop="350dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/player_two_cards"
+        android:textSize="40dp"
+        android:layout_marginTop="350dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/player_three_cards"
+        android:textSize="40dp"
+        android:layout_marginTop="350dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/community_cards"
+        android:textSize="40dp"
+        android:layout_marginTop="420dp"/>
 
 
 </RelativeLayout>
