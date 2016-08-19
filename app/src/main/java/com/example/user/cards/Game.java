@@ -152,6 +152,10 @@ public class Game  {
         }
     }
 
+    public int seeLastBet() {
+        return mlastBet;
+    }
+
 }
 
 

@@ -9,7 +9,7 @@
     <string name="player_three">Dave</string>
 
     <string name="plus">+</string>
-    <string name="minus">-</string>
+    <string name="call">Call</string>
     <integer name="player_one_bet">0</integer>
     <integer name="player_two_bet">0</integer>
     <integer name="player_three_bet">0</integer>
