@@ -28,4 +28,85 @@ public class Player extends AppCompatActivity {
         mBigBlindValue = 10;
         mFolded = false;
     }
+
+    public String name() {
+        return mName;
+    }
+
+    public Integer seeScore() {
+        return mScore;
+    }
+
+    public void fold() {
+        mFolded = true;
+    }
+
+    public void in() {
+        mFolded = false;
+    }
+
+    public boolean status() {
+        return mFolded;
+    }
+
+    public void awardScore(Integer handScore) {
+        mScore = handScore;
+    }
+
+    public void takeCard(String card) {
+        mHand.add(card);
+    }
+
+    public ArrayList seeHand() {
+        return mHand;
+    }
+
+    public void awardKicker(Integer kickerScore) {
+        mKicker = kickerScore;
+    }
+
+    public Integer seeKicker() {
+        return mKicker;
+    }
+
+    public int countChips() {
+        return mChips;
+    }
+
+    public void placeBet(int chips) {
+        if (mChips >= chips) {
+            mChips -= chips;
+            mBet = chips;
+        } else {
+            mBet = 0;
+        }
+    }
+
+    public int smallBlind() {
+        mChips -= mSmallBlindValue;
+        mBet = mSmallBlindValue;
+        return mSmallBlindValue;
+    }
+
+    public int bigBlind() {
+        mChips -= mBigBlindValue;
+        mBet = mBigBlindValue;
+        return mBigBlindValue;
+    }
+
+    public int check() {
+        return mBet;
+    }
+
+    public int giveBet() {
+        return mBet;
+    }
+
+    public int number() {
+        return mPlayerNumber;
+    }
+
+    public void winChips(int chips) {
+        mChips += chips;
+    }
 }
