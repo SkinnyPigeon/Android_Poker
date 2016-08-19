@@ -44,12 +44,8 @@ public class MainActivity extends AppCompatActivity{
     Logic mLogic;
 
     private static Integer mPOneBet;
-    private static Integer mPOneCash;
     private static Integer mPTwoBet;
-    private static Integer mPTwoCash;
     private static Integer mPThreeBet;
-    private static Integer mPThreeCash;
-    private static Integer mPot;
 
 
 
@@ -124,10 +120,6 @@ public class MainActivity extends AppCompatActivity{
         mPOneBet = 0;
         mPTwoBet = 0;
         mPThreeBet = 0;
-        mPTwoCash = 500;
-        mPOneCash = 500;
-        mPThreeCash = 500;
-        mPot = 0;
 
         mPlus.setVisibility(View.INVISIBLE);
         mMinus.setVisibility(View.INVISIBLE);
@@ -262,7 +254,6 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if (mPlayerOneButton.getVisibility() == View.VISIBLE) {
-                    mPot += mPOneBet;
                     mJeff.placeBet(mPOneBet);
                     mGame.addBet( mJeff );
                     mPOneBet = 0;
@@ -273,7 +264,6 @@ public class MainActivity extends AppCompatActivity{
                     mPotValue.setText( pot );
 
                 } else if (mPlayerTwoButton.getVisibility() == View.VISIBLE) {
-                    mPot += mPTwoBet;
                     mSteve.placeBet( mPTwoBet );
                     mGame.addBet(mSteve);
                     mPTwoBet = 0;
@@ -284,7 +274,6 @@ public class MainActivity extends AppCompatActivity{
                     mPotValue.setText(pot);
 
                 } else if (mPlayerThreeButton.getVisibility() == View.VISIBLE) {
-                    mPot += mPThreeBet;
                     mDave.placeBet( mPTwoBet );
                     mGame.addBet(mSteve);
                     mPThreeBet = 0;
