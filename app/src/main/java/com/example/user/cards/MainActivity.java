@@ -35,6 +35,13 @@ public class MainActivity extends AppCompatActivity{
     boolean mPTwoReady;
     boolean mPThreeReady;
 
+    Player mJeff;
+    Player mSteve;
+    Player mDave;
+
+    TestCards mCards;
+    Logic mLogic;
+
     private static Integer mPOneBet;
     private static Integer mPOneCash;
     private static Integer mPTwoBet;
@@ -78,6 +85,7 @@ public class MainActivity extends AppCompatActivity{
                 if( isChecked ) {
                     Log.d( "LayoutExperiment: ", "Player two toggle togged");
                     mPOneReady = true;
+
                 }
             }
         });
