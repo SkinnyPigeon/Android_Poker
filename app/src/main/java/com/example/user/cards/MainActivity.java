@@ -261,14 +261,21 @@ public class MainActivity extends AppCompatActivity{
                 if( mPlayerOneText.getVisibility() == View.VISIBLE ) {
                     if( mGame.seeLastBet() <= mJeff.countChips() ) {
                         playerOneEndTurn();
+                        mJeff.setLastBet();
+                        mGame.setLastBet();
+                        mGame.setFirstBet( mJeff.number() );
                     }
                 } else if (mPlayerTwoText.getVisibility() == View.VISIBLE) {
                     if( mGame.seeLastBet() <= mSteve.countChips() ) {
                         playerTwoEndTurn();
+                        mSteve.setLastBet();
+                        mGame.setLastBet();
                     }
                 } else if (mPlayerThreeText.getVisibility() == View.VISIBLE) {
                     if( mGame.seeLastBet() <= mDave.countChips() ) {
                         playerThreeEndTurn();
+                        mDave.setLastBet();
+                        mGame.setLastBet();
                     }
                 }
             }
@@ -300,7 +307,7 @@ public class MainActivity extends AppCompatActivity{
             mGame.nextTurn();
             showPlayerTwo();
             if( mGame.starter() == mSteve.number() && mGame.showPot() > 0
-                    && mJeff.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                    && mSteve.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
                 mCheck.setVisibility(View.VISIBLE);
             } else {
                 mCheck.setVisibility(View.INVISIBLE);
@@ -310,7 +317,7 @@ public class MainActivity extends AppCompatActivity{
             mGame.nextTurn();
             showPlayerThree();
             if( mGame.starter() == mDave.number() && mGame.showPot() > 0
-                    && mJeff.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                    && mDave.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
                 mCheck.setVisibility(View.VISIBLE);
             } else {
                 mCheck.setVisibility(View.INVISIBLE);
@@ -344,7 +351,7 @@ public class MainActivity extends AppCompatActivity{
             mGame.nextTurn();
             showPlayerThree();
             if( mGame.starter() == mDave.number() && mGame.showPot() > 0
-                    && mSteve.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                    && mDave.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
                 mCheck.setVisibility(View.VISIBLE);
             } else {
                 mCheck.setVisibility(View.INVISIBLE);
@@ -354,7 +361,7 @@ public class MainActivity extends AppCompatActivity{
             mGame.nextTurn();
             showPlayerOne();
             if( mGame.starter() == mJeff.number() && mGame.showPot() > 0
-                    && mSteve.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                    && mJeff.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
                 mCheck.setVisibility(View.VISIBLE);
             } else {
                 mCheck.setVisibility(View.INVISIBLE);
@@ -388,7 +395,7 @@ public class MainActivity extends AppCompatActivity{
             mGame.nextTurn();
             showPlayerOne();
             if( mGame.starter() == mJeff.number() && mGame.showPot() > 0
-                    && mDave.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                    && mJeff.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
                 mCheck.setVisibility(View.VISIBLE);
             } else {
                 mCheck.setVisibility(View.INVISIBLE);
@@ -398,7 +405,7 @@ public class MainActivity extends AppCompatActivity{
             mGame.nextTurn();
             showPlayerTwo();
             if( mGame.starter() == mSteve.number() && mGame.showPot() > 0
-                    && mDave.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                    && mSteve.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
                 mCheck.setVisibility(View.VISIBLE);
             } else {
                 mCheck.setVisibility(View.INVISIBLE);

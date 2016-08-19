@@ -10,6 +10,7 @@ public class Game  {
     private int mlastBet;
     private int mPlayerTurn;
     private int mPlayerStart;
+    private int mFirstBet;
     private int mNoOfPlayers;
     private int mNoOfFoldedPlayers;
     private ArrayList< String > mSharedCards;
@@ -22,6 +23,7 @@ public class Game  {
         mPot = 0;
         mPlayerTurn = 1;
         mPlayerStart = 1;
+        mFirstBet = 1;
         mNoOfPlayers = noOfPlayers;
         mNoOfFoldedPlayers = 0;
 //        mlastBet = mLastBet;
@@ -158,6 +160,22 @@ public class Game  {
 
     public int seeLastBet() {
         return mlastBet;
+    }
+
+    public void setLastBet() {
+        mlastBet = 0;
+    }
+
+    public void setFirstBet( int playerNumber ) {
+        if( mFirstBet == mNoOfPlayers ) {
+            mFirstBet = 1;
+        } else {
+            mFirstBet += 1;
+        }
+    }
+
+    public int seeFirstBet() {
+        return mFirstBet;
     }
 
 }

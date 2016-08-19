@@ -114,6 +114,10 @@ public class Player extends AppCompatActivity {
         return mLastBet;
     }
 
+    public void setLastBet() {
+        mLastBet = 0;
+    }
+
     public void winChips(int chips) {
         mChips += chips;
     }
