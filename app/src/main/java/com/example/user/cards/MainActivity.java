@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity{
                     Log.d( "LayoutExperiment: ", "Player two toggle togged");
                     mPOneReady = true;
                     mJeff = new Player( "Jeff", 1 );
-
                 }
             }
         });
@@ -112,7 +111,6 @@ public class MainActivity extends AppCompatActivity{
                     Log.d( "LayoutExperiment: ", "Player two toggle togged");
                     mPTwoReady = true;
                     mSteve = new Player( "Steve", 2 );
-
                 }
             }
         });
@@ -124,7 +122,6 @@ public class MainActivity extends AppCompatActivity{
                     Log.d( "LayoutExperiment: ", "Player two toggle togged");
                     mPThreeReady = true;
                     mDave = new Player( "Dave", 3 );
-
                 }
             }
         });
@@ -136,7 +133,6 @@ public class MainActivity extends AppCompatActivity{
                     Log.d( "LayoutExperiment: ", "Player two toggle togged");
                     mPFourReady = true;
                     mBob = new Player( "Bob", 4 );
-
                 }
             }
         });
@@ -166,7 +162,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                mGame = new Game(2);
+                mGame = new Game(4);
                 mCards = new TestCards();
 
                 if( mPOneReady == true ) {
