@@ -49,6 +49,10 @@ public class Game  {
         mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
     }
 
+    public int starter() {
+        return mPlayerStart;
+    }
+
     public void pickWinner() {
 
         Collections.sort(mWinnerArray, mPlayerComparator);

@@ -141,18 +141,25 @@ public class MainActivity extends AppCompatActivity{
 
                 mGame = new Game(2);
                 mCards = new TestCards();
+
                 mJeff.takeCard(mCards.deal());
                 mJeff.takeCard(mCards.deal());
+
                 mSteve.takeCard(mCards.deal());
                 mSteve.takeCard(mCards.deal());
+
                 mPlayerOneCards.setText(mJeff.seeHand().toString());
                 mPlayerTwoCards.setText(mSteve.seeHand().toString());
 
                 mGame.takeCard(mCards.deal());
                 mGame.takeCard(mCards.deal());
                 mGame.takeCard(mCards.deal());
-                mGame.takeCard(mCards.deal());
-                mGame.takeCard(mCards.deal());
+
+//                mGame.takeCard(mCards.deal());
+//                mGame.takeCard(mCards.deal());
+
+                mCommunityCards.setText( mGame.seeHand().toString());
+
 
                 mPOneTog.setVisibility(View.INVISIBLE);
                 mPTwoTog.setVisibility(View.INVISIBLE);
@@ -175,9 +182,15 @@ public class MainActivity extends AppCompatActivity{
                 if( mPTwoReady ) {
                     mGame.nextTurn();
                     showPlayerTwo();
+                    if( mGame.starter() == mSteve.number() && mGame.showPot() > 0 && mJeff.seeLastBet() == mGame.seeLastBet()) {
+                        mCommunityCards.setVisibility( View.VISIBLE );
+                    }
                 } else if( mPThreeReady ) {
                     mGame.nextTurn();
                     showPlayerThree();
+                    if( mGame.starter() == mDave.number() && mGame.showPot() > 0 && mJeff.seeLastBet() == mGame.seeLastBet() ) {
+                        mCommunityCards.setVisibility( View.VISIBLE );
+                    }
                 }
                 hidePlayerOne();
             }
@@ -189,9 +202,15 @@ public class MainActivity extends AppCompatActivity{
                 if( mPThreeReady ) {
                     mGame.nextTurn();
                     showPlayerThree();
+                    if( mGame.starter() == mDave.number() && mGame.showPot() > 0 && mSteve.seeLastBet() == mGame.seeLastBet() ) {
+                        mCommunityCards.setVisibility( View.VISIBLE );
+                    }
                 } else if( mPOneReady ) {
                     mGame.nextTurn();
                     showPlayerOne();
+                    if( mGame.starter() == mJeff.number() && mGame.showPot() > 0 && mSteve.seeLastBet() == mGame.seeLastBet() ) {
+                        mCommunityCards.setVisibility( View.VISIBLE );
+                    }
                 }
                 hidePlayerTwo();
             }
@@ -203,9 +222,15 @@ public class MainActivity extends AppCompatActivity{
                 if( mPOneReady ) {
                     mGame.nextTurn();
                     showPlayerOne();
+                    if( mGame.starter() == mJeff.number() && mGame.showPot() > 0 && mDave.seeLastBet() == mGame.seeLastBet() ) {
+                        mCommunityCards.setVisibility( View.VISIBLE );
+                    }
                 } else if( mPTwoReady ) {
                     mGame.nextTurn();
                     showPlayerTwo();
+                    if( mGame.starter() == mSteve.number() && mGame.showPot() > 0 && mDave.seeLastBet() == mGame.seeLastBet() ) {
+                        mCommunityCards.setVisibility( View.VISIBLE );
+                    }
                 }
                 hidePlayerThree();
             }

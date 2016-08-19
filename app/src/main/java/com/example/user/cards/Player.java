@@ -13,6 +13,7 @@ public class Player extends AppCompatActivity {
     private int mSmallBlindValue;
     private int mBigBlindValue;
     private int mPlayerNumber;
+    private int mLastBet;
     private Integer mScore;
     private Integer mKicker;
     private boolean mFolded;
@@ -27,6 +28,7 @@ public class Player extends AppCompatActivity {
         mSmallBlindValue = 5;
         mBigBlindValue = 10;
         mFolded = false;
+        mLastBet = 0;
     }
 
     public String name() {
@@ -77,8 +79,10 @@ public class Player extends AppCompatActivity {
         if (mChips >= chips) {
             mChips -= chips;
             mBet = chips;
+            mLastBet = chips;
         } else {
             mBet = 0;
+            mLastBet = 0;
         }
     }
 
@@ -104,6 +108,10 @@ public class Player extends AppCompatActivity {
 
     public int number() {
         return mPlayerNumber;
+    }
+
+    public int seeLastBet() {
+        return mLastBet;
     }
 
     public void winChips(int chips) {

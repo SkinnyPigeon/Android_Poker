@@ -151,5 +151,13 @@
         android:textSize="40dp"
         android:layout_marginTop="420dp"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/call"
+        android:id="@+id/call"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="100dp"/>
+
 
 </RelativeLayout>
