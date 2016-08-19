@@ -246,28 +246,32 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if( mPlayerOneButton.getVisibility() == View.VISIBLE ) {
-                    mPOneBet = mGame.seeLastBet();
-                    String cash = mPOneBet.toString();
-                    mPlayerOneBet.setText(cash);
-                    Integer potInt = mGame.showPot();
-                    String pot = potInt.toString();
-                    mPotValue.setText( pot );
-
+                    if( mGame.seeLastBet() <= mJeff.countChips() ) {
+                        mPOneBet = mGame.seeLastBet();
+                        String cash = mPOneBet.toString();
+                        mPlayerOneBet.setText(cash);
+                        Integer potInt = mGame.showPot();
+                        String pot = potInt.toString();
+                        mPotValue.setText( pot );
+                    }
                 } else if (mPlayerTwoButton.getVisibility() == View.VISIBLE) {
-                    mPTwoBet = mGame.seeLastBet();
-                    String cash = mPTwoBet.toString();
-                    mPlayerTwoBet.setText(cash);
-                    Integer potInt = mGame.showPot();
-                    String pot = potInt.toString();
-                    mPotValue.setText(pot);
-
+                    if( mGame.seeLastBet() <= mSteve.countChips() ) {
+                        mPTwoBet = mGame.seeLastBet();
+                        String cash = mPTwoBet.toString();
+                        mPlayerTwoBet.setText(cash);
+                        Integer potInt = mGame.showPot();
+                        String pot = potInt.toString();
+                        mPotValue.setText(pot);
+                    }
                 } else if (mPlayerThreeButton.getVisibility() == View.VISIBLE) {
-                    mPThreeBet = mGame.seeLastBet();
-                    String cash = mPThreeBet.toString();
-                    mPlayerThreeBet.setText(cash);
-                    Integer potInt = mGame.showPot();
-                    String pot = potInt.toString();
-                    mPotValue.setText(pot);
+                    if( mGame.seeLastBet() <= mJeff.countChips() ) {
+                        mPThreeBet = mGame.seeLastBet();
+                        String cash = mPThreeBet.toString();
+                        mPlayerThreeBet.setText(cash);
+                        Integer potInt = mGame.showPot();
+                        String pot = potInt.toString();
+                        mPotValue.setText(pot);
+                    }
                 }
             }
         });
