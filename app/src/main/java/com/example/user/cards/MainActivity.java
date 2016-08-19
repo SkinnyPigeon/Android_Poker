@@ -140,20 +140,26 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                mGame = new Game(2);
+                mGame = new Game(3);
                 mCards = new TestCards();
 
+                if( mPOneReady == true ) {
+                    mJeff.takeCard(mCards.deal());
+                    mJeff.takeCard(mCards.deal());
+                    mPlayerOneCards.setText(mJeff.seeHand().toString());
+                }
 
-                mJeff.takeCard(mCards.deal());
-                mJeff.takeCard(mCards.deal());
-                mSteve.takeCard(mCards.deal());
-                mSteve.takeCard(mCards.deal());
-                mDave.takeCard( mCards.deal());
-                mDave.takeCard(mCards.deal());
+                if( mPTwoReady == true ) {
+                    mSteve.takeCard(mCards.deal());
+                    mSteve.takeCard(mCards.deal());
+                    mPlayerTwoCards.setText(mSteve.seeHand().toString());
+                }
 
-                mPlayerOneCards.setText(mJeff.seeHand().toString());
-                mPlayerTwoCards.setText(mSteve.seeHand().toString());
-                mPlayerThreeCards.setText(mDave.seeHand().toString());
+                if( mPThreeReady == true ) {
+                    mDave.takeCard( mCards.deal());
+                    mDave.takeCard(mCards.deal());
+                    mPlayerThreeCards.setText(mDave.seeHand().toString());
+                }
 
                 mGame.takeCard(mCards.deal());
                 mGame.takeCard(mCards.deal());
