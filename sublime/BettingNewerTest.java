@@ -26,7 +26,6 @@ public class BettingNewerTest {
   @Test
   public void firstRunOfMegaCheck() {
     one.fold();
-    bets.setFold( one, two, three, four );
     bets.megaCheck( one, two, three, four );
     assertEquals( true, four.seeFirstBet() );
   }
@@ -35,8 +34,8 @@ public class BettingNewerTest {
   @Test
   public void secondRunOfMegaCheck() {
     one.fold();
+    bets.megaCheck( one, two, three, four );
     two.fold();
-    bets.setFold( one, two, three, four );
     bets.megaCheck( one, two, three, four );
     assertEquals( true, three.seeFirstBet() );
   }
@@ -44,8 +43,8 @@ public class BettingNewerTest {
   @Test
   public void thirdRunOfMegaCheck() {
     one.fold();
+    bets.megaCheck( one, two, three, four );
     three.fold();
-    bets.setFold( one, two, three, four );
     bets.megaCheck( one, two, three, four );
     assertEquals( true, two.seeFirstBet() );
   }
@@ -55,14 +54,12 @@ public class BettingNewerTest {
     bets.endHand();
     two.fold();
     four.fold();
-    bets.setFold( one, two, three, four );
     bets.megaCheck( one, two, three, four );
     assertEquals( true, three.seeFirstBet() );
   }
 
   @Test
   public void fifthRunOfMegaCheck() {
-    bets.setFold( one, two, three, four );
     bets.megaCheck( one, two, three, four );
     assertEquals( true, three.seeFirstBet() );
   }
@@ -70,9 +67,23 @@ public class BettingNewerTest {
   @Test
   public void sixthRunOfMegaCheck() {
     bets.endHand();
-    bets.setFold( one, two, three, four );
     bets.megaCheck( one, two, three, four );
     assertEquals( true, four.seeFirstBet() );
+  }
+
+  @Test
+  public void seventhRunOfMegaCheck() {
+    one.fold();
+    bets.megaCheck( one, two, three, four );
+    assertEquals( 2, bets.seeCurrentPlayer() );
+  }
+
+  @Test
+  public void eigthRunOfMegaCheck() {
+    one.fold();
+    two.fold();
+    bets.megaCheck( one, two, three, four );
+    assertEquals( 3, bets.seeCurrentPlayer() );
   }
 
 

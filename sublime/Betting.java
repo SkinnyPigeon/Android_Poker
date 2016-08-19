@@ -128,56 +128,83 @@ public class Betting {
   public void megaCheck( Player one, Player two, Player three, Player four ) {
     if( one.seeFolded() && two.seeFolded() ) {
       setFold( one, two, three, four );  
-      setFold( one, two, three, four );  
-
+      foldMaster( one, two, three, four );
       firstTurn( three, four );
     } else if( one.seeFolded() && three.seeFolded() ) {
       setFold( one, two, three, four );  
-      setFold( one, two, three, four );  
+      foldMaster( one, two, three, four );
 
       firstTurn( two, four ); 
     } else if( one.seeFolded() && four.seeFolded() ) {
       setFold( one, two, three, four );  
-      setFold( one, two, three, four );  
+      foldMaster( one, two, three, four );
 
       firstTurn( two, three );
     } else if( two.seeFolded() && three.seeFolded() ) {
       setFold( one, two, three, four );  
-      setFold( one, two, three, four );  
+      foldMaster( one, two, three, four );
 
       firstTurn( one, four );
     } else if( two.seeFolded() && four.seeFolded() ) {
       setFold( one, two, three, four );  
-      setFold( one, two, three, four );  
+      foldMaster( one, two, three, four );
 
       firstTurn( one, three );
     } else if( three.seeFolded() && four.seeFolded() ) {
       setFold( one, two, three, four );  
-      setFold( one, two, three, four );  
+      foldMaster( one, two, three, four );
 
       firstTurn( one, two );
     } else if( one.seeFolded() ) {
       setFold( one, two, three, four );  
-      setFold( one, two, three, four );  
+      foldMaster( one, two, three, four );
 
       firstTurn( two, three, four );
     } else if( two.seeFolded() ) {
       setFold( one, two, three, four );  
-      setFold( one, two, three, four );  
+      foldMaster( one, two, three, four );
 
       firstTurn( one, three, four );
     } else if( three.seeFolded() ) {
       setFold( one, two, three, four );  
-      setFold( one, two, three, four );  
+      foldMaster( one, two, three, four );
 
       firstTurn( one, two, four );
     } else if( four.seeFolded() ) {
       setFold( one, two, three, four );  
-      setFold( one, two, three, four );  
+      foldMaster( one, two, three, four );
       
       firstTurn( one, two, three );
     } else {
       firstTurn( one, two, three, four );
+      foldMaster( one, two, three, four );
+      
+    }
+  }
+
+  public void foldMaster( Player one, Player two, Player three, Player four ) {
+    foldCheck( one );
+    foldWin( one );
+
+    foldCheck( two );
+    foldWin( two );
+
+    foldCheck( three );
+    foldWin( three );
+
+    foldCheck( four );
+    foldWin( four );
+  }
+
+  public void setFoldedPlayerCount() {
+    mNoFolded += 1;
+  }
+
+  public void foldWin( Player player ) {
+    if( mNoFolded == ( mNoPlayers - 1 )) {
+      if( player.seeFolded() == false ) {
+        player.winChips( mPot );
+      }
     }
   }
 

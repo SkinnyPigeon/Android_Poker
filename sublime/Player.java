@@ -10,9 +10,10 @@ public class Player {
 
   public Player( int playerNumber ) {
     mPlayerNumber = playerNumber;
+    mChips = 500;
     mBet = 0;
-    mSmallBlindValue = 5;
-    mBigBlindValue = 10;
+    mSmallBlindValue = 10;
+    mBigBlindValue = 20;
     mFolded = false;
     mFirstToBet = false;
   }
@@ -51,6 +52,14 @@ public class Player {
 
   public boolean seeFirstBet() {
     return mFirstToBet;
+  }
+
+  public int countChips() {
+    return mChips;
+  }
+
+  public void winChips( int chips ) {
+    mChips += chips;
   }
 
 }
