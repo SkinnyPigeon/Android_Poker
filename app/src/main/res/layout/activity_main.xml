@@ -45,27 +45,6 @@
         android:layout_marginTop="130dp"
         android:layout_marginLeft="100dp"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/player_one_button"
-        android:id="@+id/ponebut"
-        android:layout_marginTop="15dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/player_two_button"
-        android:id="@+id/ptwobut"
-        android:layout_marginTop="15dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/player_three_button"
-        android:id="@+id/pthreebut"
-        android:layout_marginTop="15dp"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
