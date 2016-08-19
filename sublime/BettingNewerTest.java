@@ -86,6 +86,23 @@ public class BettingNewerTest {
     assertEquals( 3, bets.seeCurrentPlayer() );
   }
 
+  @Test
+  public void ninthRunOfMegaCheck() {
+    one.setBet( 50 );
+    bets.getBet( one );
+    one.fold();
+    bets.megaCheck( one, two, three, four );
+    two.setBet( 50 );
+    bets.getBet( two );
+    two.fold();
+    bets.megaCheck( one, two, three, four );
+    three.setBet( 50 );
+    bets.getBet( three );
+    three.fold();
+    bets.megaCheck( one, two, three, four );
+    assertEquals( 150, bets.seePot() );
+  }
+
 
 
 }
