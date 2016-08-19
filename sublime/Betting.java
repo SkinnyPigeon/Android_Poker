@@ -35,6 +35,12 @@ public class Betting {
     return mNoFolded;
   }
 
+  public void foldCheck( Player player ) {
+    if( player.seeFolded() == true ) {
+      endTurn();
+    }
+  }
+
   public void endTurn() {
     if( mCurrentPlayer == mNoPlayers ) {
       mCurrentPlayer = 1;
@@ -51,23 +57,23 @@ public class Betting {
     }
   }
 
-  public void firstTurn( Player one, Player two, Player three, Player four ) {
-    if( one.seePlayerNo() == mPlayerStart ) {
-      one.smallBlind();
-      two.bigBlind();
-      three.setFirstBet();
-    } else if ( two.seePlayerNo() == mPlayerStart ) {
-      two.smallBlind();
-      three.bigBlind();
-      four.setFirstBet();
-    } else if ( three.seePlayerNo() == mPlayerStart ) {
-      three.smallBlind();
-      four.bigBlind();
-      one.setFirstBet();
+  public void passOverFoldedPlayer() {
+    if( mCurrentPlayer == mNoPlayers ) {
+      mPlayerStart = 1;
     } else {
-      four.smallBlind();
-      one.bigBlind();
-      two.setFirstBet();
+      mPlayerStart += 1;
+    }
+  }
+
+  public void setFold( Player one, Player two, Player three, Player four ) {
+    if( one.seeFolded() && one.seePlayerNo() == mPlayerStart ) {
+      passOverFoldedPlayer();
+    } else if( two.seeFolded() && two.seePlayerNo() == mPlayerStart ) {
+      passOverFoldedPlayer();
+    } else if( three.seeFolded() && three.seePlayerNo() == mPlayerStart ) {
+      passOverFoldedPlayer();
+    } else if( four.seeFolded() && four.seePlayerNo() == mPlayerStart ) {
+      passOverFoldedPlayer();
     }
   }
 
@@ -122,10 +128,6 @@ public class Betting {
       firstTurn( one, two, three );
     }
   }
-
-
-
-
 
 }
 

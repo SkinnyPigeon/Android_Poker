@@ -23,6 +23,14 @@ public class BettingNewerTest {
     assertEquals( false, one.seeFolded() );
   }
 
+  @Test
+  public void firstRunOfMegaCheck() {
+    one.fold();
+    bets.setFold( one, two, three, four );
+    bets.megaCheck( one, two, three, four );
+    assertEquals( true, four.seeFirstBet() );
+  }
+
 
 
 }
