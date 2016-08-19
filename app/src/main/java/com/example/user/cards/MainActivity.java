@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity{
     private static Integer mPThreeCash;
     private static Integer mPot;
 
+
+
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
@@ -60,9 +62,15 @@ public class MainActivity extends AppCompatActivity{
         mPlayerTwoBet = ( TextView )findViewById( R.id.ptwob );
         mPlayerThreeBet = (TextView )findViewById( R.id.pthreeb );
 
+        hidePlayerOne();
+        hidePlayerTwo();
+        hidePlayerThree();
+
         mPOneTog = ( Switch )findViewById( R.id.p_one_toggle );
         mPTwoTog = ( Switch )findViewById( R.id.p_two_toggle );
         mPThreeTog = ( Switch )findViewById( R.id.p_three_toggle );
+
+
 
         mPOneTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -115,9 +123,7 @@ public class MainActivity extends AppCompatActivity{
         mBet.setVisibility(View.INVISIBLE);
         mPotValue.setVisibility(View.INVISIBLE);
 
-        hidePlayerTwo();
-        hidePlayerTwo();
-        hidePlayerThree();
+
 
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -288,4 +294,6 @@ public class MainActivity extends AppCompatActivity{
         mPlayerThreeText.setVisibility(View.VISIBLE);
         mPlayerThreeBet.setVisibility(View.VISIBLE);
     }
+
+
 }
