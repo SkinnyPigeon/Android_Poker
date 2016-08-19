@@ -37,9 +37,11 @@ public class MainActivity extends AppCompatActivity{
     TextView mPlayerTwoBet;
     TextView mPlayerThreeBet;
     TextView mPotValue;
+    
     Switch mPOneTog;
     Switch mPTwoTog;
     Switch mPThreeTog;
+
     boolean mPOneReady;
     boolean mPTwoReady;
     boolean mPThreeReady;
