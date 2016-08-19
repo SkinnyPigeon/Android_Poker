@@ -74,6 +74,26 @@ public class Betting {
       passOverFoldedPlayer();
     } else if( four.seeFolded() && four.seePlayerNo() == mPlayerStart ) {
       passOverFoldedPlayer();
+    } 
+  }
+
+  public void firstTurn( Player one, Player two, Player three, Player four ) {
+    if( one.seePlayerNo() == mPlayerStart ) {
+      one.smallBlind();
+      two.bigBlind();
+      three.setFirstBet();
+    } else if ( two.seePlayerNo() == mPlayerStart ) {
+      two.smallBlind();
+      three.bigBlind();
+      four.setFirstBet();
+    } else if ( three.seePlayerNo() == mPlayerStart ) {
+      three.smallBlind();
+      four.bigBlind();
+      one.setFirstBet();
+    } else {
+      four.smallBlind();
+      one.bigBlind();
+      two.setFirstBet();
     }
   }
 
@@ -156,6 +176,8 @@ public class Betting {
       setFold( one, two, three, four );  
       
       firstTurn( one, two, three );
+    } else {
+      firstTurn( one, two, three, four );
     }
   }
 

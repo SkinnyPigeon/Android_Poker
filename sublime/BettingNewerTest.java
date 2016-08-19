@@ -31,6 +31,7 @@ public class BettingNewerTest {
     assertEquals( true, four.seeFirstBet() );
   }
 
+
   @Test
   public void secondRunOfMegaCheck() {
     one.fold();
@@ -57,6 +58,21 @@ public class BettingNewerTest {
     bets.setFold( one, two, three, four );
     bets.megaCheck( one, two, three, four );
     assertEquals( true, three.seeFirstBet() );
+  }
+
+  @Test
+  public void fifthRunOfMegaCheck() {
+    bets.setFold( one, two, three, four );
+    bets.megaCheck( one, two, three, four );
+    assertEquals( true, three.seeFirstBet() );
+  }
+
+  @Test
+  public void sixthRunOfMegaCheck() {
+    bets.endHand();
+    bets.setFold( one, two, three, four );
+    bets.megaCheck( one, two, three, four );
+    assertEquals( true, four.seeFirstBet() );
   }
 
 
