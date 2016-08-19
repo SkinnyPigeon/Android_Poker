@@ -10,6 +10,8 @@
 
     <string name="plus">+</string>
     <string name="call">Call</string>
+    <string name="check">Check</string>
+
     <integer name="player_one_bet">0</integer>
     <integer name="player_two_bet">0</integer>
     <integer name="player_three_bet">0</integer>

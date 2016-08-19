@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity{
     Button mCall;
     Button mBet;
     Button mStart;
+    Button mCheck;
+
     TextView mPlayerOneBet;
     TextView mPlayerTwoBet;
     TextView mPlayerThreeBet;
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity{
 
         mPlus = ( Button )findViewById( R.id.plus );
         mCall = ( Button )findViewById( R.id.call );
+        mCheck = ( Button )findViewById( R.id.check );
 
         mBet = ( Button )findViewById( R.id.bet );
         mPotValue = ( TextView )findViewById( R.id.pot );
@@ -134,6 +137,7 @@ public class MainActivity extends AppCompatActivity{
         mBet.setVisibility(View.INVISIBLE);
         mPotValue.setVisibility(View.INVISIBLE);
         mCommunityCards.setVisibility(View.INVISIBLE);
+        mCheck.setVisibility(View.INVISIBLE);
 
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +162,7 @@ public class MainActivity extends AppCompatActivity{
 //                mGame.takeCard(mCards.deal());
 //                mGame.takeCard(mCards.deal());
 
-                mCommunityCards.setText( mGame.seeHand().toString());
+                mCommunityCards.setText(mGame.seeHand().toString());
 
 
                 mPOneTog.setVisibility(View.INVISIBLE);
@@ -182,14 +186,21 @@ public class MainActivity extends AppCompatActivity{
                 if( mPTwoReady ) {
                     mGame.nextTurn();
                     showPlayerTwo();
-                    if( mGame.starter() == mSteve.number() && mGame.showPot() > 0 && mJeff.seeLastBet() == mGame.seeLastBet()) {
-                        mCommunityCards.setVisibility( View.VISIBLE );
+                    if( mGame.starter() == mSteve.number() && mGame.showPot() > 0
+                            && mJeff.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                        mCheck.setVisibility(View.VISIBLE);
+                    } else {
+                        mCheck.setVisibility(View.INVISIBLE);
                     }
+
                 } else if( mPThreeReady ) {
                     mGame.nextTurn();
                     showPlayerThree();
-                    if( mGame.starter() == mDave.number() && mGame.showPot() > 0 && mJeff.seeLastBet() == mGame.seeLastBet() ) {
-                        mCommunityCards.setVisibility( View.VISIBLE );
+                    if( mGame.starter() == mDave.number() && mGame.showPot() > 0
+                            && mJeff.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                        mCheck.setVisibility(View.VISIBLE);
+                    } else {
+                        mCheck.setVisibility(View.INVISIBLE);
                     }
                 }
                 hidePlayerOne();
@@ -202,14 +213,21 @@ public class MainActivity extends AppCompatActivity{
                 if( mPThreeReady ) {
                     mGame.nextTurn();
                     showPlayerThree();
-                    if( mGame.starter() == mDave.number() && mGame.showPot() > 0 && mSteve.seeLastBet() == mGame.seeLastBet() ) {
-                        mCommunityCards.setVisibility( View.VISIBLE );
+                    if( mGame.starter() == mDave.number() && mGame.showPot() > 0
+                            && mSteve.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                        mCheck.setVisibility(View.VISIBLE);
+                    } else {
+                        mCheck.setVisibility(View.INVISIBLE);
                     }
+
                 } else if( mPOneReady ) {
                     mGame.nextTurn();
                     showPlayerOne();
-                    if( mGame.starter() == mJeff.number() && mGame.showPot() > 0 && mSteve.seeLastBet() == mGame.seeLastBet() ) {
-                        mCommunityCards.setVisibility( View.VISIBLE );
+                    if( mGame.starter() == mJeff.number() && mGame.showPot() > 0
+                            && mSteve.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                        mCheck.setVisibility(View.VISIBLE);
+                    } else {
+                        mCheck.setVisibility(View.INVISIBLE);
                     }
                 }
                 hidePlayerTwo();
@@ -222,14 +240,21 @@ public class MainActivity extends AppCompatActivity{
                 if( mPOneReady ) {
                     mGame.nextTurn();
                     showPlayerOne();
-                    if( mGame.starter() == mJeff.number() && mGame.showPot() > 0 && mDave.seeLastBet() == mGame.seeLastBet() ) {
-                        mCommunityCards.setVisibility( View.VISIBLE );
+                    if( mGame.starter() == mJeff.number() && mGame.showPot() > 0
+                            && mDave.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                        mCheck.setVisibility(View.VISIBLE);
+                    } else {
+                        mCheck.setVisibility(View.INVISIBLE);
                     }
+
                 } else if( mPTwoReady ) {
                     mGame.nextTurn();
                     showPlayerTwo();
-                    if( mGame.starter() == mSteve.number() && mGame.showPot() > 0 && mDave.seeLastBet() == mGame.seeLastBet() ) {
-                        mCommunityCards.setVisibility( View.VISIBLE );
+                    if( mGame.starter() == mSteve.number() && mGame.showPot() > 0
+                            && mDave.seeLastBet() == mGame.seeLastBet() && mCheck.getVisibility() != View.VISIBLE ) {
+                        mCheck.setVisibility(View.VISIBLE);
+                    } else {
+                        mCheck.setVisibility(View.INVISIBLE);
                     }
                 }
                 hidePlayerThree();
@@ -328,6 +353,14 @@ public class MainActivity extends AppCompatActivity{
                     String pot = potInt.toString();
                     mPotValue.setText(pot);
                 }
+            }
+        });
+
+        mCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCommunityCards.setVisibility(View.VISIBLE);
+                mCheck.setVisibility(View.INVISIBLE);
             }
         });
     }
