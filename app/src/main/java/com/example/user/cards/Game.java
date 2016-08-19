@@ -138,6 +138,26 @@ public class Game  {
         }
     }
 
+    public void firstTurn( Player one, Player two, Player three, Player four ) {
+        if( one.number() == mPlayerStart ) {
+            one.smallBlind();
+            two.bigBlind();
+            three.setFirstBet();
+        } else if ( two.number() == mPlayerStart ) {
+            two.smallBlind();
+            three.bigBlind();
+            four.setFirstBet();
+        } else if ( three.number() == mPlayerStart ) {
+            three.smallBlind();
+            four.bigBlind();
+            one.setFirstBet();
+        } else {
+            four.smallBlind();
+            one.bigBlind();
+            two.setFirstBet();
+        }
+    }
+
     public void firstTurn( Player one, Player two, Player three ) {
         if( one.number() == mPlayerStart ) {
             one.smallBlind();
@@ -167,10 +187,10 @@ public class Game  {
 
     public void megaCheck( Player one, Player two, Player three, Player four ) {
         if( one.status() && two.status() ) {
-            setFold( one, two, three, four );
-            setFold( one, two, three, four );
+            setFold(one, two, three, four);
+            setFold(one, two, three, four);
 
-            firstTurn( three, four );
+            firstTurn(three, four);
         } else if( one.status() && three.status() ) {
             setFold( one, two, three, four );
             setFold( one, two, three, four );
@@ -216,6 +236,8 @@ public class Game  {
             setFold( one, two, three, four );
 
             firstTurn( one, two, three );
+        } else {
+            firstTurn( one, two, three, four );
         }
     }
 
@@ -234,7 +256,7 @@ public class Game  {
 
     public void foldWin( Player player ) {
         if( mNoOfFoldedPlayers == ( mNoOfPlayers - 1 )) {
-            if( player.status() == false ) {
+            if( !player.status() ) {
                 player.winChips( mPot );
             }
         }

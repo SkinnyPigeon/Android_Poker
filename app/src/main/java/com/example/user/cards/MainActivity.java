@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity{
                     Log.d( "LayoutExperiment: ", "Player two toggle togged");
                     mPOneReady = true;
                     mJeff = new Player( "Jeff", 1 );
+                    mJeff.in();
                 }
             }
         });
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity{
                     Log.d( "LayoutExperiment: ", "Player two toggle togged");
                     mPTwoReady = true;
                     mSteve = new Player( "Steve", 2 );
+                    mSteve.in();
                 }
             }
         });
@@ -122,6 +124,7 @@ public class MainActivity extends AppCompatActivity{
                     Log.d( "LayoutExperiment: ", "Player two toggle togged");
                     mPThreeReady = true;
                     mDave = new Player( "Dave", 3 );
+                    mDave.in();
                 }
             }
         });
@@ -133,6 +136,7 @@ public class MainActivity extends AppCompatActivity{
                     Log.d( "LayoutExperiment: ", "Player two toggle togged");
                     mPFourReady = true;
                     mBob = new Player( "Bob", 4 );
+                    mBob.in();
                 }
             }
         });
