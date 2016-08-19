@@ -4,6 +4,7 @@
     <string name="player_one">Jeff</string>
     <string name="player_two">Steve</string>
     <string name="player_three">Dave</string>
+    <string name="player_four">Bob</string>
 
     <string name="plus">+</string>
     <string name="call">Call</string>
@@ -12,6 +13,7 @@
     <integer name="player_one_bet">0</integer>
     <integer name="player_two_bet">0</integer>
     <integer name="player_three_bet">0</integer>
+    <integer name="player_four_bet">0</integer>
 
     <integer name="pot">0</integer>
 

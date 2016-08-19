@@ -21,13 +21,18 @@
         android:id="@+id/p_three_toggle"
         android:layout_marginTop="75dp"/>
 
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/p_four_toggle"
+        android:layout_marginTop="105dp"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start"
         android:id="@+id/start"
-        android:layout_marginTop="130dp"
-        />
+        android:layout_marginTop="145dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -69,6 +74,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/player_four"
+        android:id="@+id/pfourt"
+        android:layout_marginTop="85dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@integer/player_one_bet"
         android:id="@+id/poneb"
         android:layout_marginTop="200dp"/>
@@ -85,6 +97,13 @@
         android:layout_height="wrap_content"
         android:text="@integer/player_three_bet"
         android:id="@+id/pthreeb"
+        android:layout_marginTop="200dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@integer/player_four_bet"
+        android:id="@+id/pfourb"
         android:layout_marginTop="200dp"/>
 
     <TextView
@@ -120,6 +139,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/player_three_cards"
+        android:textSize="40dp"
+        android:layout_marginTop="350dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/player_four_cards"
         android:textSize="40dp"
         android:layout_marginTop="350dp"/>
 
