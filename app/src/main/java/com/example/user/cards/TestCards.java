@@ -1,6 +1,7 @@
 package com.example.user.cards;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by user on 19/08/2016.
@@ -32,4 +33,28 @@ public class TestCards {
         mCards.add( "6♠" );
 
     }
+
+    public int cardLength() {
+        return mCards.size();
+    }
+
+    public String shuffle() {
+        Collections.sort( mCards );
+        for( String card: mCards ) {
+            if( card != null ) {
+            }
+        }
+        return "Shuffled!";
+    }
+
+    public void pickCard() {
+        mDealtCard = mCards.remove(0);
+    }
+
+    public String deal() {
+        pickCard();
+        return mDealtCard;
+    }
+
+
 }
