@@ -1,5 +1,7 @@
 package com.example.user.cards;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -780,6 +782,7 @@ public class Logic {
             mAwardScore = 372;
 
         } else if ( pairCheck( 'A' ) ) {
+            Log.d("Jeff: ", "You got a pair");
             mAwardScore = 212;
         } else if ( pairCheck( 'K' ) ) {
             mAwardScore = 211;

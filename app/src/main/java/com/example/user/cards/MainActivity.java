@@ -220,9 +220,9 @@ public class MainActivity extends AppCompatActivity{
                     mPlayerFourCards.setText(mBob.seeHand().toString());
                 }
 
-                mGame.takeCard(mCards.deal());
-                mGame.takeCard(mCards.deal());
-                mGame.takeCard(mCards.deal());
+//                mGame.takeCard(mCards.deal());
+//                mGame.takeCard(mCards.deal());
+//                mGame.takeCard(mCards.deal());
 
 //                mGame.takeCard(mCards.deal());
 //                mGame.takeCard(mCards.deal());
@@ -369,6 +369,18 @@ public class MainActivity extends AppCompatActivity{
                 mJeff.awardScore(logic.seeScore());
                 mJeff.awardKicker(logic.seeKicker());
 
+                logic = new Logic( mGame.seeHand(), mSteve.seeHand() );
+                logic.combineCards();
+                logic.setScore();
+                mSteve.awardScore(logic.seeScore());
+                mSteve.awardKicker(logic.seeKicker());
+
+                logic = new Logic( mGame.seeHand(), mDave.seeHand() );
+                logic.combineCards();
+                logic.setScore();
+                mDave.awardScore(logic.seeScore());
+                mDave.awardKicker(logic.seeKicker());
+
                 logic = new Logic( mGame.seeHand(), mBob.seeHand() );
                 logic.combineCards();
                 logic.setScore();
@@ -377,8 +389,11 @@ public class MainActivity extends AppCompatActivity{
 
                 mGame.addPlayer(mJeff);
                 mGame.addPlayer(mBob);
+                mGame.addPlayer(mSteve);
+                mGame.addPlayer(mDave);
+
                 mGame.pickWinner();
-                mGame.handWon( mGame.seeWinner() );
+                mGame.handWon(mGame.seeWinner());
                 mWinnerName.setText( mGame.seeWinner().name() );
             }
         });

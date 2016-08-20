@@ -1,6 +1,8 @@
 package com.example.user.cards;
 
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,6 +19,7 @@ public class Game  {
     private int mNoOfFoldedPlayers;
     private ArrayList< String > mSharedCards;
     private ArrayList< Player > mWinnerArray;
+    
     private PlayerComparator mPlayerComparator;
     private KickerComparator mkickerComparator;
     private Player mHandWinner;
@@ -63,6 +66,8 @@ public class Game  {
 
     public void pickWinner() {
 
+        Log.d( "Winner Array: ", mWinnerArray.toString() );
+
         Collections.sort(mWinnerArray, mPlayerComparator);
 
         for( int i = 0; i < mWinnerArray.size() - 1; i++ ) {
@@ -73,7 +78,10 @@ public class Game  {
             if( (int) firstPlayerScore  ==  (int) secondPlayerScore ) {
                 pickKicker();
             } else {
-                mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
+                Log.d( "Winner Array 2: ", mWinnerArray.get(0).name() );
+//                mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
+//                mHandWinner = mWinnerArray.get(0);
+
             }
         }
     }
