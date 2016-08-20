@@ -12,6 +12,7 @@ public class BettingNewerTest {
   @Before
   public void before() {
     bets = new Betting(4);
+
     one = new Player(1);
     two = new Player(2);
     three = new Player(3);
@@ -34,18 +35,14 @@ public class BettingNewerTest {
   @Test
   public void secondRunOfMegaCheck() {
     bets.megaCheck( one, two, three, four );
-    one.fold();
-    bets.foldMaster( one );
-    two.fold();
-    bets.foldMaster( two );
     assertEquals( true, three.seeFirstBet() );
   }
 
   @Test
   public void thirdRunOfMegaCheck() {
     one.fold();
-    bets.megaCheck( one, two, three, four );
     three.fold();
+    bets.endHand();
     bets.megaCheck( one, two, three, four );
     assertEquals( true, two.seeFirstBet() );
   }
@@ -61,21 +58,26 @@ public class BettingNewerTest {
 
   @Test
   public void fifthRunOfMegaCheck() {
+    bets.endHand();
+    bets.endHand();
     bets.megaCheck( one, two, three, four );
-    assertEquals( true, three.seeFirstBet() );
+    assertEquals( 1, bets.seeCurrentPlayer() );
+    // assertEquals( true, one.seeFirstBet() );
   }
 
   @Test
   public void sixthRunOfMegaCheck() {
     bets.endHand();
     bets.megaCheck( one, two, three, four );
-    assertEquals( true, four.seeFirstBet() );
+    assertEquals( 4, bets.seeCurrentPlayer() );
   }
 
   @Test
   public void seventhRunOfMegaCheck() {
+    four.fold();
+    bets.endHand();
     bets.megaCheck( one, two, three, four );
-    assertEquals( 3, bets.seeCurrentPlayer() );
+    assertEquals( 1, bets.seeCurrentPlayer() );
   }
 
   @Test
@@ -105,9 +107,7 @@ public class BettingNewerTest {
   @Test
   public void tenthRunOfMegaCheck() {
     one.fold();
-    bets.foldMaster( one );
     two.fold();
-    bets.foldMaster( two );
     bets.megaCheck( one, two, three, four );
     assertEquals( 3, bets.seeCurrentPlayer() );
   }
@@ -115,12 +115,13 @@ public class BettingNewerTest {
   @Test
   public void eleventhRunOfMegaCheck() {
     two.fold();
-    bets.foldMaster( two );
     three.fold();
-    bets.foldMaster( three );
     bets.endHand();
     bets.megaCheck( one, two, three, four );
-    assertEquals( 4, bets.seeCurrentPlayer() );
+    bets.endTurn();
+    bets.endTurn();
+    assertEquals( 4, bets.seePlayerStart() );
+
   }
 
 
