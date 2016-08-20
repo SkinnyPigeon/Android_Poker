@@ -220,9 +220,9 @@ public class MainActivity extends AppCompatActivity{
                     mPlayerFourCards.setText(mBob.seeHand().toString());
                 }
 
-//                mGame.takeCard(mCards.deal());
-//                mGame.takeCard(mCards.deal());
-//                mGame.takeCard(mCards.deal());
+                mGame.takeCard(mCards.deal());
+                mGame.takeCard(mCards.deal());
+                mGame.takeCard(mCards.deal());
 
 //                mGame.takeCard(mCards.deal());
 //                mGame.takeCard(mCards.deal());
