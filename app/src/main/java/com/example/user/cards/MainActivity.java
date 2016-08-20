@@ -107,11 +107,6 @@ public class MainActivity extends AppCompatActivity{
         mPThreeTog = ( Switch )findViewById( R.id.p_three_toggle );
         mPFourTog = ( Switch )findViewById( R.id.p_four_toggle );
 
-//        mJeff = new Player("Jeff", 1);
-//        mSteve = new Player( "Steve", 2 );
-//        mDave = new Player( "Dave", 3 );
-//        mBob = new Player( "Bob", 4 );
-
         mPOneTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -422,8 +417,6 @@ public class MainActivity extends AppCompatActivity{
             mCheck.setVisibility(View.INVISIBLE);
         }
     }
-
-
 
     public void hidePlayerOne() {
         hidePlayer(mPlayerOneText, mPlayerOneBet, mPlayerOneCards, mPlayerOneChips);
