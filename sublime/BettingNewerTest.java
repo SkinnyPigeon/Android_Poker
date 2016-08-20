@@ -121,7 +121,12 @@ public class BettingNewerTest {
     bets.endTurn();
     bets.endTurn();
     assertEquals( 4, bets.seePlayerStart() );
+  }
 
+  @Test
+  public void checkPlayerReturner(){
+    bets.megaCheck( one, two, three, four );
+    assertEquals( three, bets.turnCheck( three ) );
   }
 
 

@@ -204,6 +204,14 @@ public class Betting {
       }
   }
 
+  public Player turnCheck( Player player ) {
+    if( player.seePlayerNo() != seeCurrentPlayer() ) {
+      return null;
+    } else {
+      return player;
+    }
+  }
+
   public void foldMaster( Player one ) {
     foldCheck( one );
     foldWin( one );

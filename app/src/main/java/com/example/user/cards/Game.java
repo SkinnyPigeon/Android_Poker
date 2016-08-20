@@ -95,12 +95,7 @@ public class Game  {
         mWinnerArray.add( player );
     }
 
-    public void foldCheck( Player player ) {
-        if( player.status() ) {
-            setFoldedPlayerCount();
-            nextTurn();
-        }
-    }
+
 
     public void endTurn() {
         if( mCurrentPlayer == mNoOfPlayers ) {
@@ -127,13 +122,16 @@ public class Game  {
     }
 
     public void setFold( Player one, Player two, Player three, Player four ) {
-        if( one.status() && one.number() == mPlayerStart ) {
+        if( one.status() && ( one.number() == mPlayerStart ) ) {
             passOverFoldedPlayer();
-        } else if( two.status() && two.number() == mPlayerStart ) {
+        }
+        if(two.status() && ( two.number() == mPlayerStart ) ) {
             passOverFoldedPlayer();
-        } else if( three.status() && three.number() == mPlayerStart ) {
+        }
+        if( three.status() && ( three.number() == mPlayerStart  )) {
             passOverFoldedPlayer();
-        } else if( four.status() && four.number() == mPlayerStart ) {
+        }
+        if( four.status() && ( four.number() == mPlayerStart ) ) {
             passOverFoldedPlayer();
         }
     }
@@ -141,119 +139,146 @@ public class Game  {
     public void firstTurn( Player one, Player two, Player three, Player four ) {
         if( one.number() == mPlayerStart ) {
             one.smallBlind();
+            addBet(one);
+            endTurn();
             two.bigBlind();
+            addBet(two);
+            endTurn();
             three.setFirstBet();
+            setCurrentPlayer( three );
         } else if ( two.number() == mPlayerStart ) {
             two.smallBlind();
+            addBet(two);
+            endTurn();
             three.bigBlind();
+            addBet(three);
+            endTurn();
             four.setFirstBet();
+            setCurrentPlayer( four );
         } else if ( three.number() == mPlayerStart ) {
             three.smallBlind();
+            addBet(three);
+            endTurn();
             four.bigBlind();
+            addBet(four);
+            endTurn();
             one.setFirstBet();
+            setCurrentPlayer( one );
         } else {
             four.smallBlind();
+            addBet(four);
+            endTurn();
             one.bigBlind();
+            addBet(one);
+            endTurn();
             two.setFirstBet();
+            setCurrentPlayer( two );
         }
     }
 
     public void firstTurn( Player one, Player two, Player three ) {
         if( one.number() == mPlayerStart ) {
             one.smallBlind();
+            addBet(one);
+            endTurn();
             two.bigBlind();
+            addBet(two);
+            endTurn();
             three.setFirstBet();
+            setCurrentPlayer( three );
         } else if ( two.number() == mPlayerStart ) {
             two.smallBlind();
+            addBet(two);
+            endTurn();
             three.bigBlind();
+            addBet(three);
+            endTurn();
             one.setFirstBet();
+            setCurrentPlayer( one );
         } else {
             three.smallBlind();
+            addBet(three);
+            endTurn();
             one.bigBlind();
+            addBet(one);
+            endTurn();
             two.setFirstBet();
+            setCurrentPlayer( two );
         }
     }
+
     public void firstTurn(Player one, Player two) {
         if( one.number() == mPlayerStart ) {
             one.smallBlind();
+            addBet(one);
+            endTurn();
             two.bigBlind();
+            addBet(two);
+            endTurn();
             one.setFirstBet();
+            setCurrentPlayer( one );
         } else if ( two.number() == mPlayerStart ) {
             two.smallBlind();
+            addBet(two);
+            endTurn();
             one.bigBlind();
+            addBet(one);
+            endTurn();
             two.setFirstBet();
+            setCurrentPlayer( two );
         }
+    }
+
+    public void setCurrentPlayer( Player player ) {
+        mCurrentPlayer = player.number();
     }
 
     public void megaCheck( Player one, Player two, Player three, Player four ) {
+        setFold( one, two, three, four );
         if( one.status() && two.status() ) {
-            setFold( one, two, three, four );
-            foldMaster( one, two, three, four );
             firstTurn( three, four );
         } else if( one.status() && three.status() ) {
-            setFold( one, two, three, four );
-            foldMaster( one, two, three, four );
-
             firstTurn( two, four );
         } else if( one.status() && four.status() ) {
-            setFold( one, two, three, four );
-            foldMaster( one, two, three, four );
-
             firstTurn( two, three );
         } else if( two.status() && three.status() ) {
-            setFold( one, two, three, four );
-            foldMaster( one, two, three, four );
-
             firstTurn( one, four );
         } else if( two.status() && four.status() ) {
-            setFold( one, two, three, four );
-            foldMaster( one, two, three, four );
-
             firstTurn( one, three );
         } else if( three.status() && four.status() ) {
-            setFold( one, two, three, four );
-            foldMaster( one, two, three, four );
-
             firstTurn( one, two );
-        } else if( one.status() ) {
-            setFold( one, two, three, four );
-            foldMaster( one, two, three, four );
-
+        } else if ( one.status() ) {
             firstTurn( two, three, four );
-        } else if( two.status() ) {
-            setFold( one, two, three, four );
-            foldMaster( one, two, three, four );
-
+        } else if ( two.status() ) {
             firstTurn( one, three, four );
-        } else if( three.status() ) {
-            setFold( one, two, three, four );
-            foldMaster( one, two, three, four );
-
+        } else if ( three.status() ) {
             firstTurn( one, two, four );
-        } else if( four.status() ) {
-            setFold( one, two, three, four );
-            foldMaster( one, two, three, four );
-
+        } else if ( four.status() ) {
             firstTurn( one, two, three );
         } else {
             firstTurn( one, two, three, four );
-            foldMaster( one, two, three, four );
-
         }
     }
 
-    public void foldMaster( Player one, Player two, Player three, Player four ) {
+    public Player turnCheck( Player player ) {
+        if( player.number() != seeCurrentPlayer() ) {
+            return null;
+        } else {
+            return player;
+        }
+    }
+
+    public void foldMaster( Player one ) {
         foldCheck( one );
         foldWin( one );
+    }
 
-        foldCheck( two );
-        foldWin( two );
 
-        foldCheck( three );
-        foldWin( three );
-
-        foldCheck( four );
-        foldWin( four );
+    public void foldCheck( Player player ) {
+        if( player.status() ) {
+            setFoldedPlayerCount();
+            endTurn();
+        }
     }
 
     public void setFoldedPlayerCount() {
