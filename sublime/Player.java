@@ -31,11 +31,11 @@ public class Player {
   }
 
   public void smallBlind() {
-    mBet = mSmallBlindValue;
+    mBet += mSmallBlindValue;
   }
 
   public void bigBlind() {
-    mBet = mBigBlindValue;
+    mBet += mBigBlindValue;
   }
 
   public void fold() {

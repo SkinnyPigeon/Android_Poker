@@ -23,7 +23,6 @@ public class Betting {
     mPot += player.seeBet();
   }
 
-
   public int seePlayerStart() {
     return mPlayerStart;
   }
@@ -40,11 +39,7 @@ public class Betting {
     return mNoFolded;
   }
 
-  public void foldCheck( Player player ) {
-    if( player.seeFolded() == true ) {
-      endTurn();
-    }
-  }
+
 
   public void endTurn() {
     if( mCurrentPlayer == mNoPlayers ) {
@@ -171,7 +166,7 @@ public class Betting {
     if( one.seeFolded() && two.seeFolded() && three.seeFolded() ) {
       setFold( one, two, three, four );  
       foldMaster( one, two, three, four );
-      
+
     } else if( one.seeFolded() && two.seeFolded() && four.seeFolded() ) {
       setFold( one, two, three, four );  
       foldMaster( one, two, three, four );
@@ -216,22 +211,22 @@ public class Betting {
 
     } else if( one.seeFolded() ) {
       setFold( one, two, three, four );  
-      foldMaster( one, two, three, four );
+      foldMaster( two, three, four );
       firstTurn( two, three, four );
 
     } else if( two.seeFolded() ) {
       setFold( one, two, three, four );  
-      foldMaster( one, two, three, four );
+      foldMaster( one, three, four );
       firstTurn( one, three, four );
 
     } else if( three.seeFolded() ) {
       setFold( one, two, three, four );  
-      foldMaster( one, two, three, four );
+      foldMaster( one, two, four );
       firstTurn( one, two, four );
 
     } else if( four.seeFolded() ) {
       setFold( one, two, three, four );  
-      foldMaster( one, two, three, four );
+      foldMaster( one, two, three );
       firstTurn( one, two, three );
 
     } else {
@@ -255,6 +250,30 @@ public class Betting {
     foldWin( four );
   }
 
+  public void foldMaster( Player one, Player two, Player three ) {
+    foldCheck( one );
+    foldWin( one );
+
+    foldCheck( two );
+    foldWin( two );
+
+    foldCheck( three );
+    foldWin( three );
+  }
+
+  public void foldMaster( Player one, Player two ) {
+    foldCheck( one );
+    foldWin( one );
+
+    foldCheck( two );
+    foldWin( two );
+  }
+
+  public void foldMaster( Player one ) {
+    foldCheck( one );
+    foldWin( one );
+  }
+
   public void setFoldedPlayerCount() {
     mNoFolded += 1;
   }
@@ -264,6 +283,13 @@ public class Betting {
       if( player.seeFolded() == false ) {
         player.winChips( mPot );
       }
+    }
+  }
+
+  public void foldCheck( Player player ) {
+    if( player.seeFolded() == true ) {
+      setFoldedPlayerCount();
+      endTurn();
     }
   }
 
