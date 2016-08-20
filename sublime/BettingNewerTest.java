@@ -75,33 +75,52 @@ public class BettingNewerTest {
   @Test
   public void seventhRunOfMegaCheck() {
     bets.megaCheck( one, two, three, four );
-    one.fold();
     assertEquals( 3, bets.seeCurrentPlayer() );
   }
 
   @Test
   public void eigthRunOfMegaCheck() {
-    one.fold();
     bets.megaCheck( one, two, three, four );
+    bets.foldMaster( one );
+    one.fold();
+    bets.foldMaster( one );
     assertEquals( 4, bets.seeCurrentPlayer() );
   }
 
   @Test
   public void ninthRunOfMegaCheck() {
     bets.megaCheck( one, two, three, four );
-    bets.foldMaster( one );
     one.fold();
     bets.foldMaster( one );
-    bets.foldMaster( two );
     two.fold();
     bets.foldMaster( two );
-    bets.foldMaster( three );
     three.setBet( 50 );
     bets.getBet( three );
     three.fold();
     bets.foldMaster( three );
     bets.foldMaster( four );
     assertEquals( 580, four.countChips() );
+  }
+
+  @Test
+  public void tenthRunOfMegaCheck() {
+    one.fold();
+    bets.foldMaster( one );
+    two.fold();
+    bets.foldMaster( two );
+    bets.megaCheck( one, two, three, four );
+    assertEquals( 3, bets.seeCurrentPlayer() );
+  }
+
+  @Test
+  public void eleventhRunOfMegaCheck() {
+    two.fold();
+    bets.foldMaster( two );
+    three.fold();
+    bets.foldMaster( three );
+    bets.endHand();
+    bets.megaCheck( one, two, three, four );
+    assertEquals( 4, bets.seeCurrentPlayer() );
   }
 
 
