@@ -18,6 +18,7 @@ public class Player extends AppCompatActivity {
     private Integer mKicker;
     private boolean mFolded;
     private boolean mFirstToBet;
+    private boolean mBigBlind;
 
     public Player(String name, int playerNumber) {
         mName = name;
@@ -30,6 +31,19 @@ public class Player extends AppCompatActivity {
         mBigBlindValue = 20;
         mFolded = true;
         mLastBet = 0;
+        mBigBlind = false;
+    }
+
+    public void turnOnBigBlind() {
+        mBigBlind = true;
+    }
+
+    public void turnOffBigBlind() {
+        mBigBlind = false;
+    }
+
+    public boolean seeBlind() {
+        return mBigBlind;
     }
 
     public String name() {
@@ -90,25 +104,32 @@ public class Player extends AppCompatActivity {
     public void smallBlind() {
         mChips -= mSmallBlindValue;
         mBet += mSmallBlindValue;
-//        return mSmallBlindValue;
         mLastBet = mSmallBlindValue;
-
     }
 
     public void bigBlind() {
         mChips -= mBigBlindValue;
         mBet += mBigBlindValue;
-//        return mBigBlindValue;
         mLastBet = mBigBlindValue;
-
     }
 
     public void call( Game game ) {
-        int chips = game.seeLastBet() - mLastBet;
-        mChips -= chips;
-        mBet = chips;
+
+        if( mBigBlind == true ) {
+            game.resetBets();
+            resetLastBet();
+            resetBet();
+        } else {
+            int chips = game.seeLastBet() - mLastBet;
+            mChips -= chips;
+            mBet = chips;
+            mLastBet = chips;
+            resetLastBet();
+        }
+//        int chips = game.seeLastBet() - mLastBet;
+//        mChips -= chips;
+//        mBet = chips;
 //        mLastBet = chips;
-        resetLastBet();
     }
 
     public int check() {

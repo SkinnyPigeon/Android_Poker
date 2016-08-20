@@ -26,6 +26,10 @@ public class Betting {
     mLastBet = player.seeBet();
   }
 
+  public void resetBets() {
+    mLastBet = 0;
+  }
+
   public int seeLastBet() {
     return mLastBet;
   }
@@ -98,6 +102,7 @@ public class Betting {
       endTurn();
       two.bigBlind();
       getBet( two );
+      two.bigBlindBoolSet();
       endTurn();
       three.setFirstBet();
       setCurrentPlayer( three );

@@ -57,11 +57,6 @@ public class Game  {
         }
     }
 
-//    public void pickKicker() {
-//        Collections.sort(mWinnerArray, mkickerComparator);
-//        mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
-//    }
-
     public void pickKicker() {
         Collections.sort(mKickerArray, mkickerComparator);
         mKickerWinner = mKickerArray.get( mKickerArray.size() - 1 );
@@ -162,29 +157,36 @@ public class Game  {
     }
 
     public void firstTurn( Player one, Player two, Player three, Player four ) {
+        one.turnOffBigBlind();
+        two.turnOffBigBlind();
+        three.turnOffBigBlind();
+        four.turnOffBigBlind();
         if( one.number() == mPlayerStart ) {
             one.smallBlind();
             addBet(one);
             endTurn();
             two.bigBlind();
+            two.turnOnBigBlind();
             addBet(two);
             endTurn();
             three.setFirstBet();
-            setCurrentPlayer( three );
+            setCurrentPlayer(three);
         } else if ( two.number() == mPlayerStart ) {
             two.smallBlind();
             addBet(two);
             endTurn();
             three.bigBlind();
+            three.turnOnBigBlind();
             addBet(three);
             endTurn();
             four.setFirstBet();
-            setCurrentPlayer( four );
+            setCurrentPlayer(four);
         } else if ( three.number() == mPlayerStart ) {
             three.smallBlind();
             addBet(three);
             endTurn();
             four.bigBlind();
+            four.turnOnBigBlind();
             addBet(four);
             endTurn();
             one.setFirstBet();
@@ -194,6 +196,7 @@ public class Game  {
             addBet(four);
             endTurn();
             one.bigBlind();
+            one.turnOnBigBlind();
             addBet(one);
             endTurn();
             two.setFirstBet();
@@ -202,11 +205,15 @@ public class Game  {
     }
 
     public void firstTurn( Player one, Player two, Player three ) {
+        one.turnOffBigBlind();
+        two.turnOffBigBlind();
+        three.turnOffBigBlind();
         if( one.number() == mPlayerStart ) {
             one.smallBlind();
             addBet(one);
             endTurn();
             two.bigBlind();
+            two.turnOnBigBlind();
             addBet(two);
             endTurn();
             three.setFirstBet();
@@ -216,6 +223,7 @@ public class Game  {
             addBet(two);
             endTurn();
             three.bigBlind();
+            three.turnOnBigBlind();
             addBet(three);
             endTurn();
             one.setFirstBet();
@@ -225,6 +233,7 @@ public class Game  {
             addBet(three);
             endTurn();
             one.bigBlind();
+            one.turnOnBigBlind();
             addBet(one);
             endTurn();
             two.setFirstBet();
@@ -233,11 +242,14 @@ public class Game  {
     }
 
     public void firstTurn(Player one, Player two) {
+        one.turnOffBigBlind();
+        two.turnOffBigBlind();
         if( one.number() == mPlayerStart ) {
             one.smallBlind();
             addBet(one);
             endTurn();
             two.bigBlind();
+            two.turnOnBigBlind();
             addBet(two);
             endTurn();
             one.setFirstBet();
@@ -247,6 +259,7 @@ public class Game  {
             addBet(two);
             endTurn();
             one.bigBlind();
+            one.turnOnBigBlind();
             addBet(one);
             endTurn();
             two.setFirstBet();

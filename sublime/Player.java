@@ -8,6 +8,7 @@ public class Player {
   private int mPlayerNumber;
   private boolean mFolded;
   private boolean mFirstToBet;
+  private boolean mBigBlindBool;
 
   public Player( int playerNumber ) {
     mPlayerNumber = playerNumber;
@@ -18,10 +19,19 @@ public class Player {
     mFolded = false;
     mFirstToBet = false;
     mLastBet = 0;
+    mBigBlindBool = false;
+  }
+
+  public void bigBlindBoolSet() {
+    mBigBlindBool = true;
   }
 
   public int seePlayerNo() {
     return mPlayerNumber;
+  }
+
+  public int seeLastBet() {
+    return mLastBet;
   }
 
   public void setBet( int chips ) {
@@ -67,16 +77,30 @@ public class Player {
     mChips += chips;
   }
 
+  public boolean seeBigBool() {
+    return mBigBlindBool;
+  }
+
   public void call( Betting bet ) {
-    int chips = bet.seeLastBet() - mLastBet;
-    mChips -= chips;
-    mBet = chips;
-    mLastBet = chips;
-    resetLastBet();
+    if( mBigBlindBool == true ) {
+      bet.resetBets();
+      resetLastBet();
+      resetBet();
+    } else {
+      int chips = bet.seeLastBet() - mLastBet;
+      mChips -= chips;
+      mBet = chips;
+      mLastBet = chips;
+      resetLastBet();
+    }
   }
 
   public void resetLastBet() {
     mLastBet = 0;
+  }
+
+  public void resetBet() {
+    mBet = 0;
   }
 
 }

@@ -174,6 +174,62 @@ public class BettingNewerTest {
     assertEquals( 80, bets.seePot() );
   }
 
+  @Test
+  public void testBoolChange() {
+    bets.megaCheck( one, two, three, four );
+    assertEquals( true, two.seeBigBool() );
+  }
+
+  @Test
+  public void testBoolChange2() {
+    bets.megaCheck( one, two, three, four );
+    assertEquals( false, three.seeBigBool() );
+  }
+
+  @Test
+  public void testBoolChange3() {
+    bets.megaCheck( one, two, three, four );
+    two.call( bets );
+    assertEquals( 0, two.seeLastBet() );
+  }
+
+  @Test
+  public void testBoolChange4() {
+    bets.megaCheck( one, two, three, four );
+    two.call( bets );
+    assertEquals( 0, bets.seeLastBet() );
+  }
+
+  @Test
+  public void checkTest2() {
+    bets.megaCheck( one, two, three, four );
+
+    three.call( bets );
+    bets.getBet( three );
+    bets.endTurn();
+    System.out.println( bets.seePot() );
+
+    four.call( bets );
+    bets.getBet( four );
+    bets.endTurn();
+    System.out.println( bets.seePot() );
+
+    one.call( bets );
+    bets.getBet( one );
+    bets.endTurn();
+    System.out.println( bets.seePot() );
+
+    two.call( bets );
+    System.out.println( two.seeLastBet() );
+    System.out.println( bets.seeLastBet() );
+
+    bets.getBet( two );
+
+    System.out.println( bets.seePot() );
+
+    assertEquals( 80, bets.seePot() );
+  }
+
 
 
 }
