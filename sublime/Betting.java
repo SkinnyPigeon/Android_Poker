@@ -166,73 +166,99 @@ public class Betting {
     if( one.seeFolded() && two.seeFolded() && three.seeFolded() ) {
       setFold( one, two, three, four );  
       foldMaster( one, two, three, four );
+      endTurn();
 
     } else if( one.seeFolded() && two.seeFolded() && four.seeFolded() ) {
       setFold( one, two, three, four );  
       foldMaster( one, two, three, four );
+      endTurn();
+
 
     } else if( one.seeFolded() && three.seeFolded() && four.seeFolded() ) {
       setFold( one, two, three, four );  
       foldMaster( one, two, three, four );
+      endTurn();
+
 
     } else if( two.seeFolded() && three.seeFolded() && four.seeFolded() ) {
       setFold( one, two, three, four );  
       foldMaster( one, two, three, four );
+      endTurn();
+
 
     } else if( one.seeFolded() && two.seeFolded() ) {
       setFold( one, two, three, four );  
-      foldMaster( one, two, three, four );
+      foldMaster( three, four );
       firstTurn( three, four );
+      endTurn();
+
 
     } else if( one.seeFolded() && three.seeFolded() ) {
       setFold( one, two, three, four );  
-      foldMaster( one, two, three, four );
+      foldMaster( two, four );
       firstTurn( two, four ); 
+      endTurn();
+
 
     } else if( one.seeFolded() && four.seeFolded() ) {
       setFold( one, two, three, four );  
-      foldMaster( one, two, three, four );
+      foldMaster( two, three );
       firstTurn( two, three );
+      endTurn();
+
 
     } else if( two.seeFolded() && three.seeFolded() ) {
       setFold( one, two, three, four );  
-      foldMaster( one, two, three, four );
+      foldMaster( one, four );
       firstTurn( one, four );
+      endTurn();
+
 
     } else if( two.seeFolded() && four.seeFolded() ) {
       setFold( one, two, three, four );  
-      foldMaster( one, two, three, four );
+      foldMaster( one, three );
       firstTurn( one, three );
+      endTurn();
+
 
     } else if( three.seeFolded() && four.seeFolded() ) {
       setFold( one, two, three, four );  
-      foldMaster( one, two, three, four );
+      foldMaster( one, two );
       firstTurn( one, two );
+      endTurn();
+
 
     } else if( one.seeFolded() ) {
       setFold( one, two, three, four );  
       foldMaster( two, three, four );
       firstTurn( two, three, four );
+      endTurn();
+
 
     } else if( two.seeFolded() ) {
       setFold( one, two, three, four );  
       foldMaster( one, three, four );
       firstTurn( one, three, four );
+      endTurn();
+
 
     } else if( three.seeFolded() ) {
       setFold( one, two, three, four );  
       foldMaster( one, two, four );
       firstTurn( one, two, four );
+      endTurn();
+
 
     } else if( four.seeFolded() ) {
       setFold( one, two, three, four );  
       foldMaster( one, two, three );
       firstTurn( one, two, three );
+      endTurn();
+
 
     } else {
       firstTurn( one, two, three, four );
       foldMaster( one, two, three, four );
-
     }
   }
 
@@ -289,7 +315,7 @@ public class Betting {
   public void foldCheck( Player player ) {
     if( player.seeFolded() == true ) {
       setFoldedPlayerCount();
-      endTurn();
+      // endTurn();
     }
   }
 
