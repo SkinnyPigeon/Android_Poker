@@ -129,6 +129,51 @@ public class BettingNewerTest {
     assertEquals( three, bets.turnCheck( three ) );
   }
 
+  @Test
+  public void checkPot() {
+    bets.megaCheck( one, two, three, four );
+    assertEquals( 30, bets.seePot() );
+  }
+
+  @Test
+  public void checkCheck() {
+    one.setBet( 50 );
+    bets.getBet( one );
+    bets.endTurn();
+    two.call( bets );
+    bets.getBet( two );
+    assertEquals( 100, bets.seePot() );
+  }
+
+  @Test
+  public void checkCheckAgain() {
+    one.setBet( 10 );
+    bets.getBet( one );
+    bets.endTurn();
+    two.setBet( 20 );
+    bets.getBet( two );
+    bets.endTurn();
+    bets.endTurn();
+    bets.endTurn();
+    one.call( bets );
+    bets.getBet( one );
+    assertEquals( 40, bets.seePot() );
+  }
+
+  @Test
+  public void checkTest() {
+    bets.megaCheck( one, two, three, four );
+    three.call( bets );
+    bets.getBet( three );
+    bets.endTurn();
+    four.call( bets );
+    bets.getBet( four );
+    bets.endTurn();
+    one.call( bets );
+    bets.getBet( one );
+    assertEquals( 80, bets.seePot() );
+  }
+
 
 
 }

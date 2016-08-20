@@ -5,6 +5,7 @@ public class Betting {
   private int mCurrentPlayer;
   private int mNoFolded;
   private int mPot;
+  private int mLastBet;
 
   public Betting( int noPlayers ) {
 
@@ -13,6 +14,7 @@ public class Betting {
     mCurrentPlayer = 1;
     mNoPlayers = noPlayers;
     mNoFolded = 0;
+    mLastBet = 0;
   }
 
   public int seePot() {
@@ -21,6 +23,11 @@ public class Betting {
 
   public void getBet( Player player ) {
     mPot += player.seeBet();
+    mLastBet = player.seeBet();
+  }
+
+  public int seeLastBet() {
+    return mLastBet;
   }
 
   public int seePlayerStart() {

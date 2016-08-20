@@ -87,16 +87,28 @@ public class Player extends AppCompatActivity {
         }
     }
 
-    public int smallBlind() {
+    public void smallBlind() {
         mChips -= mSmallBlindValue;
-        mBet = mSmallBlindValue;
-        return mSmallBlindValue;
+        mBet += mSmallBlindValue;
+//        return mSmallBlindValue;
+        mLastBet = mSmallBlindValue;
+
     }
 
-    public int bigBlind() {
+    public void bigBlind() {
         mChips -= mBigBlindValue;
-        mBet = mBigBlindValue;
-        return mBigBlindValue;
+        mBet += mBigBlindValue;
+//        return mBigBlindValue;
+        mLastBet = mBigBlindValue;
+
+    }
+
+    public void call( Game game ) {
+        int chips = game.seeLastBet() - mLastBet;
+        mChips -= chips;
+        mBet = chips;
+//        mLastBet = chips;
+        resetLastBet();
     }
 
     public int check() {
@@ -105,6 +117,10 @@ public class Player extends AppCompatActivity {
 
     public int giveBet() {
         return mBet;
+    }
+
+    public int giveLastBet() {
+        return mLastBet;
     }
 
     public int number() {
@@ -129,5 +145,13 @@ public class Player extends AppCompatActivity {
 
     public void winChips(int chips) {
         mChips += chips;
+    }
+
+    public void resetLastBet() {
+        mLastBet = 0;
+    }
+
+    public void resetBet() {
+        mBet = 0;
     }
 }

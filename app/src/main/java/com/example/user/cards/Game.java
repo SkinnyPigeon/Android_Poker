@@ -33,6 +33,7 @@ public class Game  {
         mWinnerArray = new ArrayList< Player >();
         mPlayerComparator = new PlayerComparator();
         mkickerComparator = new KickerComparator();
+        mlastBet = 0;
     }
 
     public int showPot() {
@@ -306,10 +307,10 @@ public class Game  {
     }
 
     public void addBet( Player player ) {
-        if( ( playerCheck( player ) ) && ( mlastBet <= player.giveBet() )) {
-            mPot += player.giveBet();
-            mlastBet = player.giveBet();
-        }
+//        if( ( playerCheck( player ) ) && ( mlastBet <= player.giveBet() )) {
+        mPot += player.giveBet();
+        mlastBet = player.giveBet();
+//        }
     }
 
     public int turn() {
@@ -365,6 +366,10 @@ public class Game  {
         if( mPlayerStart + 2 > mNoOfPlayers ) {
             mBetPlayer = mPlayerStart + 1;
         }
+    }
+
+    public void resetBets() {
+        mlastBet = 0;
     }
 
 }

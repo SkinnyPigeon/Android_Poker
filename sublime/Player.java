@@ -2,6 +2,7 @@ public class Player {
 
   private int mChips;
   private int mBet;
+  private int mLastBet;
   private int mSmallBlindValue;
   private int mBigBlindValue;
   private int mPlayerNumber;
@@ -16,6 +17,7 @@ public class Player {
     mBigBlindValue = 20;
     mFolded = false;
     mFirstToBet = false;
+    mLastBet = 0;
   }
 
   public int seePlayerNo() {
@@ -23,7 +25,8 @@ public class Player {
   }
 
   public void setBet( int chips ) {
-    mBet += chips;
+    mBet = chips;
+    mLastBet = chips;
   }
 
   public int seeBet() {
@@ -32,10 +35,12 @@ public class Player {
 
   public void smallBlind() {
     mBet += mSmallBlindValue;
+    mLastBet = mSmallBlindValue;
   }
 
   public void bigBlind() {
     mBet += mBigBlindValue;
+    mLastBet = mBigBlindValue;
   }
 
   public void fold() {
@@ -60,6 +65,18 @@ public class Player {
 
   public void winChips( int chips ) {
     mChips += chips;
+  }
+
+  public void call( Betting bet ) {
+    int chips = bet.seeLastBet() - mLastBet;
+    mChips -= chips;
+    mBet = chips;
+    mLastBet = chips;
+    resetLastBet();
+  }
+
+  public void resetLastBet() {
+    mLastBet = 0;
   }
 
 }
