@@ -30,12 +30,22 @@ public class MainActivity extends AppCompatActivity{
     Button mBet;
     Button mStart;
     Button mCheck;
+    Button mFold;
+    Button mWinner;
+    TextView mWinnerName;
 
     TextView mPlayerOneBet;
     TextView mPlayerTwoBet;
     TextView mPlayerThreeBet;
     TextView mPlayerFourBet;
     TextView mPotValue;
+
+    TextView mPlayerOneChips;
+    TextView mPlayerTwoChips;
+    TextView mPlayerThreeChips;
+    TextView mPlayerFourChips;
+
+
 
     Switch mPOneTog;
     Switch mPTwoTog;
@@ -81,6 +91,12 @@ public class MainActivity extends AppCompatActivity{
         mPlayerTwoCards = ( TextView )findViewById( R.id.player_two_cards);
         mPlayerThreeCards = ( TextView )findViewById( R.id.player_three_cards);
         mPlayerFourCards = ( TextView )findViewById( R.id.player_four_cards);
+
+        mPlayerOneChips = ( TextView )findViewById( R.id.player_one_chips );
+        mPlayerTwoChips = ( TextView )findViewById( R.id.player_two_chips );
+        mPlayerThreeChips = ( TextView )findViewById( R.id.player_three_chips );
+        mPlayerFourChips = ( TextView )findViewById( R.id.player_four_chips );
+
 
         mCommunityCards = ( TextView )findViewById( R.id.community_cards );
 
@@ -145,6 +161,9 @@ public class MainActivity extends AppCompatActivity{
         mPlus = ( Button )findViewById( R.id.plus );
         mCall = ( Button )findViewById( R.id.call );
         mCheck = ( Button )findViewById( R.id.check );
+        mFold = ( Button )findViewById( R.id.fold );
+        mWinner = ( Button )findViewById( R.id.winner );
+        mWinnerName = ( TextView )findViewById( R.id.winner_name );
 
         mBet = ( Button )findViewById( R.id.bet );
         mPotValue = ( TextView )findViewById( R.id.pot );
@@ -163,6 +182,8 @@ public class MainActivity extends AppCompatActivity{
         mPotValue.setVisibility(View.INVISIBLE);
         mCommunityCards.setVisibility(View.INVISIBLE);
         mCheck.setVisibility(View.INVISIBLE);
+        mFold.setVisibility(View.INVISIBLE);
+        mWinner.setVisibility(View.INVISIBLE);
 
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,32 +192,32 @@ public class MainActivity extends AppCompatActivity{
                 mGame = new Game(4);
                 mCards = new TestCards();
 
-                if( mPOneReady ) {
-                    mGame.foldMaster( mJeff );
+                if (mPOneReady) {
+                    mGame.foldMaster(mJeff);
                     mJeff.takeCard(mCards.deal());
                     mJeff.takeCard(mCards.deal());
                     mPlayerOneCards.setText(mJeff.seeHand().toString());
                 }
 
-                if( mPTwoReady ) {
-                    mGame.foldMaster( mSteve );
+                if (mPTwoReady) {
+                    mGame.foldMaster(mSteve);
                     mSteve.takeCard(mCards.deal());
                     mSteve.takeCard(mCards.deal());
                     mPlayerTwoCards.setText(mSteve.seeHand().toString());
                 }
 
-                if( mPThreeReady ) {
-                    mGame.foldMaster( mDave );
-                    mDave.takeCard( mCards.deal());
+                if (mPThreeReady) {
+                    mGame.foldMaster(mDave);
+                    mDave.takeCard(mCards.deal());
                     mDave.takeCard(mCards.deal());
                     mPlayerThreeCards.setText(mDave.seeHand().toString());
                 }
 
-                if( mPFourReady ) {
-                    mGame.foldMaster( mBob );
-                    mBob.takeCard( mCards.deal() );
-                    mBob.takeCard( mCards.deal() );
-                    mPlayerFourCards.setText(mBob.seeHand().toString() );
+                if (mPFourReady) {
+                    mGame.foldMaster(mBob);
+                    mBob.takeCard(mCards.deal());
+                    mBob.takeCard(mCards.deal());
+                    mPlayerFourCards.setText(mBob.seeHand().toString());
                 }
 
                 mGame.takeCard(mCards.deal());
@@ -219,11 +240,13 @@ public class MainActivity extends AppCompatActivity{
                 mCall.setVisibility(View.VISIBLE);
                 mBet.setVisibility(View.VISIBLE);
                 mPotValue.setVisibility(View.VISIBLE);
+                mFold.setVisibility((View.VISIBLE));
+                mWinner.setVisibility(View.VISIBLE);
 
                 mGame.megaCheck(mJeff, mSteve, mDave, mBob);
                 Integer pot = mGame.showPot();
                 mPotValue.setText(pot.toString());
-                Log.d("This", pot.toString() );
+                Log.d("This", pot.toString());
                 showPlayerThree();
             }
         });
@@ -236,24 +259,28 @@ public class MainActivity extends AppCompatActivity{
                         mPOneBet += 10;
                         String cash = mPOneBet.toString();
                         mPlayerOneBet.setText(cash);
+
                     }
                 } else if (mPlayerTwoText.getVisibility() == View.VISIBLE) {
                     if( mPTwoBet <= ( mSteve.countChips() - 10 ) ) {
                         mPTwoBet += 10;
                         String cash = mPTwoBet.toString();
                         mPlayerTwoBet.setText(cash);
+
                     }
                 } else if (mPlayerThreeText.getVisibility() == View.VISIBLE) {
                     if( mPThreeBet <= ( mDave.countChips() - 10 ) ) {
                         mPThreeBet += 10;
                         String cash = mPThreeBet.toString();
                         mPlayerThreeBet.setText(cash);
+
                     }
                 } else if (mPlayerFourText.getVisibility() == View.VISIBLE) {
                     if( mPFourBet <= ( mBob.countChips() - 10 ) ) {
                         mPFourBet += 10;
                         String cash = mPFourBet.toString();
                         mPlayerFourBet.setText(cash);
+
                     }
                 }
             }
@@ -330,6 +357,29 @@ public class MainActivity extends AppCompatActivity{
                     resetBets();
                     showPlayerFour();
                 }
+            }
+        });
+
+        mWinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logic logic = new Logic( mGame.seeHand(), mJeff.seeHand() );
+                logic.combineCards();
+                logic.setScore();
+                mJeff.awardScore(logic.seeScore());
+                mJeff.awardKicker(logic.seeKicker());
+
+                logic = new Logic( mGame.seeHand(), mBob.seeHand() );
+                logic.combineCards();
+                logic.setScore();
+                mBob.awardScore(logic.seeScore());
+                mBob.awardKicker(logic.seeKicker());
+
+                mGame.addPlayer(mJeff);
+                mGame.addPlayer(mBob);
+                mGame.pickWinner();
+                mGame.handWon( mGame.seeWinner() );
+                mWinnerName.setText( mGame.seeWinner().name() );
             }
         });
     }
@@ -513,48 +563,65 @@ public class MainActivity extends AppCompatActivity{
         mPlayerOneText.setVisibility(View.INVISIBLE);
         mPlayerOneBet.setVisibility(View.INVISIBLE);
         mPlayerOneCards.setVisibility(View.INVISIBLE);
+
+        mPlayerOneChips.setVisibility(View.INVISIBLE);
     }
 
     public void showPlayerOne() {
         mPlayerOneText.setVisibility(View.VISIBLE);
         mPlayerOneBet.setVisibility(View.VISIBLE);
         mPlayerOneCards.setVisibility(View.VISIBLE);
+        Integer chips = mJeff.countChips();
+        mPlayerOneChips.setText(chips.toString());
+        mPlayerOneChips.setVisibility(View.VISIBLE);
     }
 
     public void hidePlayerTwo() {
         mPlayerTwoText.setVisibility(View.INVISIBLE);
         mPlayerTwoBet.setVisibility(View.INVISIBLE);
         mPlayerTwoCards.setVisibility(View.INVISIBLE);
+        mPlayerTwoChips.setVisibility(View.INVISIBLE);
     }
 
     public void showPlayerTwo() {
         mPlayerTwoText.setVisibility(View.VISIBLE);
         mPlayerTwoBet.setVisibility(View.VISIBLE);
         mPlayerTwoCards.setVisibility(View.VISIBLE);
+        Integer chips = mSteve.countChips();
+        mPlayerTwoChips.setText(chips.toString());
+        mPlayerTwoChips.setVisibility(View.VISIBLE);
     }
 
     public void hidePlayerThree() {
         mPlayerThreeText.setVisibility(View.INVISIBLE);
         mPlayerThreeBet.setVisibility(View.INVISIBLE);
         mPlayerThreeCards.setVisibility(View.INVISIBLE);
+        mPlayerThreeChips.setVisibility(View.INVISIBLE);
     }
 
     public void showPlayerThree() {
         mPlayerThreeText.setVisibility(View.VISIBLE);
         mPlayerThreeBet.setVisibility(View.VISIBLE);
         mPlayerThreeCards.setVisibility(View.VISIBLE);
+        Integer chips = mDave.countChips();
+        mPlayerThreeChips.setText(chips.toString());
+        mPlayerThreeChips.setVisibility(View.VISIBLE);
     }
 
     public void hidePlayerFour() {
         mPlayerFourText.setVisibility(View.INVISIBLE);
         mPlayerFourBet.setVisibility(View.INVISIBLE);
         mPlayerFourCards.setVisibility(View.INVISIBLE);
+        mPlayerFourChips.setVisibility(View.INVISIBLE);
     }
 
     public void showPlayerFour() {
         mPlayerFourText.setVisibility(View.VISIBLE);
         mPlayerFourBet.setVisibility(View.VISIBLE);
         mPlayerFourCards.setVisibility(View.VISIBLE);
+        Integer chips = mBob.countChips();
+        mPlayerFourChips.setText(chips.toString());
+        mPlayerFourChips.setVisibility(View.VISIBLE);
     }
 
     public void resetBets() {

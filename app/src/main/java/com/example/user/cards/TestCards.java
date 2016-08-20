@@ -16,7 +16,6 @@ public class TestCards {
         mCards.add( "A♠" );
         mCards.add( "A♥" );
         mCards.add( "A♣" );
-        mCards.add( "A♦" );
         mCards.add( "K♠" );
         mCards.add( "Q♠" );
         mCards.add( "K♥" );
@@ -31,6 +30,8 @@ public class TestCards {
         mCards.add( "8♠" );
         mCards.add( "7♠" );
         mCards.add( "6♠" );
+        mCards.add( "A♦" );
+
 
     }
 
