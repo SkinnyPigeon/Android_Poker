@@ -115,10 +115,11 @@ public class Player extends AppCompatActivity {
 
     public void call( Game game ) {
 
-        if( mBigBlind == true ) {
+        if( mBigBlind ) {
             game.resetBets();
             resetLastBet();
             resetBet();
+            turnOffBigBlind();
         } else {
             int chips = game.seeLastBet() - mLastBet;
             mChips -= chips;
@@ -126,10 +127,6 @@ public class Player extends AppCompatActivity {
             mLastBet = chips;
             resetLastBet();
         }
-//        int chips = game.seeLastBet() - mLastBet;
-//        mChips -= chips;
-//        mBet = chips;
-//        mLastBet = chips;
     }
 
     public int check() {

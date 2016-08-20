@@ -207,27 +207,54 @@ public class BettingNewerTest {
     three.call( bets );
     bets.getBet( three );
     bets.endTurn();
-    System.out.println( bets.seePot() );
 
     four.call( bets );
     bets.getBet( four );
     bets.endTurn();
-    System.out.println( bets.seePot() );
 
     one.call( bets );
     bets.getBet( one );
     bets.endTurn();
-    System.out.println( bets.seePot() );
 
     two.call( bets );
-    System.out.println( two.seeLastBet() );
-    System.out.println( bets.seeLastBet() );
-
     bets.getBet( two );
 
-    System.out.println( bets.seePot() );
-
     assertEquals( 80, bets.seePot() );
+  }
+
+  @Test
+  public void checkTest3() {
+    bets.megaCheck( one, two, three, four );
+
+    three.call( bets );
+    bets.getBet( three );
+    bets.endTurn();
+
+    four.call( bets );
+    bets.getBet( four );
+    bets.endTurn();
+
+    one.call( bets );
+    bets.getBet( one );
+    bets.endTurn();
+
+    two.call( bets );
+    bets.getBet( two );
+    bets.endTurn();
+
+    three.call( bets );
+    bets.getBet( three );
+    bets.endTurn();
+
+    four.setBet( 50 );
+    bets.getBet( four );
+    bets.endTurn();
+
+    one.call( bets );
+    bets.getBet( one );
+    bets.endTurn();
+
+    assertEquals( 180, bets.seePot() );
   }
 
 
