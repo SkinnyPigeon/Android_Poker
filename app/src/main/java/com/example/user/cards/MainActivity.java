@@ -100,10 +100,7 @@ public class MainActivity extends AppCompatActivity{
 
         mCommunityCards = ( TextView )findViewById( R.id.community_cards );
 
-        hidePlayerOne();
-        hidePlayerTwo();
-        hidePlayerThree();
-        hidePlayerFour();
+        hidePlayers();
 
         mPOneTog = ( Switch )findViewById( R.id.p_one_toggle );
         mPTwoTog = ( Switch )findViewById( R.id.p_two_toggle );
@@ -298,10 +295,7 @@ public class MainActivity extends AppCompatActivity{
 
                 playerEndTurn();
 
-                hidePlayerOne();
-                hidePlayerTwo();
-                hidePlayerThree();
-                hidePlayerFour();
+                hidePlayers();
 
                 if ( mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status()) {
                     showPlayerOne();
@@ -341,10 +335,8 @@ public class MainActivity extends AppCompatActivity{
         mCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hidePlayerOne();
-                hidePlayerTwo();
-                hidePlayerThree();
-                hidePlayerFour();
+
+                hidePlayers();
                 mCommunityCards.setVisibility(View.VISIBLE);
                 mCheck.setVisibility(View.INVISIBLE);
 
@@ -359,8 +351,6 @@ public class MainActivity extends AppCompatActivity{
                 }
             }
         });
-
-
 
         mWinner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -405,10 +395,8 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void playerEndTurn() {
-        hidePlayerOne();
-        hidePlayerTwo();
-        hidePlayerThree();
-        hidePlayerFour();
+
+        hidePlayers();
         mGame.endTurn();
         if( mPOneReady && mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status() ) {
             showPlayerOne();
@@ -436,69 +424,58 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
+
     public void hidePlayerOne() {
-        mPlayerOneText.setVisibility(View.INVISIBLE);
-        mPlayerOneBet.setVisibility(View.INVISIBLE);
-        mPlayerOneCards.setVisibility(View.INVISIBLE);
-
-        mPlayerOneChips.setVisibility(View.INVISIBLE);
+        hidePlayer(mPlayerOneText, mPlayerOneBet, mPlayerOneCards, mPlayerOneChips);
     }
 
+    public void hidePlayer( TextView name, TextView bet, TextView cards, TextView playerChips ) {
+        name.setVisibility(View.INVISIBLE);
+        bet.setVisibility(View.INVISIBLE);
+        cards.setVisibility(View.INVISIBLE);
+        playerChips.setVisibility(View.INVISIBLE);
+    }
     public void showPlayerOne() {
-        mPlayerOneText.setVisibility(View.VISIBLE);
-        mPlayerOneBet.setVisibility(View.VISIBLE);
-        mPlayerOneCards.setVisibility(View.VISIBLE);
-        Integer chips = mJeff.countChips();
-        mPlayerOneChips.setText(chips.toString());
-        mPlayerOneChips.setVisibility(View.VISIBLE);
+        showPlayer( mPlayerOneText, mPlayerOneBet, mPlayerOneCards, mJeff, mPlayerOneChips );
     }
 
+    public void showPlayer(  TextView name, TextView bet, TextView cards, Player player, TextView playerChips ) {
+        name.setVisibility(View.VISIBLE);
+        bet.setVisibility(View.VISIBLE);
+        cards.setVisibility(View.VISIBLE);
+        Integer chips = player.countChips();
+        playerChips.setText(chips.toString());
+        playerChips.setVisibility(View.VISIBLE);
+    }
     public void hidePlayerTwo() {
-        mPlayerTwoText.setVisibility(View.INVISIBLE);
-        mPlayerTwoBet.setVisibility(View.INVISIBLE);
-        mPlayerTwoCards.setVisibility(View.INVISIBLE);
-        mPlayerTwoChips.setVisibility(View.INVISIBLE);
+        hidePlayer(mPlayerTwoText, mPlayerTwoBet, mPlayerTwoCards, mPlayerTwoChips);
     }
 
     public void showPlayerTwo() {
-        mPlayerTwoText.setVisibility(View.VISIBLE);
-        mPlayerTwoBet.setVisibility(View.VISIBLE);
-        mPlayerTwoCards.setVisibility(View.VISIBLE);
-        Integer chips = mSteve.countChips();
-        mPlayerTwoChips.setText(chips.toString());
-        mPlayerTwoChips.setVisibility(View.VISIBLE);
+        showPlayer( mPlayerTwoText, mPlayerTwoBet, mPlayerTwoCards, mSteve, mPlayerTwoChips );
     }
 
     public void hidePlayerThree() {
-        mPlayerThreeText.setVisibility(View.INVISIBLE);
-        mPlayerThreeBet.setVisibility(View.INVISIBLE);
-        mPlayerThreeCards.setVisibility(View.INVISIBLE);
-        mPlayerThreeChips.setVisibility(View.INVISIBLE);
+        hidePlayer(mPlayerThreeText, mPlayerThreeBet, mPlayerThreeCards, mPlayerThreeChips);
     }
 
     public void showPlayerThree() {
-        mPlayerThreeText.setVisibility(View.VISIBLE);
-        mPlayerThreeBet.setVisibility(View.VISIBLE);
-        mPlayerThreeCards.setVisibility(View.VISIBLE);
-        Integer chips = mDave.countChips();
-        mPlayerThreeChips.setText(chips.toString());
-        mPlayerThreeChips.setVisibility(View.VISIBLE);
+        showPlayer( mPlayerThreeText, mPlayerThreeBet, mPlayerThreeCards, mDave, mPlayerThreeChips );
     }
 
     public void hidePlayerFour() {
-        mPlayerFourText.setVisibility(View.INVISIBLE);
-        mPlayerFourBet.setVisibility(View.INVISIBLE);
-        mPlayerFourCards.setVisibility(View.INVISIBLE);
-        mPlayerFourChips.setVisibility(View.INVISIBLE);
+        hidePlayer(mPlayerFourText, mPlayerFourBet, mPlayerFourCards, mPlayerFourChips);
     }
 
     public void showPlayerFour() {
-        mPlayerFourText.setVisibility(View.VISIBLE);
-        mPlayerFourBet.setVisibility(View.VISIBLE);
-        mPlayerFourCards.setVisibility(View.VISIBLE);
-        Integer chips = mBob.countChips();
-        mPlayerFourChips.setText(chips.toString());
-        mPlayerFourChips.setVisibility(View.VISIBLE);
+        showPlayer( mPlayerFourText, mPlayerFourBet, mPlayerFourCards, mBob, mPlayerFourChips );
+    }
+
+    public void hidePlayers() {
+        hidePlayerOne();
+        hidePlayerTwo();
+        hidePlayerThree();
+        hidePlayerFour();
     }
 
     public void resetBets() {
