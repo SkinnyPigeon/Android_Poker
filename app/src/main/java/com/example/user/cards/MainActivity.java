@@ -337,16 +337,16 @@ public class MainActivity extends AppCompatActivity{
                 playerFoldMaster();
 
                 if( mPlayerOneText.getVisibility() == View.VISIBLE ) {
-                    playerCall( mJeff );
+                    playerCall(mJeff);
 
                 } else if ( mPlayerTwoText.getVisibility() == View.VISIBLE ) {
-                    playerCall( mSteve );
+                    playerCall(mSteve);
 
                 } else if ( mPlayerThreeText.getVisibility() == View.VISIBLE ) {
-                    playerCall( mDave );
+                    playerCall(mDave);
 
                 } else if ( mPlayerFourText.getVisibility() == View.VISIBLE ) {
-                    playerCall( mBob );
+                    playerCall(mBob);
 
                 }
                 mGame.endTurn();
@@ -392,7 +392,6 @@ public class MainActivity extends AppCompatActivity{
 //                mGame.foldMaster( mSteve );
 //                mGame.foldMaster( mDave );
 //                mGame.foldMaster( mBob );
-                setToCallText();
 
 
                 playerFoldMaster();
@@ -415,6 +414,8 @@ public class MainActivity extends AppCompatActivity{
 //                mGame.foldMaster( mSteve );
 //                mGame.foldMaster( mDave );
 //                mGame.foldMaster( mBob );
+//                setToCallText();
+
                 hidePlayers();
 
                 if ( mJeff.number() == mGame.seeCurrentPlayer() ) {
@@ -548,7 +549,7 @@ public class MainActivity extends AppCompatActivity{
         player.placeBet(chips);
         mGame.addBet(player);
         chips = 0;
-        setToCallText();
+//        setToCallText();
 
 
         String cash = "Bet: " + chips.toString();
@@ -601,11 +602,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void checkCheck( Player player ) {
-
-        if( mGame.showPot() > 0 && player.number() == mGame.seeCurrentPlayer()
-                && mGame.seeLastBet() == player.seeLastBet() ) {
-            mCheck.setVisibility((View.VISIBLE));
-        }
+//
 //        if(  mGame.showPot() > 0 && player.number() == mGame.seeCurrentPlayer()
 //                && mGame.seeLastBet() <= player.seeLastBet()
 //                && mCheck.getVisibility() !=View.VISIBLE ) {
@@ -701,9 +698,9 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void setToCallText() {
-        Integer lastBet = mGame.seeLastBet();
-        String mToCallText = "To Call: " + lastBet.toString();
-        mToCall.setText(mToCallText);
+            Integer lastBet = mGame.seeLastBet();
+            String mToCallText = "To Call: " + lastBet.toString();
+            mToCall.setText(mToCallText);
     }
 
 
