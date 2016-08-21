@@ -280,37 +280,59 @@ public class MainActivity extends AppCompatActivity{
         mCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                mGame.endTurn();
 
-                mGame.foldMaster(mJeff );
+                mGame.foldMaster( mJeff );
                 mGame.foldMaster( mSteve );
                 mGame.foldMaster( mDave );
                 mGame.foldMaster( mBob );
 
+                if( mPlayerOneText.getVisibility() == View.VISIBLE ) {
+                    playerCall( mJeff );
 
-                playerCall(mJeff);
-                playerCall( mSteve );
-                playerCall( mDave );
-                playerCall( mBob );
+                } else if ( mPlayerTwoText.getVisibility() == View.VISIBLE ) {
+                    playerCall( mSteve );
+
+                } else if ( mPlayerThreeText.getVisibility() == View.VISIBLE ) {
+                    playerCall( mDave );
+
+                } else if ( mPlayerFourText.getVisibility() == View.VISIBLE ) {
+                    playerCall( mBob );
+
+                }
+                mGame.endTurn();
+
+
+//                mGame.foldMaster(mJeff );
+//                mGame.foldMaster( mSteve );
+//                mGame.foldMaster( mDave );
+//                mGame.foldMaster( mBob );
+
+
+//                playerCall(mJeff);
+//                playerCall( mSteve );
+//                playerCall( mDave );
+//                playerCall( mBob );
 
 
 //                playerEndTurn();
 
-                mGame.endTurn();
                 hidePlayers();
 
-                if ( mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status()) {
+                if ( mJeff.number() == mGame.seeCurrentPlayer() ) {
                     showPlayerOne();
-                    checkCheck( mJeff );
-                } else if( mSteve.number() == mGame.seeCurrentPlayer() && !mSteve.status() ) {
+                    checkCheck(mJeff);
+                } else if( mSteve.number() == mGame.seeCurrentPlayer() ) {
                     showPlayerTwo();
-                    checkCheck( mSteve );
-                } else if( mDave.number() == mGame.seeCurrentPlayer() && !mDave.status() ) {
+                    checkCheck(mSteve);
+                } else if( mDave.number() == mGame.seeCurrentPlayer() ) {
                     showPlayerThree();
-                    checkCheck( mDave );
-                } else if( mBob.number() == mGame.seeCurrentPlayer() && !mBob.status() ) {
+                    checkCheck(mDave);
+                } else if( mBob.number() == mGame.seeCurrentPlayer() ) {
                     showPlayerFour();
-                    checkCheck( mBob );
+                    checkCheck(mBob);
                 }
+
             }
         });
 
@@ -323,57 +345,141 @@ public class MainActivity extends AppCompatActivity{
                 mGame.foldMaster( mDave );
                 mGame.foldMaster( mBob );
 
+                if( mPlayerOneText.getVisibility() == View.VISIBLE ) {
+                    playerBet(mJeff, mPOneBet, mPlayerOneBet);
+
+                } else if ( mPlayerTwoText.getVisibility() == View.VISIBLE ) {
+                    playerBet(mSteve, mPTwoBet, mPlayerTwoBet);
+
+                } else if ( mPlayerThreeText.getVisibility() == View.VISIBLE ) {
+                    playerBet(mDave, mPThreeBet, mPlayerThreeBet);
+
+                } else if ( mPlayerFourText.getVisibility() == View.VISIBLE ) {
+                    playerBet(mBob, mPFourBet, mPlayerFourBet);
+
+                }
+                mGame.endTurn();
+
+
+//                mGame.foldMaster( mJeff );
+//                mGame.foldMaster( mSteve );
+//                mGame.foldMaster( mDave );
+//                mGame.foldMaster( mBob );
+
                 hidePlayers();
 
-                if ( mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status()) {
+                if ( mJeff.number() == mGame.seeCurrentPlayer() ) {
                     showPlayerOne();
-                    playerBet(mJeff, mPOneBet, mPlayerOneBet);
-                    mGame.endTurn();
+                    checkCheck(mJeff);
 
-                } else if( mSteve.number() == mGame.seeCurrentPlayer() && !mSteve.status() ) {
+//                    playerBet(mJeff, mPOneBet, mPlayerOneBet);
+//                    mGame.endTurn();
+
+                } else if( mSteve.number() == mGame.seeCurrentPlayer() ) {
                     showPlayerTwo();
-                    playerBet(mSteve, mPTwoBet, mPlayerTwoBet);
-                    mGame.endTurn();
+                    checkCheck(mSteve);
 
-                } else if( mDave.number() == mGame.seeCurrentPlayer() && !mDave.status() ) {
+//                    playerBet(mSteve, mPTwoBet, mPlayerTwoBet);
+//                    mGame.endTurn();
+
+                } else if( mDave.number() == mGame.seeCurrentPlayer() ) {
                     showPlayerThree();
-                    playerBet(mDave, mPThreeBet, mPlayerThreeBet);
-                    mGame.endTurn();
+                    checkCheck(mDave);
 
-                } else if( mBob.number() == mGame.seeCurrentPlayer() && !mBob.status() ) {
+//                    playerBet(mDave, mPThreeBet, mPlayerThreeBet);
+//                    mGame.endTurn();
+
+                } else if( mBob.number() == mGame.seeCurrentPlayer() ) {
                     showPlayerFour();
-                    playerBet(mBob, mPFourBet, mPlayerFourBet);
-                    mGame.endTurn();
+                    checkCheck(mBob);
+
+//                    playerBet(mBob, mPFourBet, mPlayerFourBet);
+//                    mGame.endTurn();
                 }
+
             }
         });
 
         mCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playerSet();
-                resetBets();
-                hidePlayers();
-
 
                 mGame.foldMaster( mJeff );
                 mGame.foldMaster( mSteve );
                 mGame.foldMaster( mDave );
                 mGame.foldMaster( mBob );
+
+                hidePlayers();
+
+                playerSet();
+                resetBets();
+
                 mCommunityCards.setVisibility(View.VISIBLE);
                 mCheck.setVisibility(View.INVISIBLE);
 
-                    if ( mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status() ) {
-                        showPlayerOne();
-                    } else if( mSteve.number() == mGame.seeCurrentPlayer() && !mSteve.status() ) {
-                        showPlayerTwo();
-                    } else if( mDave.number() == mGame.seeCurrentPlayer() && !mDave.status() ) {
-                        showPlayerThree();
-                    } else if( mBob.number() == mGame.seeCurrentPlayer() && !mBob.status() ) {
-                        showPlayerFour();
-                    }
+                if ( mJeff.number() == mGame.seeCurrentPlayer() ) {
+                    showPlayerOne();
+                } else if( mSteve.number() == mGame.seeCurrentPlayer() ) {
+                    showPlayerTwo();
+                } else if( mDave.number() == mGame.seeCurrentPlayer() ) {
+                    showPlayerThree();
+                } else if( mBob.number() == mGame.seeCurrentPlayer() ) {
+                    showPlayerFour();
                 }
-//            }
+
+            }
+
+        });
+
+        mFold.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mGame.foldMaster( mJeff );
+                mGame.foldMaster( mSteve );
+                mGame.foldMaster( mDave );
+                mGame.foldMaster( mBob );
+
+                if( mPlayerOneText.getVisibility() == View.VISIBLE ) {
+                    mJeff.fold();
+                    mGame.foldMaster( mJeff );
+                } else if ( mPlayerTwoText.getVisibility() == View.VISIBLE ) {
+                    mSteve.fold();
+                    mGame.foldMaster(mSteve);
+                } else if ( mPlayerThreeText.getVisibility() == View.VISIBLE ) {
+                    mDave.fold();
+                    mGame.foldMaster(mDave);
+                } else if ( mPlayerFourText.getVisibility() == View.VISIBLE ) {
+                    mBob.fold();
+                    mGame.foldMaster(mBob);
+                }
+
+//                mGame.endTurn();
+
+                hidePlayers();
+
+                if( mJeff.number() == mGame.seeCurrentPlayer() ) {
+                    showPlayerOne();
+//                    mJeff.fold();
+//                    mGame.foldMaster( mJeff );
+                } else if ( mSteve.number() == mGame.seeCurrentPlayer() ) {
+                    showPlayerTwo();
+//                    mSteve.fold();
+//                    mGame.foldMaster( mSteve );
+                } else if ( mDave.number() == mGame.seeCurrentPlayer() ) {
+                    showPlayerThree();
+//                    mDave.fold();
+//                    mGame.foldMaster( mDave );
+                } else if ( mBob.number() == mGame.seeCurrentPlayer() ) {
+                    showPlayerFour();
+//                    mBob.fold();
+//                    mGame.foldMaster( mBob );
+                }
+
+
+
+
+            }
         });
 
         mWinner.setOnClickListener(new View.OnClickListener() {
@@ -396,31 +502,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        mFold.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                hidePlayers();
-
-                if( mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status() ) {
-                    showPlayerOne();
-                    mJeff.fold();
-                    mGame.foldMaster( mJeff );
-                } else if ( mSteve.number() == mGame.seeCurrentPlayer() && !mSteve.status() ) {
-                    showPlayerTwo();
-                    mSteve.fold();
-                    mGame.foldMaster( mSteve );
-                } else if ( mDave.number() == mGame.seeCurrentPlayer() && !mDave.status() ) {
-                    showPlayerTwo();
-                    mDave.fold();
-                    mGame.foldMaster( mDave );
-                } else if ( mBob.number() == mGame.seeCurrentPlayer() && !mBob.status() ) {
-                    showPlayerTwo();
-                    mBob.fold();
-                    mGame.foldMaster( mBob );
-                }
-            }
-        });
     }
 
 
