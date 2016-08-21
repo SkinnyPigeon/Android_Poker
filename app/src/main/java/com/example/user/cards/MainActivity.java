@@ -195,30 +195,48 @@ public class MainActivity extends AppCompatActivity{
                 if (mPOneReady) {
                     mJeff.takeCard(mCards.deal());
                     mJeff.takeCard(mCards.deal());
-                    mPlayerOneCards.setText(mJeff.seeHand().toString());
+                    String mJeffCardOne = mJeff.seeHand().get(0).toString();
+                    String mJeffCardTwo = mJeff.seeHand().get(1).toString();
+                    String mJeffCards =  mJeffCardOne + " " + mJeffCardTwo;
+                    mPlayerOneCards.setText( mJeffCards );
                 }
 
                 if (mPTwoReady) {
                     mSteve.takeCard(mCards.deal());
                     mSteve.takeCard(mCards.deal());
-                    mPlayerTwoCards.setText(mSteve.seeHand().toString());
+                    String mSteveCardOne = mSteve.seeHand().get(0).toString();
+                    String mSteveCardTwo = mSteve.seeHand().get(1).toString();
+                    String mSteveCards = mSteveCardOne + " " + mSteveCardTwo;
+                    mPlayerTwoCards.setText( mSteveCards );
                 }
 
                 if (mPThreeReady) {
                     mDave.takeCard(mCards.deal());
                     mDave.takeCard(mCards.deal());
-                    mPlayerThreeCards.setText(mDave.seeHand().toString());
+                    String mDaveCardOne = mDave.seeHand().get(0).toString();
+                    String mDaveCardTwo = mDave.seeHand().get(1).toString();
+                    String mDaveCards = mDaveCardOne + " " + mDaveCardTwo;
+                    mPlayerThreeCards.setText( mDaveCards );
                 }
 
                 if (mPFourReady) {
                     mBob.takeCard(mCards.deal());
                     mBob.takeCard(mCards.deal());
-                    mPlayerFourCards.setText(mBob.seeHand().toString());
+                    String mBobCardOne = mBob.seeHand().get(0).toString();
+                    String mBobCardTwo = mBob.seeHand().get(1).toString();
+                    String mBobCards = mBobCardOne + " " + mBobCardTwo;
+                    mPlayerFourCards.setText( mBobCards );
                 }
 
                 mGame.takeCard(mCards.deal());
                 mGame.takeCard(mCards.deal());
                 mGame.takeCard(mCards.deal());
+
+                String mGameCardOne = mGame.seeHand().get(0).toString();
+                String mGameCardTwo = mGame.seeHand().get(1).toString();
+                String mGameCardThree = mGame.seeHand().get(2).toString();
+
+                String mGameCards = mGameCardOne + " " + mGameCardTwo + " " + mGameCardThree;
 
                 mCommunityCards.setText(mGame.seeHand().toString());
 
