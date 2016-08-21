@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity{
     TextView mPlayerFourBet;
     TextView mPotValue;
 
+    TextView mToCall;
+    String mToCallText;
+
     TextView mPlayerOneChips;
     TextView mPlayerTwoChips;
     TextView mPlayerThreeChips;
@@ -94,6 +97,8 @@ public class MainActivity extends AppCompatActivity{
         mPlayerTwoChips = ( TextView )findViewById( R.id.player_two_chips );
         mPlayerThreeChips = ( TextView )findViewById( R.id.player_three_chips );
         mPlayerFourChips = ( TextView )findViewById( R.id.player_four_chips );
+
+        mToCall = ( TextView )findViewById( R.id.to_call );
 
 
         mCommunityCards = ( TextView )findViewById( R.id.community_cards );
@@ -184,6 +189,7 @@ public class MainActivity extends AppCompatActivity{
         mCheck.setVisibility(View.INVISIBLE);
         mFold.setVisibility(View.INVISIBLE);
         mWinner.setVisibility(View.INVISIBLE);
+        mToCall.setVisibility(View.INVISIBLE);
 
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,7 +244,7 @@ public class MainActivity extends AppCompatActivity{
 
                 String mGameCards = mGameCardOne + " " + mGameCardTwo + " " + mGameCardThree;
 
-                mCommunityCards.setText( mGameCards );
+                mCommunityCards.setText(mGameCards);
 
                 mPOneTog.setVisibility(View.INVISIBLE);
                 mPTwoTog.setVisibility(View.INVISIBLE);
@@ -252,9 +258,14 @@ public class MainActivity extends AppCompatActivity{
                 mPotValue.setVisibility(View.VISIBLE);
                 mFold.setVisibility((View.VISIBLE));
                 mWinner.setVisibility(View.VISIBLE);
+                mToCall.setVisibility(View.VISIBLE);
+
+
 
                 mGame.megaCheck(mJeff, mSteve, mDave, mBob);
 //                    mBob.fold();
+
+                setToCallText();
 
                 Integer pot = mGame.showPot();
                 String potText = "Pot: " + " " + pot.toString();
@@ -320,6 +331,8 @@ public class MainActivity extends AppCompatActivity{
 //                mGame.foldMaster( mSteve );
 //                mGame.foldMaster( mDave );
 //                mGame.foldMaster( mBob );
+                setToCallText();
+
 
                 playerFoldMaster();
 
@@ -379,6 +392,8 @@ public class MainActivity extends AppCompatActivity{
 //                mGame.foldMaster( mSteve );
 //                mGame.foldMaster( mDave );
 //                mGame.foldMaster( mBob );
+                setToCallText();
+
 
                 playerFoldMaster();
 
@@ -430,6 +445,8 @@ public class MainActivity extends AppCompatActivity{
 //                mGame.foldMaster( mSteve );
 //                mGame.foldMaster( mDave );
 //                mGame.foldMaster(mBob);
+                setToCallText();
+
 
                 playerFoldMaster();
                 mGame.endTurn();
@@ -531,6 +548,9 @@ public class MainActivity extends AppCompatActivity{
         player.placeBet(chips);
         mGame.addBet(player);
         chips = 0;
+        setToCallText();
+
+
         String cash = "Bet: " + chips.toString();
         betText.setText(cash);
         Integer potInt = mGame.showPot();
@@ -557,6 +577,7 @@ public class MainActivity extends AppCompatActivity{
             Integer potInt = mGame.showPot();
             String pot = "Pot: " + " " + potInt.toString();
             mPotValue.setText(pot);
+            setToCallText();
         }
     }
 
@@ -580,6 +601,11 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void checkCheck( Player player ) {
+
+        if( mGame.showPot() > 0 && player.number() == mGame.seeCurrentPlayer()
+                && mGame.seeLastBet() == player.seeLastBet() ) {
+            mCheck.setVisibility((View.VISIBLE));
+        }
 //        if(  mGame.showPot() > 0 && player.number() == mGame.seeCurrentPlayer()
 //                && mGame.seeLastBet() <= player.seeLastBet()
 //                && mCheck.getVisibility() !=View.VISIBLE ) {
@@ -668,10 +694,16 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void playerFoldMaster() {
-        mGame.foldMaster( mJeff );
-        mGame.foldMaster( mSteve );
-        mGame.foldMaster( mDave );
-        mGame.foldMaster( mBob );
+        mGame.foldMaster(mJeff);
+        mGame.foldMaster(mSteve);
+        mGame.foldMaster(mDave);
+        mGame.foldMaster(mBob);
+    }
+
+    public void setToCallText() {
+        Integer lastBet = mGame.seeLastBet();
+        String mToCallText = "To Call: " + lastBet.toString();
+        mToCall.setText(mToCallText);
     }
 
 

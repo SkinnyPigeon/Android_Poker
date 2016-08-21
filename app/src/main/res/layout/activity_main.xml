@@ -272,6 +272,15 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="90dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/to_call"
+        android:textSize="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="110dp"/>
+
+
 
 
 </RelativeLayout>
