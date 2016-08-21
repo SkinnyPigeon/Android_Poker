@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity{
 
                 String mGameCards = mGameCardOne + " " + mGameCardTwo + " " + mGameCardThree;
 
-                mCommunityCards.setText(mGame.seeHand().toString());
+                mCommunityCards.setText( mGameCards );
 
                 mPOneTog.setVisibility(View.INVISIBLE);
                 mPTwoTog.setVisibility(View.INVISIBLE);
