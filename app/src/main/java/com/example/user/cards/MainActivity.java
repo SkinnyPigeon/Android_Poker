@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity{
     TextView mPlayerThreeChips;
     TextView mPlayerFourChips;
 
-
-
     Switch mPOneTog;
     Switch mPTwoTog;
     Switch mPThreeTog;
@@ -283,10 +281,17 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
+                mGame.foldMaster(mJeff );
+                mGame.foldMaster( mSteve );
+                mGame.foldMaster( mDave );
+                mGame.foldMaster( mBob );
+
+
                 playerCall(mJeff);
                 playerCall( mSteve );
                 playerCall( mDave );
                 playerCall( mBob );
+
 
 //                playerEndTurn();
 
@@ -313,79 +318,33 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-
-//                mJeff.placeBet(mPOneBet);
-//                mGame.addBet(mJeff);
-//                mSteve.placeBet(mPTwoBet);
-//                mGame.addBet(mSteve);
-//                mDave.placeBet(mPThreeBet);
-//                mGame.addBet(mDave);
-//                mBob.placeBet(mPFourBet);
-//                mGame.addBet(mBob);
+                mGame.foldMaster( mJeff );
+                mGame.foldMaster( mSteve );
+                mGame.foldMaster( mDave );
+                mGame.foldMaster( mBob );
 
                 hidePlayers();
 
                 if ( mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status()) {
                     showPlayerOne();
-//                    checkCheck( mJeff );
                     playerBet(mJeff, mPOneBet, mPlayerOneBet);
                     mGame.endTurn();
 
-
                 } else if( mSteve.number() == mGame.seeCurrentPlayer() && !mSteve.status() ) {
                     showPlayerTwo();
-//                    checkCheck( mSteve );
                     playerBet(mSteve, mPTwoBet, mPlayerTwoBet);
                     mGame.endTurn();
 
-
                 } else if( mDave.number() == mGame.seeCurrentPlayer() && !mDave.status() ) {
                     showPlayerThree();
-//                    checkCheck( mDave );
                     playerBet(mDave, mPThreeBet, mPlayerThreeBet);
                     mGame.endTurn();
 
-
                 } else if( mBob.number() == mGame.seeCurrentPlayer() && !mBob.status() ) {
                     showPlayerFour();
-//                    checkCheck( mBob );
-                    playerBet( mBob, mPFourBet, mPlayerFourBet );
+                    playerBet(mBob, mPFourBet, mPlayerFourBet);
                     mGame.endTurn();
-
-
                 }
-
-
-
-
-//                if (mPlayerOneText.getVisibility() == View.VISIBLE) {
-////                    checkCheck( mJeff);
-////                    playerEndTurn();
-//                    mGame.endTurn();
-//
-//                    playerBet(mJeff, mPOneBet, mPlayerOneBet);
-//
-//                } else if (mPlayerTwoText.getVisibility() == View.VISIBLE) {
-////                    playerEndTurn();
-//                    mGame.endTurn();
-//
-//                    playerBet(mSteve, mPTwoBet, mPlayerTwoBet);
-//
-//                } else if (mPlayerThreeText.getVisibility() == View.VISIBLE) {
-//
-////                    playerEndTurn();
-//                    mGame.endTurn();
-//
-//                    playerBet(mDave, mPThreeBet, mPlayerThreeBet);
-//
-//                } else if (mPlayerFourText.getVisibility() == View.VISIBLE) {
-//
-////                    playerEndTurn();
-//                    mGame.endTurn();
-//
-//                    playerBet( mBob, mPFourBet, mPlayerFourBet );
-//
-//                }
             }
         });
 
@@ -395,25 +354,22 @@ public class MainActivity extends AppCompatActivity{
                 playerSet();
                 resetBets();
                 hidePlayers();
+
+
+                mGame.foldMaster( mJeff );
+                mGame.foldMaster( mSteve );
+                mGame.foldMaster( mDave );
+                mGame.foldMaster( mBob );
                 mCommunityCards.setVisibility(View.VISIBLE);
                 mCheck.setVisibility(View.INVISIBLE);
 
-//                if ( mJeff.seeFirstBet() && !mJeff.status() ) {
                     if ( mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status() ) {
                         showPlayerOne();
-//                    } else if( mSteve.seeFirstBet() && !mSteve.status() ) {
                     } else if( mSteve.number() == mGame.seeCurrentPlayer() && !mSteve.status() ) {
-
                         showPlayerTwo();
-
-//                    } else if( mDave.seeFirstBet() && !mDave.status() ) {
                     } else if( mDave.number() == mGame.seeCurrentPlayer() && !mDave.status() ) {
-
                         showPlayerThree();
-
-//                    } else if( mBob.seeFirstBet() && !mBob.status() ) {
                     } else if( mBob.number() == mGame.seeCurrentPlayer() && !mBob.status() ) {
-
                         showPlayerFour();
                     }
                 }
@@ -436,10 +392,38 @@ public class MainActivity extends AppCompatActivity{
 
                 mGame.pickWinner();
                 mGame.handWon(mGame.seeWinner());
-                mWinnerName.setText( mGame.seeWinner().name() );
+                mWinnerName.setText(mGame.seeWinner().name());
+            }
+        });
+
+        mFold.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                hidePlayers();
+
+                if( mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status() ) {
+                    showPlayerOne();
+                    mJeff.fold();
+                    mGame.foldMaster( mJeff );
+                } else if ( mSteve.number() == mGame.seeCurrentPlayer() && !mSteve.status() ) {
+                    showPlayerTwo();
+                    mSteve.fold();
+                    mGame.foldMaster( mSteve );
+                } else if ( mDave.number() == mGame.seeCurrentPlayer() && !mDave.status() ) {
+                    showPlayerTwo();
+                    mDave.fold();
+                    mGame.foldMaster( mDave );
+                } else if ( mBob.number() == mGame.seeCurrentPlayer() && !mBob.status() ) {
+                    showPlayerTwo();
+                    mBob.fold();
+                    mGame.foldMaster( mBob );
+                }
             }
         });
     }
+
+
 
     public void playerBet( Player player, Integer chips, TextView betText ) {
         player.placeBet(chips);
@@ -494,11 +478,9 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void checkCheck( Player player ) {
-        if(  mGame.showPot() > 0
+        if(  mGame.showPot() > 0 && player.number() == mGame.seeCurrentPlayer()
                 && mGame.seeLastBet() <= player.seeLastBet()
                 && mCheck.getVisibility() !=View.VISIBLE ) {
-            Integer no = mGame.seeLastBet();
-            Log.d( "HASLDJ: ", no.toString() );
             mCheck.setVisibility(View.VISIBLE);
         } else {
             mCheck.setVisibility(View.INVISIBLE);
@@ -561,23 +543,17 @@ public class MainActivity extends AppCompatActivity{
     public void resetBets() {
         mJeff.resetLastBet();
         mJeff.resetBet();
-        Integer one = mJeff.seeLastBet();
-        Log.d( "Jeff: ", one.toString() );
         mSteve.resetLastBet();
         mSteve.resetBet();
-        Integer two = mSteve.seeLastBet();
-        Log.d( "Steve: ", two.toString() );
         mDave.resetLastBet();
         mDave.resetBet();
-        Integer three = mDave.seeLastBet();
-        Log.d( "Dave: ", three.toString() );
         mBob.resetLastBet();
         mBob.resetBet();
-        Integer four = mBob.seeLastBet();
-        Log.d( "Bob: ", four.toString());
         mGame.resetBets();
-        Integer five = mGame.seeLastBet();
-        Log.d( "Game: ", five.toString() );
+        mPOneBet = 0;
+        mPTwoBet = 0;
+        mPThreeBet = 0;
+        mPFourBet = 0;
     }
 
     public void logicCheck( Game game, Player player ) {
