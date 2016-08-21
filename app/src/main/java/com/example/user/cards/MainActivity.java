@@ -602,14 +602,14 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void checkCheck( Player player ) {
-//
-//        if(  mGame.showPot() > 0 && player.number() == mGame.seeCurrentPlayer()
-//                && mGame.seeLastBet() <= player.seeLastBet()
-//                && mCheck.getVisibility() !=View.VISIBLE ) {
-//            mCheck.setVisibility(View.VISIBLE);
-//        } else {
-//            mCheck.setVisibility(View.INVISIBLE);
-//        }
+
+        if(  mGame.showPot() > 0 && player.number() == mGame.seeCurrentPlayer()
+                && mGame.seeLastBet() <= player.seeLastBet()
+                && mCheck.getVisibility() !=View.VISIBLE ) {
+            mCheck.setVisibility(View.VISIBLE);
+        } else {
+            mCheck.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void hidePlayerOne() {
