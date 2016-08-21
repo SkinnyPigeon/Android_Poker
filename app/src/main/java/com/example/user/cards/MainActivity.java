@@ -283,23 +283,28 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                playerCall( mJeff );
+                playerCall(mJeff);
                 playerCall( mSteve );
                 playerCall( mDave );
                 playerCall( mBob );
 
-                playerEndTurn();
+//                playerEndTurn();
 
+                mGame.endTurn();
                 hidePlayers();
 
                 if ( mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status()) {
                     showPlayerOne();
+                    checkCheck( mJeff );
                 } else if( mSteve.number() == mGame.seeCurrentPlayer() && !mSteve.status() ) {
                     showPlayerTwo();
+                    checkCheck( mSteve );
                 } else if( mDave.number() == mGame.seeCurrentPlayer() && !mDave.status() ) {
                     showPlayerThree();
+                    checkCheck( mDave );
                 } else if( mBob.number() == mGame.seeCurrentPlayer() && !mBob.status() ) {
                     showPlayerFour();
+                    checkCheck( mBob );
                 }
             }
         });
@@ -307,44 +312,112 @@ public class MainActivity extends AppCompatActivity{
         mBet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mPlayerOneText.getVisibility() == View.VISIBLE) {
+
+
+//                mJeff.placeBet(mPOneBet);
+//                mGame.addBet(mJeff);
+//                mSteve.placeBet(mPTwoBet);
+//                mGame.addBet(mSteve);
+//                mDave.placeBet(mPThreeBet);
+//                mGame.addBet(mDave);
+//                mBob.placeBet(mPFourBet);
+//                mGame.addBet(mBob);
+
+                hidePlayers();
+
+                if ( mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status()) {
+                    showPlayerOne();
+//                    checkCheck( mJeff );
                     playerBet(mJeff, mPOneBet, mPlayerOneBet);
-                    playerEndTurn();
+                    mGame.endTurn();
 
-                } else if (mPlayerTwoText.getVisibility() == View.VISIBLE) {
+
+                } else if( mSteve.number() == mGame.seeCurrentPlayer() && !mSteve.status() ) {
+                    showPlayerTwo();
+//                    checkCheck( mSteve );
                     playerBet(mSteve, mPTwoBet, mPlayerTwoBet);
-                    playerEndTurn();
+                    mGame.endTurn();
 
-                } else if (mPlayerThreeText.getVisibility() == View.VISIBLE) {
+
+                } else if( mDave.number() == mGame.seeCurrentPlayer() && !mDave.status() ) {
+                    showPlayerThree();
+//                    checkCheck( mDave );
                     playerBet(mDave, mPThreeBet, mPlayerThreeBet);
-                    playerEndTurn();
+                    mGame.endTurn();
 
-                } else if (mPlayerFourText.getVisibility() == View.VISIBLE) {
+
+                } else if( mBob.number() == mGame.seeCurrentPlayer() && !mBob.status() ) {
+                    showPlayerFour();
+//                    checkCheck( mBob );
                     playerBet( mBob, mPFourBet, mPlayerFourBet );
-                    playerEndTurn();
+                    mGame.endTurn();
+
 
                 }
+
+
+
+
+//                if (mPlayerOneText.getVisibility() == View.VISIBLE) {
+////                    checkCheck( mJeff);
+////                    playerEndTurn();
+//                    mGame.endTurn();
+//
+//                    playerBet(mJeff, mPOneBet, mPlayerOneBet);
+//
+//                } else if (mPlayerTwoText.getVisibility() == View.VISIBLE) {
+////                    playerEndTurn();
+//                    mGame.endTurn();
+//
+//                    playerBet(mSteve, mPTwoBet, mPlayerTwoBet);
+//
+//                } else if (mPlayerThreeText.getVisibility() == View.VISIBLE) {
+//
+////                    playerEndTurn();
+//                    mGame.endTurn();
+//
+//                    playerBet(mDave, mPThreeBet, mPlayerThreeBet);
+//
+//                } else if (mPlayerFourText.getVisibility() == View.VISIBLE) {
+//
+////                    playerEndTurn();
+//                    mGame.endTurn();
+//
+//                    playerBet( mBob, mPFourBet, mPlayerFourBet );
+//
+//                }
             }
         });
 
         mCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                playerSet();
+                resetBets();
                 hidePlayers();
                 mCommunityCards.setVisibility(View.VISIBLE);
                 mCheck.setVisibility(View.INVISIBLE);
 
-                if ( mJeff.seeFirstBet() && !mJeff.status() ) {
-                    showPlayerOne();
-                } else if( mSteve.seeFirstBet() && !mSteve.status() ) {
-                    showPlayerTwo();
-                } else if( mDave.seeFirstBet() && !mDave.status() ) {
-                    showPlayerThree();
-                } else if( mBob.seeFirstBet() && !mBob.status() ) {
-                    showPlayerFour();
+//                if ( mJeff.seeFirstBet() && !mJeff.status() ) {
+                    if ( mJeff.number() == mGame.seeCurrentPlayer() && !mJeff.status() ) {
+                        showPlayerOne();
+//                    } else if( mSteve.seeFirstBet() && !mSteve.status() ) {
+                    } else if( mSteve.number() == mGame.seeCurrentPlayer() && !mSteve.status() ) {
+
+                        showPlayerTwo();
+
+//                    } else if( mDave.seeFirstBet() && !mDave.status() ) {
+                    } else if( mDave.number() == mGame.seeCurrentPlayer() && !mDave.status() ) {
+
+                        showPlayerThree();
+
+//                    } else if( mBob.seeFirstBet() && !mBob.status() ) {
+                    } else if( mBob.number() == mGame.seeCurrentPlayer() && !mBob.status() ) {
+
+                        showPlayerFour();
+                    }
                 }
-            }
+//            }
         });
 
         mWinner.setOnClickListener(new View.OnClickListener() {
@@ -379,6 +452,18 @@ public class MainActivity extends AppCompatActivity{
         mPotValue.setText(pot);
     }
 
+    public void playerSet() {
+        if( mJeff.seeBlind() ) {
+            mGame.setCurrentPlayer( mJeff );
+        } else if ( mSteve.seeBlind() ) {
+            mGame.setCurrentPlayer( mSteve );
+        } else if ( mDave.seeBlind() ) {
+            mGame.setCurrentPlayer( mDave );
+        } else if ( mBob.seeBlind() ) {
+            mGame.setCurrentPlayer( mBob );
+        }
+    }
+
     public void playerCall( Player player ) {
         if( player.number() == mGame.seeCurrentPlayer() ) {
             player.call(mGame);
@@ -409,9 +494,11 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void checkCheck( Player player ) {
-        if( mGame.seeFirstBet() == player.number() && mGame.showPot() > 0
+        if(  mGame.showPot() > 0
                 && mGame.seeLastBet() <= player.seeLastBet()
                 && mCheck.getVisibility() !=View.VISIBLE ) {
+            Integer no = mGame.seeLastBet();
+            Log.d( "HASLDJ: ", no.toString() );
             mCheck.setVisibility(View.VISIBLE);
         } else {
             mCheck.setVisibility(View.INVISIBLE);
@@ -474,13 +561,23 @@ public class MainActivity extends AppCompatActivity{
     public void resetBets() {
         mJeff.resetLastBet();
         mJeff.resetBet();
+        Integer one = mJeff.seeLastBet();
+        Log.d( "Jeff: ", one.toString() );
         mSteve.resetLastBet();
         mSteve.resetBet();
+        Integer two = mSteve.seeLastBet();
+        Log.d( "Steve: ", two.toString() );
         mDave.resetLastBet();
         mDave.resetBet();
+        Integer three = mDave.seeLastBet();
+        Log.d( "Dave: ", three.toString() );
         mBob.resetLastBet();
         mBob.resetBet();
+        Integer four = mBob.seeLastBet();
+        Log.d( "Bob: ", four.toString());
         mGame.resetBets();
+        Integer five = mGame.seeLastBet();
+        Log.d( "Game: ", five.toString() );
     }
 
     public void logicCheck( Game game, Player player ) {

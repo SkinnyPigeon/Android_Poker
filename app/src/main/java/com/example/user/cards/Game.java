@@ -267,6 +267,10 @@ public class Game  {
         }
     }
 
+    public void setCurrentPlayer() {
+        mCurrentPlayer = mFirstBet;
+    }
+
     public void setCurrentPlayer( Player player ) {
         mCurrentPlayer = player.number();
     }
@@ -344,11 +348,11 @@ public class Game  {
     }
 
     public void addBet( Player player ) {
-//        if( ( playerCheck( player ) ) && ( mlastBet <= player.giveBet() )) {
         mPot += player.giveBet();
         mlastBet = player.giveBet();
-//        }
     }
+
+
 
     public int turn() {
         return mPlayerTurn;

@@ -83,6 +83,7 @@
         android:layout_height="wrap_content"
         android:text="@string/player_one"
         android:id="@+id/ponet"
+        android:textSize="30dp"
         android:layout_marginTop="85dp"/>
 
     <TextView
@@ -90,6 +91,8 @@
         android:layout_height="wrap_content"
         android:text="@string/player_two"
         android:id="@+id/ptwot"
+        android:textSize="30dp"
+
         android:layout_marginTop="85dp"/>
 
     <TextView
@@ -97,6 +100,8 @@
         android:layout_height="wrap_content"
         android:text="@string/player_three"
         android:id="@+id/pthreet"
+        android:textSize="30dp"
+
         android:layout_marginTop="85dp"/>
 
     <TextView
@@ -104,6 +109,8 @@
         android:layout_height="wrap_content"
         android:text="@string/player_four"
         android:id="@+id/pfourt"
+        android:textSize="30dp"
+
         android:layout_marginTop="85dp"/>
 
 
@@ -144,6 +151,8 @@
         android:layout_height="wrap_content"
         android:text="@integer/pot"
         android:id="@+id/pot"
+        android:textSize="30dp"
+
         android:layout_marginTop="300dp"/>
 
 
