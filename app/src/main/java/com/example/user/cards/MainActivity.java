@@ -257,7 +257,8 @@ public class MainActivity extends AppCompatActivity{
 //                    mBob.fold();
 
                 Integer pot = mGame.showPot();
-                mPotValue.setText(pot.toString());
+                String potText = "Pot: " + " " + pot.toString();
+                mPotValue.setText( potText );
                 Log.d("Bob: ", mBob.seeFolded());
 //                showPlayerThree();
 
@@ -281,28 +282,28 @@ public class MainActivity extends AppCompatActivity{
                 if (mPlayerOneText.getVisibility() == View.VISIBLE) {
                     if( mPOneBet <= ( mJeff.countChips() - 10) ) {
                         mPOneBet += 10;
-                        String cash = mPOneBet.toString();
+                        String cash = "Bet: " + mPOneBet.toString();
                         mPlayerOneBet.setText(cash);
 
                     }
                 } else if (mPlayerTwoText.getVisibility() == View.VISIBLE) {
                     if( mPTwoBet <= ( mSteve.countChips() - 10 ) ) {
                         mPTwoBet += 10;
-                        String cash = mPTwoBet.toString();
+                        String cash = "Bet: " +  mPTwoBet.toString();
                         mPlayerTwoBet.setText(cash);
 
                     }
                 } else if (mPlayerThreeText.getVisibility() == View.VISIBLE) {
                     if( mPThreeBet <= ( mDave.countChips() - 10 ) ) {
                         mPThreeBet += 10;
-                        String cash = mPThreeBet.toString();
+                        String cash = "Bet: " +  mPThreeBet.toString();
                         mPlayerThreeBet.setText(cash);
 
                     }
                 } else if (mPlayerFourText.getVisibility() == View.VISIBLE) {
                     if( mPFourBet <= ( mBob.countChips() - 10 ) ) {
                         mPFourBet += 10;
-                        String cash = mPFourBet.toString();
+                        String cash = "Bet: " +  mPFourBet.toString();
                         mPlayerFourBet.setText(cash);
 
                     }
@@ -530,10 +531,10 @@ public class MainActivity extends AppCompatActivity{
         player.placeBet(chips);
         mGame.addBet(player);
         chips = 0;
-        String cash = chips.toString();
+        String cash = "Bet: " + chips.toString();
         betText.setText(cash);
         Integer potInt = mGame.showPot();
-        String pot = potInt.toString();
+        String pot = "Pot: " + " " + potInt.toString();
         mPotValue.setText(pot);
     }
 
@@ -554,7 +555,7 @@ public class MainActivity extends AppCompatActivity{
             player.call(mGame);
             mGame.addBet(player);
             Integer potInt = mGame.showPot();
-            String pot = potInt.toString();
+            String pot = "Pot: " + " " + potInt.toString();
             mPotValue.setText(pot);
         }
     }
@@ -607,7 +608,8 @@ public class MainActivity extends AppCompatActivity{
         bet.setVisibility(View.VISIBLE);
         cards.setVisibility(View.VISIBLE);
         Integer chips = player.countChips();
-        playerChips.setText(chips.toString());
+        String playerChipsDisplay = "Chips: " + " " + chips.toString();
+        playerChips.setText( playerChipsDisplay );
         playerChips.setVisibility(View.VISIBLE);
     }
     public void hidePlayerTwo() {

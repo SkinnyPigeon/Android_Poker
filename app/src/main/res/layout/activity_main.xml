@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:background="@drawable/gradient">
+    android:background="@drawable/gradient"
+    >
+
+<!--android:gravity="center_horizontal"-->
 
     <Switch
         android:layout_width="wrap_content"
@@ -85,7 +87,9 @@
         android:text="@string/player_one"
         android:id="@+id/ponet"
         android:textSize="30dp"
-        android:layout_marginTop="85dp"/>
+        android:layout_marginLeft="5dp"
+
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,8 +97,9 @@
         android:text="@string/player_two"
         android:id="@+id/ptwot"
         android:textSize="30dp"
+        android:layout_marginLeft="5dp"
 
-        android:layout_marginTop="85dp"/>
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -102,8 +107,9 @@
         android:text="@string/player_three"
         android:id="@+id/pthreet"
         android:textSize="30dp"
+        android:layout_marginLeft="5dp"
 
-        android:layout_marginTop="85dp"/>
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -111,50 +117,18 @@
         android:text="@string/player_four"
         android:id="@+id/pfourt"
         android:textSize="30dp"
+        android:layout_marginLeft="5dp"
 
-        android:layout_marginTop="85dp"/>
-
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@integer/player_one_bet"
-        android:id="@+id/poneb"
-        android:layout_marginTop="200dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@integer/player_two_bet"
-        android:id="@+id/ptwob"
-        android:layout_marginTop="200dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@integer/player_three_bet"
-        android:id="@+id/pthreeb"
-        android:layout_marginTop="200dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@integer/player_four_bet"
-        android:id="@+id/pfourb"
-        android:layout_marginTop="200dp"/>
+        android:layout_marginTop="10dp"/>
 
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@integer/pot"
-        android:id="@+id/pot"
-        android:textSize="30dp"
 
-        android:layout_marginTop="300dp"/>
+
+
+
+
+
 
 
 
@@ -222,25 +196,81 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/player_one_chips"
-        android:layout_marginTop="600dp"/>
+        android:layout_marginLeft="5dp"
+        android:textSize="20dp"
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/player_two_chips"
-        android:layout_marginTop="600dp"/>
+        android:layout_marginLeft="5dp"
+        android:textSize="20dp"
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/player_three_chips"
-        android:layout_marginTop="600dp"/>
+        android:layout_marginLeft="5dp"
+        android:textSize="20dp"
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/player_four_chips"
-        android:layout_marginTop="600dp"/>
+        android:layout_marginLeft="5dp"
+        android:textSize="20dp"
+        android:layout_marginTop="50dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@integer/pot"
+        android:id="@+id/pot"
+        android:textSize="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="70dp"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/player_one_bet"
+        android:id="@+id/poneb"
+        android:textSize="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="90dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/player_two_bet"
+        android:id="@+id/ptwob"
+        android:textSize="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="90dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/player_three_bet"
+        android:id="@+id/pthreeb"
+        android:textSize="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="90dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/player_four_bet"
+        android:id="@+id/pfourb"
+        android:textSize="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="90dp"/>
 
 
 
