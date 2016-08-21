@@ -225,8 +225,10 @@ public class Betting {
   }
 
   public void foldMaster( Player one ) {
-    foldCheck( one );
-    foldWin( one );
+    if( seeCurrentPlayer() == one.seePlayerNo() ) {
+      foldCheck( one );
+      foldWin( one );
+    }
   }
 
   public void setFoldedPlayerCount() {

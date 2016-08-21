@@ -86,12 +86,14 @@ public class BettingNewerTest {
     bets.foldMaster( one );
     one.fold();
     bets.foldMaster( one );
-    assertEquals( 4, bets.seeCurrentPlayer() );
+    assertEquals( 3, bets.seeCurrentPlayer() );
   }
 
   @Test
   public void ninthRunOfMegaCheck() {
     bets.megaCheck( one, two, three, four );
+    bets.endTurn();
+    bets.endTurn();
     one.fold();
     bets.foldMaster( one );
     two.fold();
@@ -121,6 +123,56 @@ public class BettingNewerTest {
     bets.endTurn();
     bets.endTurn();
     assertEquals( 4, bets.seePlayerStart() );
+  }
+
+  @Test
+  public void twelvthRunOfMegaCheck() {
+
+    bets.megaCheck( one, two, three, four );
+    four.fold();
+
+    bets.endTurn();
+    bets.foldMaster( one );
+    bets.foldMaster( two );
+    bets.foldMaster( three );
+    bets.foldMaster( four );
+    assertEquals( 1, bets.seeCurrentPlayer() );
+  }
+
+  @Test
+  public void thirteenthRunOfMegaCheck() {
+    bets.megaCheck( one, two, three, four );
+    four.fold();
+    bets.endTurn();
+    bets.foldMaster( four );
+    assertEquals( 1, bets.seeCurrentPlayer() );
+  }
+
+  @Test
+  public void fourteenthRunOfMegaCheck() {
+    bets.megaCheck( one, two, three, four );
+    four.fold();
+    bets.endTurn();
+    bets.foldMaster( one );
+    bets.foldMaster( two );
+    bets.foldMaster( three );
+    bets.foldMaster( four );
+    bets.endTurn();
+    bets.foldMaster( one );
+    bets.foldMaster( two );
+    bets.foldMaster( three );
+    bets.foldMaster( four );
+    bets.endTurn();
+    bets.foldMaster( one );
+    bets.foldMaster( two );
+    bets.foldMaster( three );
+    bets.foldMaster( four );
+    bets.endTurn();
+    bets.foldMaster( one );
+    bets.foldMaster( two );
+    bets.foldMaster( three );
+    bets.foldMaster( four );
+    assertEquals( 1, bets.seeCurrentPlayer() );
   }
 
   @Test

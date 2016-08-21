@@ -311,8 +311,10 @@ public class Game  {
     }
 
     public void foldMaster( Player one ) {
-        foldCheck( one );
-        foldWin( one );
+        if (seeCurrentPlayer() == one.number()){
+            foldCheck(one);
+            foldWin(one);
+        }
     }
 
 

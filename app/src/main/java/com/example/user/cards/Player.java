@@ -46,6 +46,13 @@ public class Player extends AppCompatActivity {
         return mBigBlind;
     }
 
+    public String seeFolded() {
+        if ( mFolded ) {
+            return "True";
+        }
+        return "False";
+    }
+
     public String name() {
         return mName;
     }
