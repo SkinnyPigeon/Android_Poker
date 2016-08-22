@@ -9,6 +9,8 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Switch;
 
+import java.util.ArrayList;
+
 /**
  * Created by user on 19/08/2016.
  */
@@ -28,9 +30,9 @@ public class MainActivity extends AppCompatActivity{
     Button mFold;
     Button mWinner;
     TextView mWinnerName;
+    ArrayList< Player > mDefaultPlayers;
 
     TextView mPlayerBet;
-
 
     TextView mPotValue;
 
@@ -38,10 +40,10 @@ public class MainActivity extends AppCompatActivity{
 
     TextView mPlayerChips;
 
-    Switch mPOneTog;
-    Switch mPTwoTog;
-    Switch mPThreeTog;
-    Switch mPFourTog;
+//    Switch mPOneTog;
+//    Switch mPTwoTog;
+//    Switch mPThreeTog;
+//    Switch mPFourTog;
 
     boolean mPOneReady;
     boolean mPTwoReady;
@@ -55,7 +57,6 @@ public class MainActivity extends AppCompatActivity{
 
     Game mGame;
     TestCards mCards;
-    Logic mLogic;
 
     private static Integer mBetValue;
 
@@ -74,62 +75,71 @@ public class MainActivity extends AppCompatActivity{
 
         mToCall = ( TextView )findViewById( R.id.to_call );
 
-
         mCommunityCards = ( TextView )findViewById( R.id.community_cards );
 
         mGame = new Game(4);
-        mPOneTog = ( Switch )findViewById( R.id.p_one_toggle );
-        mPTwoTog = ( Switch )findViewById( R.id.p_two_toggle );
-        mPThreeTog = ( Switch )findViewById( R.id.p_three_toggle );
-        mPFourTog = ( Switch )findViewById( R.id.p_four_toggle );
 
-        mPOneTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mPOneReady = true;
+        mDefaultPlayers = new ArrayList<Player>();
+//        mPOneTog = ( Switch )findViewById( R.id.p_one_toggle );
+//        mPTwoTog = ( Switch )findViewById( R.id.p_two_toggle );
+//        mPThreeTog = ( Switch )findViewById( R.id.p_three_toggle );
+//        mPFourTog = ( Switch )findViewById( R.id.p_four_toggle );
+
+//        mPOneTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    mPOneReady = true;
                     mJeff = new Player("Jeff", 1);
                     mJeff.in();
-                    mGame.addPlayerToGame(mJeff);
-                }
-            }
-        });
 
-        mPTwoTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if( isChecked ) {
-                    mPTwoReady = true;
+//                    mGame.addPlayerToGame(mJeff);
+//                }
+//            }
+//        });
+//
+//        mPTwoTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if( isChecked ) {
+//                    mPTwoReady = true;
                     mSteve = new Player( "Steve", 2 );
                     mSteve.in();
-                    mGame.addPlayerToGame( mSteve );
-                }
-            }
-        });
-
-        mPThreeTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if( isChecked ) {
-                    mPThreeReady = true;
+//                    mGame.addPlayerToGame( mSteve );
+//                }
+//            }
+//        });
+//
+//        mPThreeTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if( isChecked ) {
+//                    mPThreeReady = true;
                     mDave = new Player( "Dave", 3 );
                     mDave.in();
-                    mGame.addPlayerToGame( mDave );
-                }
-            }
-        });
-
-        mPFourTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if( isChecked ) {
-                    mPFourReady = true;
+//                    mGame.addPlayerToGame( mDave );
+//                }
+//            }
+//        });
+//
+//        mPFourTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if( isChecked ) {
+//                    mPFourReady = true;
                     mBob = new Player( "Bob", 4 );
                     mBob.in();
-                    mGame.addPlayerToGame( mBob );
-                }
-            }
-        });
+//                    mGame.addPlayerToGame( mBob );
+//                }
+//            }
+//        });
+
+        mDefaultPlayers.add( mJeff );
+        mDefaultPlayers.add( mSteve );
+        mDefaultPlayers.add( mDave);
+        mDefaultPlayers.add(mBob );
+
+        cloner();
 
         mPlus = ( Button )findViewById( R.id.plus );
         mCall = ( Button )findViewById( R.id.call );
@@ -145,15 +155,8 @@ public class MainActivity extends AppCompatActivity{
 
         mBetValue = 0;
 
-        mPlus.setVisibility(View.INVISIBLE);
-        mCall.setVisibility(View.INVISIBLE);
-        mBet.setVisibility(View.INVISIBLE);
-        mPotValue.setVisibility(View.INVISIBLE);
-        mCommunityCards.setVisibility(View.INVISIBLE);
-        mCheck.setVisibility(View.INVISIBLE);
-        mFold.setVisibility(View.INVISIBLE);
-        mWinner.setVisibility(View.INVISIBLE);
-        mToCall.setVisibility(View.INVISIBLE);
+        hideEverthing();
+
 
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,25 +164,25 @@ public class MainActivity extends AppCompatActivity{
 
                 mCards = new TestCards();
 
-                if (mPOneReady) {
+//                if (mPOneReady) {
                     mGame.accessPlayer(0).takeCard(mCards.deal());
                     mGame.accessPlayer(0).takeCard(mCards.deal());
-                }
+//                }
 
-                if (mPTwoReady) {
+//                if (mPTwoReady) {
                     mGame.accessPlayer(1).takeCard(mCards.deal());
                     mGame.accessPlayer(1).takeCard(mCards.deal());
-                }
+//                }
 
-                if (mPThreeReady) {
+//                if (mPThreeReady) {
                     mGame.accessPlayer(2).takeCard(mCards.deal());
                     mGame.accessPlayer(2).takeCard(mCards.deal());
-                }
+//                }
 
-                if (mPFourReady) {
+//                if (mPFourReady) {
                     mGame.accessPlayer(3).takeCard(mCards.deal());
                     mGame.accessPlayer(3).takeCard(mCards.deal());
-                }
+//                }
 
                 mGame.takeCard(mCards.deal());
                 mGame.takeCard(mCards.deal());
@@ -193,21 +196,15 @@ public class MainActivity extends AppCompatActivity{
 
                 mCommunityCards.setText(mGameCards);
 
-                mPOneTog.setVisibility(View.INVISIBLE);
-                mPTwoTog.setVisibility(View.INVISIBLE);
-                mPThreeTog.setVisibility(View.INVISIBLE);
-                mPFourTog.setVisibility(View.INVISIBLE);
-                mStart.setVisibility(View.INVISIBLE);
+                hideStart();
 
-                mPlus.setVisibility(View.VISIBLE);
-                mCall.setVisibility(View.VISIBLE);
-                mBet.setVisibility(View.VISIBLE);
-                mPotValue.setVisibility(View.VISIBLE);
-                mFold.setVisibility((View.VISIBLE));
-                mWinner.setVisibility(View.VISIBLE);
-                mToCall.setVisibility(View.VISIBLE);
+                showEverything();
 
-                mGame.megaCheck(mJeff, mSteve, mDave, mBob);
+                for( int i = 0; i < mGame.getArraySize(); i++ ) {
+                    mGame.accessPlayer(i).in();
+                }
+
+                mGame.megaCheck( mGame.accessPlayer(0), mGame.accessPlayer(1), mGame.accessPlayer(2), mGame.accessPlayer(3) );
 
                 Integer pot = mGame.showPot();
                 String potText = "Pot: " + " " + pot.toString();
@@ -275,9 +272,7 @@ public class MainActivity extends AppCompatActivity{
                 if( mGame.getArraySize() == 1 ) {
                     mGame.handWon(mGame.getCurrentPlayer());
 //                    nextHand();
-
                 }
-
                 setText();
             }
         });
@@ -293,16 +288,12 @@ public class MainActivity extends AppCompatActivity{
                 mGame.handWon(mGame.seeWinner());
                 mWinnerName.setText(mGame.seeWinner().name());
 
-                Log.d( "Array", mGame.seePlayersArray().toString() );
+                Log.d("Array", mGame.seePlayersArray().toString() );
 
-                nextHand();
+//                nextHand();
             }
         });
-
-
     }
-
-
 
     public void playerBet( Player player, Integer chips, TextView betText ) {
         player.placeBet(chips);
@@ -359,7 +350,7 @@ public class MainActivity extends AppCompatActivity{
     public void logicCheck() {
 
         for( int i = 0; i < mGame.getArraySize(); i ++ ) {
-            Logic logic = new Logic( mGame.seeHand(), mGame.accessPlayer(i).seeHand() );
+            Logic logic = new Logic( mGame.seeHand(), mGame.accessPlayer(0).seeHand() );
             logic.combineCards();
             logic.setScore();
             mGame.accessPlayer(i).awardScore(logic.seeScore());
@@ -377,7 +368,7 @@ public class MainActivity extends AppCompatActivity{
         mPlayerCards.setText( cards );
 
         Integer potInt = mGame.showPot();
-        String pot = potInt.toString();
+        String pot = "Pot: " + potInt.toString();
         mPotValue.setText( pot );
 
         Integer betInt = mBetValue;
@@ -398,23 +389,72 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void nextHand() {
+        TestCards cards = new TestCards();
+        cards.shuffle();
 
-//        for( int i = 0; i < mGame.getArraySize(); i ++ ) {
-//            mGame.accessPlayer(i).resetHand();
-//            mGame.accessPlayer(i).resetLastBet();
-//            mGame.accessPlayer(i).resetBet();
-//        }
-//        mGame.resetPlayers();
-//
-//        mGame.addPlayerToGame( mJeff );
-//        mGame.addPlayerToGame(mSteve );
-//        mGame.addPlayerToGame( mDave );
-//        mGame.addPlayerToGame( mBob );
-//        mGame.endHand();
-//        mGame.megaCheck( mJeff, mSteve, mDave, mBob );
+        for( int i = 0; i < mGame.getArraySize(); i ++ ) {
+            mGame.accessPlayer(i).resetHand();
+            mGame.accessPlayer(i).resetLastBet();
+            mGame.accessPlayer(i).resetBet();
+
+            mGame.accessPlayer(i).takeCard(cards.deal());
+            mGame.accessPlayer(i).takeCard(cards.deal());
+        }
+
+        mGame.megaCheck( mGame.accessPlayer(0), mGame.accessPlayer(1), mGame.accessPlayer(2), mGame.accessPlayer(3) );
+
+        mGame.turnEnd();
+        mGame.endHand();
         setText();
-        Log.d( "Ending hand:", "OK");
+        Log.d("Ending hand:", "OK");
 
+//        showStart();
+
+    }
+
+    public void hideEverthing() {
+        mPlus.setVisibility(View.INVISIBLE);
+        mCall.setVisibility(View.INVISIBLE);
+        mBet.setVisibility(View.INVISIBLE);
+        mPotValue.setVisibility(View.INVISIBLE);
+        mCommunityCards.setVisibility(View.INVISIBLE);
+        mCheck.setVisibility(View.INVISIBLE);
+        mFold.setVisibility(View.INVISIBLE);
+        mWinner.setVisibility(View.INVISIBLE);
+        mToCall.setVisibility(View.INVISIBLE);
+    }
+
+    public void showEverything() {
+        mPlus.setVisibility(View.VISIBLE);
+        mCall.setVisibility(View.VISIBLE);
+        mBet.setVisibility(View.VISIBLE);
+        mPotValue.setVisibility(View.VISIBLE);
+        mFold.setVisibility((View.VISIBLE));
+        mWinner.setVisibility(View.VISIBLE);
+        mToCall.setVisibility(View.VISIBLE);
+    }
+
+    public void hideStart() {
+//        mPOneTog.setVisibility(View.INVISIBLE);
+//        mPTwoTog.setVisibility(View.INVISIBLE);
+//        mPThreeTog.setVisibility(View.INVISIBLE);
+//        mPFourTog.setVisibility(View.INVISIBLE);
+        mStart.setVisibility(View.INVISIBLE);
+    }
+
+    public void showStart() {
+        hideEverthing();
+//        mPOneTog.setVisibility(View.VISIBLE);
+//        mPTwoTog.setVisibility(View.VISIBLE);
+//        mPThreeTog.setVisibility(View.VISIBLE);
+//        mPFourTog.setVisibility(View.VISIBLE);
+        mStart.setVisibility(View.VISIBLE);
+    }
+
+    public void cloner() {
+        for( int i = 0; i < mDefaultPlayers.size(); i ++ ) {
+            mGame.addPlayerToGame( mDefaultPlayers.get(i).clone() );
+        }
     }
 
 

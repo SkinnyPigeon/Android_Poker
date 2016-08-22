@@ -12,7 +12,7 @@ public class Player extends AppCompatActivity {
     private int mBet;
     private int mSmallBlindValue;
     private int mBigBlindValue;
-    private int mPlayerNumber;
+    private Integer mPlayerNumber;
     private int mLastBet;
     private Integer mScore;
     private Integer mKicker;
@@ -32,6 +32,10 @@ public class Player extends AppCompatActivity {
         mFolded = true;
         mLastBet = 0;
         mBigBlind = false;
+    }
+
+    public Player clone() {
+        return new Player( mName, mPlayerNumber );
     }
 
     public void turnOnBigBlind() {
@@ -148,7 +152,7 @@ public class Player extends AppCompatActivity {
         return mLastBet;
     }
 
-    public int number() {
+    public Integer number() {
         return mPlayerNumber;
     }
 
@@ -181,6 +185,7 @@ public class Player extends AppCompatActivity {
     }
 
     public void resetHand() {
-        mHand.removeAll(mHand);
+        mHand.remove(0);
+        mHand.remove(0);
     }
 }

@@ -23,6 +23,7 @@ public class Game  {
     private ArrayList< Player > mPlayers;
     private PlayerComparator mPlayerComparator;
     private KickerComparator mkickerComparator;
+    private PlayerSorter mPlayerSorter;
     private Player mHandWinner;
     private Player mKickerWinner;
 
@@ -39,6 +40,8 @@ public class Game  {
         mKickerArray = new ArrayList< Player >();
         mPlayerComparator = new PlayerComparator();
         mkickerComparator = new KickerComparator();
+        mPlayerSorter = new PlayerSorter();
+
         mPlayers = new ArrayList< Player >();
         mlastBet = 0;
     }
@@ -70,7 +73,7 @@ public class Game  {
     }
 
     public Player accessPlayer( int arrayIndex ) {
-        return mPlayers.get( arrayIndex );
+        return mPlayers.get(arrayIndex);
     }
 
     public int showPot() {
@@ -126,9 +129,6 @@ public class Game  {
             }
 
             if( (int) firstPlayerScore  ==  (int) secondPlayerScore ) {
-//                for( i = 0; i < mWinnerArray.size(); i++ ) {
-//                    mPlayers.add( mWinnerArray.remove(0) );
-//                }
                 pickKicker();
             } else {
                 mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
@@ -137,10 +137,13 @@ public class Game  {
                 }
                 if( mHandWinner != null ) {
                     mPlayers.add( mHandWinner );
-
                 }
             }
         }
+    }
+
+    public void sortPlayers() {
+        Collections.sort( mPlayers, mPlayerSorter );
     }
 
     public ArrayList seePlayerArray() {
@@ -158,10 +161,6 @@ public class Game  {
     public void takeCard( String card ) {
         mSharedCards.add( card );
     }
-
-//    public void addPlayer( Player player ) {
-//        mWinnerArray.add( player );
-//    }
 
     public void addPlayer() {
         for( int i = 0; i < mPlayers.size(); i ++ ){
@@ -186,7 +185,7 @@ public class Game  {
     }
 
     public void passOverFoldedPlayer() {
-        if( mCurrentPlayer == mNoOfPlayers ) {
+        if( mCurrentPlayer == mPlayers.size() ) {
             mPlayerStart = 1;
         } else {
             mPlayerStart += 1;
@@ -214,6 +213,10 @@ public class Game  {
         three.turnOffBigBlind();
         four.turnOffBigBlind();
         if( one.number() == mPlayerStart ) {
+            Integer number = one.number();
+            String no = number.toString();
+            Log.d("The number:", no);
+
             one.smallBlind();
             addBet(one);
             turnEnd();
