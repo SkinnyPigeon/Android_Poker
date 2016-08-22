@@ -20,6 +20,7 @@ public class Game  {
     private ArrayList< String > mSharedCards;
     private ArrayList< Player > mWinnerArray;
     private ArrayList< Player > mKickerArray;
+    private ArrayList< Player > mPlayers;
     private PlayerComparator mPlayerComparator;
     private KickerComparator mkickerComparator;
     private Player mHandWinner;
@@ -38,7 +39,16 @@ public class Game  {
         mKickerArray = new ArrayList< Player >();
         mPlayerComparator = new PlayerComparator();
         mkickerComparator = new KickerComparator();
+        mPlayers = new ArrayList< Player >();
         mlastBet = 0;
+    }
+
+    private Player getCurrentPlayer() {
+        return mPlayers.get(0);
+    }
+
+    private void turnEnd() {
+        Collections.rotate( mPlayers, 1 );
     }
 
     public int showPot() {
@@ -321,11 +331,14 @@ public class Game  {
     public void foldCheck( Player player ) {
         if( player.status() ) {
             setFoldedPlayerCount();
-            endTurn();
+//            endTurn();
         }
     }
 
     public void setFoldedPlayerCount() {
+        Integer number = mCurrentPlayer;
+
+        Log.d( "PLayer Folding: ", number.toString() );
         mNoOfFoldedPlayers += 1;
     }
 

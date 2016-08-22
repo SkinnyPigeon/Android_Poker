@@ -4,12 +4,12 @@
     android:background="@drawable/gradient"
     >
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="15dp"
-        android:inputType="textPersonName"/>
+    <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="5dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:inputType="textPersonName"/>-->
 
     <Switch
         android:layout_width="wrap_content"
