@@ -177,7 +177,6 @@ public class MainActivity extends AppCompatActivity{
                 }
 
                 if (mPFourReady) {
-
                     mGame.accessPlayer(3).takeCard(mCards.deal());
                     mGame.accessPlayer(3).takeCard(mCards.deal());
                 }
@@ -274,7 +273,9 @@ public class MainActivity extends AppCompatActivity{
                 mGame.fold();
 
                 if( mGame.getArraySize() == 1 ) {
-                    mGame.handWon( mGame.getCurrentPlayer() );
+                    mGame.handWon(mGame.getCurrentPlayer());
+//                    nextHand();
+
                 }
 
                 setText();
@@ -285,29 +286,16 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                if( !mJeff.status() ) {
-                    logicCheck( mGame, mJeff );
-                    mGame.addPlayer(mJeff);
-                }
-
-                if( !mSteve.status() ) {
-                    logicCheck( mGame, mSteve );
-                    mGame.addPlayer(mSteve);
-                }
-
-                if( !mDave.status() ) {
-                    logicCheck(mGame, mDave);
-                    mGame.addPlayer(mDave);
-                }
-
-                if( !mBob.status() ) {
-                    logicCheck( mGame, mBob );
-                    mGame.addPlayer(mBob);
-                }
+                logicCheck();
+                mGame.addPlayer();
 
                 mGame.pickWinner();
                 mGame.handWon(mGame.seeWinner());
                 mWinnerName.setText(mGame.seeWinner().name());
+
+                Log.d( "Array", mGame.seePlayersArray().toString() );
+
+                nextHand();
             }
         });
 
@@ -367,12 +355,16 @@ public class MainActivity extends AppCompatActivity{
         mBetValue = 0;
     }
 
-    public void logicCheck( Game game, Player player ) {
-        Logic logic = new Logic( game.seeHand(), player.seeHand() );
-        logic.combineCards();
-        logic.setScore();
-        player.awardScore(logic.seeScore());
-        player.awardKicker(logic.seeKicker());
+
+    public void logicCheck() {
+
+        for( int i = 0; i < mGame.getArraySize(); i ++ ) {
+            Logic logic = new Logic( mGame.seeHand(), mGame.accessPlayer(i).seeHand() );
+            logic.combineCards();
+            logic.setScore();
+            mGame.accessPlayer(i).awardScore(logic.seeScore());
+            mGame.accessPlayer(i).awardKicker(logic.seeKicker());
+        }
     }
 
     public void setText() {
@@ -406,6 +398,22 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void nextHand() {
+
+//        for( int i = 0; i < mGame.getArraySize(); i ++ ) {
+//            mGame.accessPlayer(i).resetHand();
+//            mGame.accessPlayer(i).resetLastBet();
+//            mGame.accessPlayer(i).resetBet();
+//        }
+//        mGame.resetPlayers();
+//
+//        mGame.addPlayerToGame( mJeff );
+//        mGame.addPlayerToGame(mSteve );
+//        mGame.addPlayerToGame( mDave );
+//        mGame.addPlayerToGame( mBob );
+//        mGame.endHand();
+//        mGame.megaCheck( mJeff, mSteve, mDave, mBob );
+        setText();
+        Log.d( "Ending hand:", "OK");
 
     }
 

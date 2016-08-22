@@ -52,16 +52,21 @@ public class Game  {
     }
 
     public void addPlayerToGame( Player player ) {
-        mPlayers.add( player );
+        mPlayers.add(player);
     }
 
     public void turnEnd() {
-        Collections.rotate( mPlayers, 3 );
+        Collections.rotate(mPlayers, 3);
     }
 
     public void fold() {
         mPlayers.remove(0);
         turnEnd();
+    }
+
+    public String seePlayersArray() {
+        Integer size = mPlayers.size();
+        return size.toString();
     }
 
     public Player accessPlayer( int arrayIndex ) {
@@ -87,10 +92,21 @@ public class Game  {
     public void pickKicker() {
         Collections.sort(mKickerArray, mkickerComparator);
         mKickerWinner = mKickerArray.get( mKickerArray.size() - 1 );
+        mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
+        for( int i = 0; i < mKickerArray.size(); i++ ) {
+            mPlayers.add( mKickerArray.remove(0) );
+        }
+        if (mKickerWinner != null) {
+            mPlayers.add( mKickerWinner );
+        }
     }
 
     public int seePlayerStart() {
         return mPlayerStart;
+    }
+
+    public void resetPlayers() {
+        mPlayers.removeAll(mPlayers);
     }
 
     public void pickWinner() {
@@ -110,12 +126,19 @@ public class Game  {
             }
 
             if( (int) firstPlayerScore  ==  (int) secondPlayerScore ) {
+//                for( i = 0; i < mWinnerArray.size(); i++ ) {
+//                    mPlayers.add( mWinnerArray.remove(0) );
+//                }
                 pickKicker();
             } else {
-                Log.d( "Winner Array 2: ", mWinnerArray.get(0).name() );
                 mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
-//                mHandWinner = mWinnerArray.get(0);
+                for( i = 0; i < mWinnerArray.size(); i++ ) {
+                    mPlayers.add( mWinnerArray.remove(0) );
+                }
+                if( mHandWinner != null ) {
+                    mPlayers.add( mHandWinner );
 
+                }
             }
         }
     }
@@ -136,8 +159,14 @@ public class Game  {
         mSharedCards.add( card );
     }
 
-    public void addPlayer( Player player ) {
-        mWinnerArray.add( player );
+//    public void addPlayer( Player player ) {
+//        mWinnerArray.add( player );
+//    }
+
+    public void addPlayer() {
+        for( int i = 0; i < mPlayers.size(); i ++ ){
+            mWinnerArray.add( mPlayers.remove(0) );
+        }
     }
 
     public void endTurn() {

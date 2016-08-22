@@ -179,4 +179,8 @@ public class Player extends AppCompatActivity {
     public void resetBet() {
         mBet = 0;
     }
+
+    public void resetHand() {
+        mHand.removeAll(mHand);
+    }
 }
