@@ -92,17 +92,10 @@ public class Game  {
         }
     }
 
-    public void pickKicker() {
-        Collections.sort(mKickerArray, mkickerComparator);
-        mKickerWinner = mKickerArray.get( mKickerArray.size() - 1 );
-        mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
-        for( int i = 0; i < mKickerArray.size(); i++ ) {
-            mPlayers.add( mKickerArray.remove(0) );
-        }
-        if (mKickerWinner != null) {
-            mPlayers.add( mKickerWinner );
-        }
-    }
+
+
+
+
 
     public int seePlayerStart() {
         return mPlayerStart;
@@ -114,33 +107,52 @@ public class Game  {
 
     public void pickWinner() {
 
-        Log.d( "Winner Array: ", mWinnerArray.toString() );
+        Log.d( "Winner Array: ", mWinnerArray.get(0).name() );
+        Log.d( "Winner Array: ", mWinnerArray.get(1).name() );
+
 
         Collections.sort(mWinnerArray, mPlayerComparator);
 
         for( int i = 0; i < mWinnerArray.size() - 1; i++ ) {
+            Integer arraySize = mWinnerArray.size();
+            String size = arraySize.toString();
+            Log.d( "Winner Array Size: ", size );
             Player firstPlayer = mWinnerArray.get(i);
             Player secondPlayer = mWinnerArray.get( i + 1 );
             Integer firstPlayerScore = firstPlayer.seeScore();
             Integer secondPlayerScore = secondPlayer.seeScore();
 
-            if( secondPlayerScore == 0 ) {
-                mKickerArray.add( mWinnerArray.remove( i + 1 ) );
-            }
+//            if( secondPlayerScore == 0 ) {
+//                mKickerArray.add( mWinnerArray.remove( i + 1 ) );
+//            }
 
             if( (int) firstPlayerScore  ==  (int) secondPlayerScore ) {
-                pickKicker();
+
+//                pickKicker();
             } else {
                 mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
-                for( i = 0; i < mWinnerArray.size(); i++ ) {
-                    mPlayers.add( mWinnerArray.remove(0) );
-                }
-                if( mHandWinner != null ) {
-                    mPlayers.add( mHandWinner );
-                }
+//                for( i = 0; i < mWinnerArray.size(); i++ ) {
+//                    mPlayers.add( mWinnerArray.remove(0) );
+////                }
+//                if( mHandWinner != null ) {
+//                    mPlayers.add( mHandWinner );
+//                }
             }
         }
     }
+
+    public void pickKicker() {
+        Collections.sort(mKickerArray, mkickerComparator);
+        mKickerWinner = mKickerArray.get( mKickerArray.size() - 1 );
+//        mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
+//        for( int i = 0; i < mKickerArray.size(); i++ ) {
+//            mPlayers.add( mKickerArray.remove(0) );
+//        }
+        if (mKickerWinner != null) {
+            mPlayers.add( mKickerWinner );
+        }
+    }
+
 
     public void sortPlayers() {
         Collections.sort( mPlayers, mPlayerSorter );
@@ -151,7 +163,7 @@ public class Game  {
     }
 
     public Player seeWinner() {
-        if( mHandWinner != null) {
+        if( mHandWinner != null ) {
             return mHandWinner;
         } else {
             return mKickerWinner;
@@ -164,7 +176,15 @@ public class Game  {
 
     public void addPlayer() {
         for( int i = 0; i < mPlayers.size(); i ++ ){
-            mWinnerArray.add( mPlayers.remove(0) );
+
+            Integer number = mPlayers.size();
+            String no = number.toString();
+            Log.d( "Players Array size:", no);
+
+            mWinnerArray.add( mPlayers.remove(0));
+            number = mWinnerArray.size();
+            no = number.toString();
+            Log.d("Winner array:", no);
         }
     }
 
@@ -213,10 +233,6 @@ public class Game  {
         three.turnOffBigBlind();
         four.turnOffBigBlind();
         if( one.number() == mPlayerStart ) {
-            Integer number = one.number();
-            String no = number.toString();
-            Log.d("The number:", no);
-
             one.smallBlind();
             addBet(one);
             turnEnd();
@@ -433,11 +449,11 @@ public class Game  {
 
     public void handWon( Player player ) {
         player.winChips( mPot );
-        if( mPlayerStart == mNoOfPlayers ) {
-            mPlayerStart = 1;
-        } else {
-            mPlayerStart += 1;
-        }
+//        if( mPlayerStart == mNoOfPlayers ) {
+//            mPlayerStart = 1;
+//        } else {
+//            mPlayerStart += 1;
+//        }
     }
 
     public int seeLastBet() {

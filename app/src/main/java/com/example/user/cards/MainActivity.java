@@ -246,8 +246,6 @@ public class MainActivity extends AppCompatActivity{
                 bet();
                 setText();
                 checkCheck( mGame.getCurrentPlayer() );
-
-
             }
         });
 
@@ -258,9 +256,7 @@ public class MainActivity extends AppCompatActivity{
                 resetBets();
                 mCommunityCards.setVisibility(View.VISIBLE);
                 mCheck.setVisibility(View.INVISIBLE);
-
             }
-
         });
 
         mFold.setOnClickListener(new View.OnClickListener() {
@@ -288,7 +284,7 @@ public class MainActivity extends AppCompatActivity{
                 mGame.handWon(mGame.seeWinner());
                 mWinnerName.setText(mGame.seeWinner().name());
 
-                Log.d("Array", mGame.seePlayersArray().toString() );
+//                Log.d("Array", mGame.seePlayersArray().toString() );
 
 //                nextHand();
             }
@@ -350,7 +346,7 @@ public class MainActivity extends AppCompatActivity{
     public void logicCheck() {
 
         for( int i = 0; i < mGame.getArraySize(); i ++ ) {
-            Logic logic = new Logic( mGame.seeHand(), mGame.accessPlayer(0).seeHand() );
+            Logic logic = new Logic( mGame.seeHand(), mGame.accessPlayer(i).seeHand() );
             logic.combineCards();
             logic.setScore();
             mGame.accessPlayer(i).awardScore(logic.seeScore());
