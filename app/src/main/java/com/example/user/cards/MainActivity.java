@@ -363,6 +363,7 @@ public class MainActivity extends AppCompatActivity{
             mGame.accessPlayer(i).resetLastBet();
             mGame.accessPlayer(i).resetBet();
         }
+        mGame.resetBets();
         mBetValue = 0;
     }
 
