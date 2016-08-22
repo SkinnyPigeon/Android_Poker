@@ -4,13 +4,6 @@
     android:background="@drawable/gradient"
     >
 
-    <!--<EditText-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginTop="15dp"-->
-        <!--android:inputType="textPersonName"/>-->
-
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,16 +70,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -128,80 +111,6 @@
         android:layout_centerHorizontal="true"/>
 
 
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/player_one"-->
-        <!--android:id="@+id/ponet"-->
-        <!--android:textSize="50dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-
-        <!--android:layout_marginTop="10dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/player_two"-->
-        <!--android:id="@+id/ptwot"-->
-        <!--android:textSize="50dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginTop="10dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/player_three"-->
-        <!--android:id="@+id/pthreet"-->
-        <!--android:textSize="50dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginTop="10dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/player_four"-->
-        <!--android:id="@+id/pfourt"-->
-        <!--android:textSize="50dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginTop="10dp"/>-->
-
-
-
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/player_one_chips"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:textSize="30dp"-->
-        <!--android:layout_marginTop="65dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/player_two_chips"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:textSize="30dp"-->
-        <!--android:layout_marginTop="65dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/player_three_chips"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:textSize="30dp"-->
-        <!--android:layout_marginTop="65dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/player_four_chips"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:textSize="30dp"-->
-        <!--android:layout_marginTop="65dp"/>-->
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -213,42 +122,6 @@
 
 
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/player_one_bet"-->
-        <!--android:id="@+id/poneb"-->
-        <!--android:textSize="30dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginTop="125dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/player_two_bet"-->
-        <!--android:id="@+id/ptwob"-->
-        <!--android:textSize="30dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginTop="125dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/player_three_bet"-->
-        <!--android:id="@+id/pthreeb"-->
-        <!--android:textSize="30dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginTop="125dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/player_four_bet"-->
-        <!--android:id="@+id/pfourb"-->
-        <!--android:textSize="30dp"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginTop="125dp"/>-->
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -256,43 +129,6 @@
         android:textSize="30dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="155dp"/>
-
-
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/player_one_cards"-->
-        <!--android:textSize="70dp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="350dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/player_two_cards"-->
-        <!--android:textSize="70dp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="350dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/player_three_cards"-->
-        <!--android:textSize="70dp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="350dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/player_four_cards"-->
-        <!--android:textSize="70dp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="350dp"/>-->
-
-
-
 
 
     <TextView
@@ -306,7 +142,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/player_four_bet"
         android:id="@+id/player_bet"
         android:textSize="30dp"
         android:layout_marginLeft="5dp"
@@ -329,8 +164,6 @@
         android:layout_marginTop="10dp"/>
 
 
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -338,8 +171,6 @@
         android:textSize="70dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp"/>
-
-
 
 
 </RelativeLayout>

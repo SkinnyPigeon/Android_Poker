@@ -10,11 +10,6 @@
     <string name="call">Call</string>
     <string name="check">Check</string>
 
-    <string name="player_one_bet">Bet: 0</string>
-    <string name="player_two_bet">Bet: 0</string>
-    <string name="player_three_bet">Bet: 0</string>
-    <string name="player_four_bet">Bet: 0</string>
-
     <integer name="pot">0</integer>
 
     <string name="place_bet">Bet</string>

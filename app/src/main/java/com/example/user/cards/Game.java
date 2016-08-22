@@ -124,8 +124,6 @@ public class Game  {
         return mWinnerArray;
     }
 
-
-
     public Player seeWinner() {
         if( mHandWinner != null) {
             return mHandWinner;
@@ -141,8 +139,6 @@ public class Game  {
     public void addPlayer( Player player ) {
         mWinnerArray.add( player );
     }
-
-
 
     public void endTurn() {
         if( mCurrentPlayer == mNoOfPlayers ) {
@@ -191,41 +187,41 @@ public class Game  {
         if( one.number() == mPlayerStart ) {
             one.smallBlind();
             addBet(one);
-            endTurn();
+            turnEnd();
             two.bigBlind();
             two.turnOnBigBlind();
             addBet(two);
-            endTurn();
+            turnEnd();
             three.setFirstBet();
             setCurrentPlayer(three);
         } else if ( two.number() == mPlayerStart ) {
             two.smallBlind();
             addBet(two);
-            endTurn();
+            turnEnd();
             three.bigBlind();
             three.turnOnBigBlind();
             addBet(three);
-            endTurn();
+            turnEnd();
             four.setFirstBet();
             setCurrentPlayer(four);
         } else if ( three.number() == mPlayerStart ) {
             three.smallBlind();
             addBet(three);
-            endTurn();
+            turnEnd();
             four.bigBlind();
             four.turnOnBigBlind();
             addBet(four);
-            endTurn();
+            turnEnd();
             one.setFirstBet();
             setCurrentPlayer( one );
         } else {
             four.smallBlind();
             addBet(four);
-            endTurn();
+            turnEnd();
             one.bigBlind();
             one.turnOnBigBlind();
             addBet(one);
-            endTurn();
+            turnEnd();
             two.setFirstBet();
             setCurrentPlayer( two );
         }
@@ -344,7 +340,6 @@ public class Game  {
         }
     }
 
-
     public void foldCheck( Player player ) {
         if( player.status() ) {
             setFoldedPlayerCount();
@@ -383,8 +378,6 @@ public class Game  {
         mPot += player.giveBet();
         mlastBet = player.giveBet();
     }
-
-
 
     public int turn() {
         return mPlayerTurn;
