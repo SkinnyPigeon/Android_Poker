@@ -43,12 +43,29 @@ public class Game  {
         mlastBet = 0;
     }
 
-    private Player getCurrentPlayer() {
+    public Player getCurrentPlayer() {
         return mPlayers.get(0);
     }
 
-    private void turnEnd() {
-        Collections.rotate( mPlayers, 1 );
+    public int getArraySize() {
+        return mPlayers.size();
+    }
+
+    public void addPlayerToGame( Player player ) {
+        mPlayers.add( player );
+    }
+
+    public void turnEnd() {
+        Collections.rotate( mPlayers, 3 );
+    }
+
+    public void fold() {
+        mPlayers.remove(0);
+        turnEnd();
+    }
+
+    public Player accessPlayer( int arrayIndex ) {
+        return mPlayers.get( arrayIndex );
     }
 
     public int showPot() {
