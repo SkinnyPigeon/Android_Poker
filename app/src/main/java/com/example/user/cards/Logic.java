@@ -271,6 +271,47 @@ public class Logic {
         return false;
     }
 
+    public boolean processedFlush() {
+        char firstCard;
+        char secondCard;
+        char thirdCard;
+        char fourthCard;
+        char fifthCard;
+        if( mProcessedCards.size() > 4) {
+            firstCard = mProcessedCards.get( 0 ).charAt( 1 );
+            if( firstCard == '0' ) {
+                firstCard = mProcessedCards.get( 0 ).charAt( 2 );
+            }
+
+            secondCard = mProcessedCards.get( 1 ).charAt( 1 );
+            if( secondCard == '0' ) {
+                secondCard = mProcessedCards.get( 1 ).charAt( 2 );
+            }
+
+            thirdCard = mProcessedCards.get( 2 ).charAt( 1 );
+            if( thirdCard == '0' ) {
+                thirdCard = mProcessedCards.get( 2 ).charAt( 2 );
+            }
+
+            fourthCard = mProcessedCards.get( 3 ).charAt( 1 );
+            if( fourthCard == '0' ) {
+                fourthCard = mProcessedCards.get( 3 ).charAt( 2 );
+            }
+
+            fifthCard = mProcessedCards.get( 4 ).charAt( 1 );
+            if( fifthCard == '0' ) {
+                fifthCard = mProcessedCards.get( 4 ).charAt( 2 );
+            }
+
+            if( firstCard == secondCard && firstCard == thirdCard
+                    && firstCard == fourthCard && firstCard == fifthCard ) {
+                countPoints();
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean flush() {
         char firstCard;
         char secondCard;
@@ -333,7 +374,7 @@ public class Logic {
     }
 
     public boolean straightFlushCheck( char firstNumber, char secondNumber, char thirdNumber, char fourthNumber, char fifthNumber ) {
-        if( straightCheck(firstNumber, secondNumber, thirdNumber, fourthNumber, fifthNumber) && flush() ) {
+        if( straightCheck(firstNumber, secondNumber, thirdNumber, fourthNumber, fifthNumber) && processedFlush() ) {
             return true;
         }
         return false;

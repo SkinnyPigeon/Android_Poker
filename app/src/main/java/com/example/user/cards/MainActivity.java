@@ -358,8 +358,7 @@ public class MainActivity extends AppCompatActivity{
         switch( view.getId() ) {
             case R.id.community_card_one:
                 if( checked && seeFlop() ) {
-                    mCommunitySelectedCards.add( mGame.seeHand().get(0).toString() );
-                    Log.d( "Com card: ", mCommunitySelectedCards.get(0));
+                    mCommunitySelectedCards.add(mGame.seeHand().get(0).toString());
                 }
                 break;
             case R.id.community_card_two:
@@ -380,6 +379,8 @@ public class MainActivity extends AppCompatActivity{
             case R.id.community_card_five:
                 if( checked && seeRiver() ) {
                     mCommunitySelectedCards.add( mGame.seeHand().get(4).toString() );
+                    Log.d("Com card: ", mCommunitySelectedCards.get(0));
+
                 }
                 break;
         }
