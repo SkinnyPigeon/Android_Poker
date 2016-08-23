@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity{
     TextView mPlayerName;
 
     TextView mCommunityCards;
-    TextView mFlop;
+    TextView mTurn;
     TextView mRiver;
 
     TextView mPlayerCards;
@@ -96,6 +96,9 @@ public class MainActivity extends AppCompatActivity{
         mToCall = ( TextView )findViewById( R.id.to_call );
 
         mCommunityCards = ( TextView )findViewById( R.id.community_cards );
+        mTurn = ( TextView )findViewById( R.id.turn );
+        mRiver = ( TextView )findViewById( R.id.river );
+
 
         mGame = new Game(4);
 
@@ -477,28 +480,18 @@ public class MainActivity extends AppCompatActivity{
 
     public void turn() {
         mGame.takeCard(mCards.deal());
-        mGame.takeCard(mCards.deal());
-        String mGameCardOne = mGame.seeHand().get(0).toString();
-        String mGameCardTwo = mGame.seeHand().get(1).toString();
-        String mGameCardThree = mGame.seeHand().get(2).toString();
         String mGameCardFour = mGame.seeHand().get(3).toString();
 
-        String mGameCards = mGameCardOne + " " + mGameCardTwo + " " + mGameCardThree + " " + mGameCardFour;
 
-        mCommunityCards.setText(mGameCards);
+        mTurn.setText( mGameCardFour );
     }
 
     public void river() {
         mGame.takeCard(mCards.deal());
-        String mGameCardOne = mGame.seeHand().get(0).toString();
-        String mGameCardTwo = mGame.seeHand().get(1).toString();
-        String mGameCardThree = mGame.seeHand().get(2).toString();
-        String mGameCardFour = mGame.seeHand().get(3).toString();
+
         String mGameCardFive = mGame.seeHand().get(4).toString();
 
-        String mGameCards = mGameCardOne + " " + mGameCardTwo + " " + mGameCardThree + " " + mGameCardFour + " " + mGameCardFive;
-
-        mCommunityCards.setText(mGameCards);
+        mRiver.setText( mGameCardFive );
     }
 
     public void resetPlayerHands() {

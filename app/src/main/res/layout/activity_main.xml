@@ -126,7 +126,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/player_cards"
         android:textSize="70dp"
-
         android:layout_centerHorizontal="true"
         android:layout_marginTop="400dp"/>
 
@@ -156,48 +155,52 @@
     <!--Community card checkboxes-->
 
     <CheckBox
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/community_card_one"
-        android:layout_marginLeft="25dp"
-        android:padding="0dp"
-        android:layout_marginTop="550dp"
-        android:onClick="onCommunitySelect"/>
-
-    <CheckBox
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/community_card_two"
         android:layout_marginLeft="105dp"
-        android:padding="0dp"
-        android:layout_marginTop="550dp"
+        android:padding="200dp"
+        android:layout_marginTop="290dp"
         android:onClick="onCommunitySelect"/>
 
     <CheckBox
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/community_card_two"
+        android:layout_marginLeft="245dp"
+        android:padding="200dp"
+        android:layout_marginTop="290dp"
+        android:onClick="onCommunitySelect"/>
+
+    <CheckBox
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/community_card_three"
-        android:layout_marginLeft="185dp"
-        android:padding="0dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginLeft="385dp"
+        android:padding="200dp"
+        android:layout_marginTop="290dp"
         android:onClick="onCommunitySelect"/>
 
+    <!--turn-->
+
     <CheckBox
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/community_card_four"
-        android:layout_marginLeft="265dp"
-        android:padding="0dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginLeft="175dp"
+        android:padding="200dp"
+        android:layout_marginTop="190dp"
         android:onClick="onCommunitySelect"/>
 
+    <!--river-->
+
     <CheckBox
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/community_card_five"
-        android:layout_marginLeft="345dp"
-        android:padding="0dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginLeft="315dp"
+        android:padding="200dp"
+        android:layout_marginTop="190dp"
         android:onClick="onCommunitySelect"/>
 
 
@@ -238,16 +241,16 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:textSize="70dp"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="200dp"
         android:id="@+id/turn"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:textSize="70dp"
-        android:layout_marginLeft="425dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginLeft="279dp"
+        android:layout_marginTop="200dp"
         android:id="@+id/river"/>
 
 
