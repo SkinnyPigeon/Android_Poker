@@ -251,6 +251,22 @@ public class MainActivity extends AppCompatActivity{
                 if( mPlayerCardTwo.isChecked() ) {
                     mPlayerCardTwo.toggle();
                 }
+                if( mCommunityCardOne.isChecked() ) {
+                    mCommunityCardOne.toggle();
+                }
+                if( mCommunityCardTwo.isChecked() ) {
+                    mCommunityCardTwo.toggle();
+                }
+                if( mCommunityCardThree.isChecked() ) {
+                    mCommunityCardThree.toggle();
+                }
+                if( mCommunityCardFour.isChecked() ) {
+                    mCommunityCardFour.toggle();
+                }
+                if( mCommunityCardFive.isChecked() ) {
+                    mCommunityCardFive.toggle();
+                }
+
             }
 
         });
@@ -481,16 +497,12 @@ public class MainActivity extends AppCompatActivity{
     public void turn() {
         mGame.takeCard(mCards.deal());
         String mGameCardFour = mGame.seeHand().get(3).toString();
-
-
         mTurn.setText( mGameCardFour );
     }
 
     public void river() {
         mGame.takeCard(mCards.deal());
-
         String mGameCardFive = mGame.seeHand().get(4).toString();
-
         mRiver.setText( mGameCardFive );
     }
 
