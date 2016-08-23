@@ -40,7 +40,7 @@ public class TestCards {
     }
 
     public String shuffle() {
-        Collections.sort( mCards );
+        Collections.shuffle( mCards );
         for( String card: mCards ) {
             if( card != null ) {
             }

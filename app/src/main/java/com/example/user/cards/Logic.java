@@ -271,47 +271,6 @@ public class Logic {
         return false;
     }
 
-    public boolean processedFlush() {
-        char firstCard;
-        char secondCard;
-        char thirdCard;
-        char fourthCard;
-        char fifthCard;
-        if( mProcessedCards.size() > 4) {
-            firstCard = mProcessedCards.get( 0 ).charAt( 1 );
-            if( firstCard == '0' ) {
-                firstCard = mProcessedCards.get( 0 ).charAt( 2 );
-            }
-
-            secondCard = mProcessedCards.get( 1 ).charAt( 1 );
-            if( secondCard == '0' ) {
-                secondCard = mProcessedCards.get( 1 ).charAt( 2 );
-            }
-
-            thirdCard = mProcessedCards.get( 2 ).charAt( 1 );
-            if( thirdCard == '0' ) {
-                thirdCard = mProcessedCards.get( 2 ).charAt( 2 );
-            }
-
-            fourthCard = mProcessedCards.get( 3 ).charAt( 1 );
-            if( fourthCard == '0' ) {
-                fourthCard = mProcessedCards.get( 3 ).charAt( 2 );
-            }
-
-            fifthCard = mProcessedCards.get( 4 ).charAt( 1 );
-            if( fifthCard == '0' ) {
-                fifthCard = mProcessedCards.get( 4 ).charAt( 2 );
-            }
-
-            if( firstCard == secondCard && firstCard == thirdCard
-                    && firstCard == fourthCard && firstCard == fifthCard ) {
-                countPoints();
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean flush() {
         char firstCard;
         char secondCard;
@@ -374,7 +333,7 @@ public class Logic {
     }
 
     public boolean straightFlushCheck( char firstNumber, char secondNumber, char thirdNumber, char fourthNumber, char fifthNumber ) {
-        if( straightCheck(firstNumber, secondNumber, thirdNumber, fourthNumber, fifthNumber) && processedFlush() ) {
+        if( straightCheck(firstNumber, secondNumber, thirdNumber, fourthNumber, fifthNumber) && flush() ) {
             return true;
         }
         return false;
@@ -934,38 +893,74 @@ public class Logic {
         }
     }
 
+//    public void setScore() {
+//
+//        straightFlushPoints();
+//        fourPoints();
+//        fullPointsAce();
+//        fullPointsKing();
+//        fullPointsQueen();
+//        fullPointsJack();
+//        fullPointsTen();
+//        fullPointsNine();
+//        fullPointsEight();
+//        fullPointsSeven();
+//        fullPointsSix();
+//        fullPointsFive();
+//        fullPointsFour();
+//        fullPointsThree();
+//        flushPoints();
+//        straightPoints();
+//        threePoints();
+//        twoPointsAce();
+//        twoPointsKing();
+//        twoPointsQueen();
+//        twoPointsJack();
+//        twoPointsTen();
+//        twoPointsNine();
+//        twoPointsEight();
+//        twoPointsSeven();
+//        twoPointsSix();
+//        twoPointsFive();
+//        twoPointsFour();
+//        twoPointsThree();
+//        pairPoints();
+//        countPoints();
+//    }
+
     public void setScore() {
 
-        straightFlushPoints();
-        fourPoints();
-        fullPointsAce();
-        fullPointsKing();
-        fullPointsQueen();
-        fullPointsJack();
-        fullPointsTen();
-        fullPointsNine();
-        fullPointsEight();
-        fullPointsSeven();
-        fullPointsSix();
-        fullPointsFive();
-        fullPointsFour();
-        fullPointsThree();
-        flushPoints();
-        straightPoints();
-        threePoints();
-        twoPointsAce();
-        twoPointsKing();
-        twoPointsQueen();
-        twoPointsJack();
-        twoPointsTen();
-        twoPointsNine();
-        twoPointsEight();
-        twoPointsSeven();
-        twoPointsSix();
-        twoPointsFive();
-        twoPointsFour();
-        twoPointsThree();
         pairPoints();
+        twoPointsThree();
+        twoPointsFour();
+        twoPointsFive();
+        twoPointsSix();
+        twoPointsSeven();
+        twoPointsEight();
+        twoPointsNine();
+        twoPointsTen();
+        twoPointsJack();
+        twoPointsQueen();
+        twoPointsKing();
+        twoPointsAce();
+        threePoints();
+        straightPoints();
+        flushPoints();
+        fullPointsThree();
+        fullPointsFour();
+        fullPointsFive();
+        fullPointsSix();
+        fullPointsSeven();
+        fullPointsEight();
+        fullPointsNine();
+        fullPointsTen();
+        fullPointsJack();
+        fullPointsQueen();
+        fullPointsKing();
+        fullPointsAce();
+        fourPoints();
+        straightFlushPoints();
+
         countPoints();
     }
 }

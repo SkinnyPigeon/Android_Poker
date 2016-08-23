@@ -137,6 +137,8 @@
         android:id="@+id/player_card_one"
         android:layout_marginLeft="175dp"
         android:padding="200dp"
+        android:button="@android:color/transparent"
+
         android:layout_marginTop="390dp"
         android:onClick="onPlayerSelect"/>
 
@@ -146,6 +148,8 @@
         android:id="@+id/player_card_two"
         android:layout_marginLeft="315dp"
         android:padding="200dp"
+        android:button="@android:color/transparent"
+
         android:layout_marginTop="390dp"
         android:onClick="onPlayerSelect"/>
 
@@ -160,6 +164,8 @@
         android:id="@+id/community_card_one"
         android:layout_marginLeft="105dp"
         android:padding="200dp"
+        android:button="@android:color/transparent"
+
         android:layout_marginTop="290dp"
         android:onClick="onCommunitySelect"/>
 
@@ -169,6 +175,8 @@
         android:id="@+id/community_card_two"
         android:layout_marginLeft="245dp"
         android:padding="200dp"
+        android:button="@android:color/transparent"
+
         android:layout_marginTop="290dp"
         android:onClick="onCommunitySelect"/>
 
@@ -178,6 +186,8 @@
         android:id="@+id/community_card_three"
         android:layout_marginLeft="385dp"
         android:padding="200dp"
+        android:button="@android:color/transparent"
+
         android:layout_marginTop="290dp"
         android:onClick="onCommunitySelect"/>
 
@@ -189,6 +199,8 @@
         android:id="@+id/community_card_four"
         android:layout_marginLeft="175dp"
         android:padding="200dp"
+        android:button="@android:color/transparent"
+
         android:layout_marginTop="190dp"
         android:onClick="onCommunitySelect"/>
 
@@ -200,6 +212,8 @@
         android:id="@+id/community_card_five"
         android:layout_marginLeft="315dp"
         android:padding="200dp"
+        android:button="@android:color/transparent"
+
         android:layout_marginTop="190dp"
         android:onClick="onCommunitySelect"/>
 

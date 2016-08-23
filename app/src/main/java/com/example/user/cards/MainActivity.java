@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity{
     TextView mTurn;
     TextView mRiver;
 
+    Deck mDeck;
+
     TextView mPlayerCards;
 
     CheckBox mPlayerCardOne;
@@ -267,6 +269,9 @@ public class MainActivity extends AppCompatActivity{
                     mCommunityCardFive.toggle();
                 }
 
+//                mGame.turnEnd();
+//                setText();
+
             }
 
         });
@@ -385,6 +390,8 @@ public class MainActivity extends AppCompatActivity{
                 break;
         }
     }
+
+//need to check how to sort the call out for the score setter. perhaps reverse the order everything is called in"
 
     public boolean seeFlop() {
         if( mGame.seeHand().size() == 3 ) {
@@ -523,7 +530,8 @@ public class MainActivity extends AppCompatActivity{
 
     public void startHand() {
         mCards = new TestCards();
-
+//        mDeck = new Deck();
+//        mDeck.shuffle();
 //        Shuffle the deck here
 
         for( int i = 0; i < mGame.getArraySize(); i ++ ) {
