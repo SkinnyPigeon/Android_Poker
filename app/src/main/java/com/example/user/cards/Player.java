@@ -33,8 +33,6 @@ public class Player extends AppCompatActivity {
         return new Player( mName, mPlayerNumber );
     }
 
-
-
     public String name() {
         return mName;
     }
@@ -42,7 +40,6 @@ public class Player extends AppCompatActivity {
     public Integer seeScore() {
         return mScore;
     }
-
 
     public void awardScore(Integer handScore) {
         mScore = handScore;
@@ -81,32 +78,25 @@ public class Player extends AppCompatActivity {
 
     public void smallBlind() {
         mChips -= mSmallBlindValue;
-        mBet += mSmallBlindValue;
+        mBet = mSmallBlindValue;
         mLastBet = mSmallBlindValue;
     }
 
     public void bigBlind() {
         mChips -= mBigBlindValue;
-        mBet += mBigBlindValue;
+        mBet = mBigBlindValue;
         mLastBet = mBigBlindValue;
     }
 
     public void call( Game game ) {
-
         int chips = game.seeLastBet() - mLastBet;
         mChips -= chips;
         mBet = chips;
-        resetLastBet();
-
+        mLastBet = chips;
     }
-
 
     public int giveBet() {
         return mBet;
-    }
-
-    public int giveLastBet() {
-        return mLastBet;
     }
 
     public Integer number() {
@@ -116,11 +106,6 @@ public class Player extends AppCompatActivity {
     public int seeLastBet() {
         return mLastBet;
     }
-
-    public void setLastBet() {
-        mLastBet = 0;
-    }
-
 
     public void winChips(int chips) {
         mChips += chips;

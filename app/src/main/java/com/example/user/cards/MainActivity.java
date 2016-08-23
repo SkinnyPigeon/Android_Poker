@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,6 +21,12 @@ public class MainActivity extends AppCompatActivity{
 
     TextView mPlayerCards;
 
+    CheckBox mPlayerOneCardOne;
+    CheckBox mPlayerOneCardTwo;
+
+    ArrayList<String> mPlayerSelectedCards;
+    ArrayList<String> mCommunitySelectedCards;
+
     Button mPlus;
     Button mCall;
     Button mBet;
@@ -28,6 +35,8 @@ public class MainActivity extends AppCompatActivity{
     Button mFold;
     Button mWinner;
     TextView mWinnerName;
+
+
 
     TextView mPlayerBet;
 
@@ -53,6 +62,9 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPlayerOneCardOne = ( CheckBox )findViewById( R.id.player_one_card_one );
+        mPlayerOneCardTwo = ( CheckBox )findViewById( R.id.player_one_card_two );
 
         mPlayerName = ( TextView )findViewById( R.id.player_name);
 
@@ -93,8 +105,11 @@ public class MainActivity extends AppCompatActivity{
 
         mStart = ( Button )findViewById( R.id.start );
 
+        mPlayerSelectedCards = new ArrayList<String>();
+
+
         mBetValue = 0;
-        mCounter = 0;
+        mCounter = 2;
         mCheckCounter = 0;
 
         hideEverthing();
@@ -155,15 +170,13 @@ public class MainActivity extends AppCompatActivity{
                 setText();
                 mCounter++;
                 checkCheck( mGame.getCurrentPlayer() );
-                Log.d("Bet check: ", mGame.getCurrentPlayer().name());
-
             }
         });
 
         mCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCounter = 0;
+                mCounter = 1;
                 mCheckCounter ++;
                 resetBets();
                 stageCheck();
@@ -171,7 +184,6 @@ public class MainActivity extends AppCompatActivity{
                 mCommunityCards.setVisibility(View.VISIBLE);
                 mCheck.setVisibility(View.INVISIBLE);
                 setText();
-                Log.d( "Check check: ", mGame.getCurrentPlayer().name() );
             }
         });
 
@@ -183,13 +195,11 @@ public class MainActivity extends AppCompatActivity{
 
                 if( mGame.getArraySize() == 1 ) {
                     mGame.handWon(mGame.getCurrentPlayer());
-//                    nextHand();
+                    nextHand();
                 }
+                mCounter ++;
                 checkCheck( mGame.getCurrentPlayer() );
                 setText();
-
-                Log.d("Check check: ", mGame.getCurrentPlayer().name());
-
             }
         });
 
@@ -197,13 +207,15 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                logicCheck();
-                mGame.pickWinner();
-                Player winner = mGame.seeWinner();
-                mGame.handWon(winner);
-                mWinnerName.setText(mGame.seeWinner().name());
+//                logicCheck();
+                cardPickLogicCheck();
 
-                nextHand();
+//                mGame.pickWinner();
+//                Player winner = mGame.seeWinner();
+//                mGame.handWon(winner);
+//                mWinnerName.setText(mGame.seeWinner().name());
+//
+//                nextHand();
             }
         });
     }
@@ -220,7 +232,7 @@ public class MainActivity extends AppCompatActivity{
     public void checkCheck( Player player ) {
 
         if( mGame.showPot() > 0 && mGame.seeLastBet() <= mGame.getCurrentPlayer().seeLastBet()
-                && mCounter > 1 ) {
+                && mCounter >= mGame.getArraySize() ) {
             mCheck.setVisibility(View.VISIBLE);
         } else {
             mCheck.setVisibility(View.INVISIBLE);
@@ -245,6 +257,40 @@ public class MainActivity extends AppCompatActivity{
             logic.setScore();
             mGame.accessPlayer(i).awardScore(logic.seeScore());
             mGame.accessPlayer(i).awardKicker(logic.seeKicker());
+        }
+    }
+
+    public void cardPickLogicCheck() {
+
+        Log.d( "Here:", "Hello ");
+
+        Log.d( "first card:" ,mPlayerSelectedCards.get(0));
+
+        Logic logic = new Logic( mPlayerSelectedCards, mGame.seeHand() );
+        logic.combineCards();
+        logic.setScore();
+        mGame.getCurrentPlayer().awardScore(logic.seeScore());
+        mGame.getCurrentPlayer().awardKicker(logic.seeKicker());
+    }
+
+    public void onCheckboxClicked(View view) {
+
+
+        boolean checked = ((CheckBox) view).isChecked();
+
+        switch ( view.getId() ) {
+            case R.id.player_one_card_one:
+                if( checked ) {
+                    Log.d( "Card: ", mGame.getCurrentPlayer().seeHand().get(0).toString());
+                    mPlayerSelectedCards.add(mGame.getCurrentPlayer().seeHand().get(0).toString()) ;
+                    Log.d( "Card in array:", mPlayerSelectedCards.get(0) );
+                }
+                break;
+            case  R.id.player_one_card_two:
+                if( checked ) {
+                    mPlayerSelectedCards.add( mGame.getCurrentPlayer().seeHand().get(1).toString()) ;
+                }
+                break;
         }
     }
 
@@ -284,10 +330,10 @@ public class MainActivity extends AppCompatActivity{
         mGame.sortPlayers();
         mGame.resetHand();
         mGame.endHand();
-        Log.d("Player Start: ", mGame.seePlayerStart().toString());
         resetPlayerHands();
         mCommunityCards.setVisibility(View.INVISIBLE);
         startHand();
+        mCheckCounter = 0;
         mGame.firstTurn();
         setText();
     }
@@ -390,10 +436,10 @@ public class MainActivity extends AppCompatActivity{
     public void stageCheck() {
         if (mCheckCounter == 1) {
             flop();
-//        } else if ( mCheckCounter ==  2 ) {
-//            turn();
-//        } else if( mCheckCounter == 3 ) {
-//            river();
+        } else if ( mCheckCounter ==  2 ) {
+            turn();
+        } else if( mCheckCounter == 3 ) {
+            river();
         }
     }
 

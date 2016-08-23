@@ -10,13 +10,8 @@ public class Game  {
 
     private int mPot;
     private int mlastBet;
-    private int mPlayerTurn;
-    private int mCurrentPlayer;
     private int mPlayerStart;
-    private int mFirstBet;
     private int mBetPlayer;
-    private int mNoOfPlayers;
-    private int mNoOfFoldedPlayers;
     private ArrayList< String > mSharedCards;
     private ArrayList< Player > mPlayers;
     private ArrayList< Player > mPlayerCell;
@@ -28,18 +23,12 @@ public class Game  {
 
     public Game( int noOfPlayers ){
         mPot = 0;
-        mPlayerTurn = 1;
         mPlayerStart = 1;
-        mCurrentPlayer = 1;
-        mFirstBet = 1;
-        mNoOfPlayers = noOfPlayers;
-        mNoOfFoldedPlayers = 0;
         mSharedCards = new ArrayList< String >();
         mPlayerComparator = new PlayerComparator();
         mkickerComparator = new KickerComparator();
         mPlayerSorter = new PlayerSorter();
         mPlayerCell = new ArrayList< Player >();
-
         mPlayers = new ArrayList< Player >();
         mlastBet = 0;
     }
@@ -105,26 +94,21 @@ public class Game  {
         Player firstPlayer = mWinnerArray.get( mWinnerArray.size() - 1 );
         Player secondPlayer = mWinnerArray.get( mWinnerArray.size() - 2 );
 
-        Integer firstPlayerScore = firstPlayer.seeScore();
-        Integer secondPlayerScore = secondPlayer.seeScore();
-
         if( firstPlayer.seeScore() == secondPlayer.seeScore() ) {
             for (int i = 0; i < mWinnerArray.size() - 1; i++) {
 
                 firstPlayer = mWinnerArray.get(i);
                 secondPlayer = mWinnerArray.get(i + 1);
-                firstPlayerScore = firstPlayer.seeScore();
-                secondPlayerScore = secondPlayer.seeScore();
+                Integer firstPlayerScore = firstPlayer.seeScore();
+                Integer secondPlayerScore = secondPlayer.seeScore();
 
                 if ((int) firstPlayerScore == (int) secondPlayerScore) {
                     pickKicker();
                 }
-
             }
         } else {
             mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
         }
-
     }
 
     public void pickKicker() {
@@ -133,11 +117,9 @@ public class Game  {
         mKickerWinner = mKickerArray.get( mKickerArray.size() - 1 );
     }
 
-
     public void sortPlayers() {
         Collections.sort( mPlayers, mPlayerSorter );
     }
-
 
     public Player seeWinner() {
 
@@ -147,8 +129,6 @@ public class Game  {
     public void takeCard( String card ) {
         mSharedCards.add( card );
     }
-
-
 
     public void endHand() {
         Integer number = mPlayers.size();
@@ -176,7 +156,6 @@ public class Game  {
         addBet(mPlayers.get(0));
         turnEnd();
     }
-
 
     public ArrayList seeHand() {
         return mSharedCards;
