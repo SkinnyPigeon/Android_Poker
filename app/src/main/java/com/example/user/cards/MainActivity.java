@@ -328,13 +328,8 @@ public class MainActivity extends AppCompatActivity{
         mGame.sortPlayers();
         resetPlayerHands();
         startHand();
-
-        Log.d("Player's Hand: ", mGame.accessPlayer(0).seeHand().toString());
-        Log.d("Player's Hand: ", mGame.accessPlayer(1).seeHand().toString());
-        Log.d("Player's Hand: ", mGame.accessPlayer(2).seeHand().toString());
-        Log.d( "Player's Hand: ", mGame.accessPlayer(3).seeHand().toString() );
-
-        Log.d("Ending hand:", "OK");
+        mGame.megaCheck(mGame.accessPlayer(0), mGame.accessPlayer(1), mGame.accessPlayer(2), mGame.accessPlayer(3) );
+        setText();
 
     }
 
