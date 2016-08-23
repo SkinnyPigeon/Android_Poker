@@ -185,9 +185,11 @@ public class Player extends AppCompatActivity {
     }
 
     public void resetHand() {
+        Integer number = mHand.size();
         if( mHand.size() > 0 ) {
-            mHand.remove(0);
-            mHand.remove(0);
+            for( int i = 0; i < number; i ++ ) {
+                mHand.remove(0);
+            }
         }
     }
 }

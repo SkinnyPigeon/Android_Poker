@@ -378,8 +378,6 @@ public class Game  {
 
     public void setFoldedPlayerCount() {
         Integer number = mCurrentPlayer;
-
-        Log.d( "PLayer Folding: ", number.toString() );
         mNoOfFoldedPlayers += 1;
     }
 

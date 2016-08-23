@@ -220,7 +220,6 @@ public class MainActivity extends AppCompatActivity{
 
                 mGame.pickWinner();
                 Player winner = mGame.seeWinner();
-                Log.d("tag", winner.name());
                 mGame.handWon(winner);
                 mWinnerName.setText(mGame.seeWinner().name());
 
@@ -285,16 +284,10 @@ public class MainActivity extends AppCompatActivity{
     public void logicCheck() {
 
         for( int i = 0; i < mGame.getArraySize(); i ++ ) {
-            Log.d( "Player Hand:", mGame.accessPlayer(i).seeHand().toString() );
-            Log.d("Game Hand:", mGame.seeHand().toString());
-
-
             Logic logic = new Logic( mGame.accessPlayer(i).seeHand(), mGame.seeHand() );
             logic.combineCards();
             logic.setScore();
             mGame.accessPlayer(i).awardScore(logic.seeScore());
-            Log.d("Player Hand:", mGame.accessPlayer(i).seeScore().toString());
-
             mGame.accessPlayer(i).awardKicker(logic.seeKicker());
         }
     }
@@ -436,9 +429,11 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void startHand() {
+        TestCards cards = new TestCards();
+        cards.shuffle();
         for( int i = 0; i < mGame.getArraySize(); i ++ ) {
-            mGame.accessPlayer(i).takeCard( mCards.deal() );
-            mGame.accessPlayer(i).takeCard( mCards.deal() );
+            mGame.accessPlayer(i).takeCard( cards.deal() );
+            mGame.accessPlayer(i).takeCard( cards.deal() );
         }
     }
 
