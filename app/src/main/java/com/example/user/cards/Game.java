@@ -19,6 +19,7 @@ public class Game  {
     private int mNoOfFoldedPlayers;
     private ArrayList< String > mSharedCards;
     private ArrayList< Player > mPlayers;
+    private ArrayList< Player > mPlayerCell;
     private PlayerComparator mPlayerComparator;
     private KickerComparator mkickerComparator;
     private PlayerSorter mPlayerSorter;
@@ -37,6 +38,7 @@ public class Game  {
         mPlayerComparator = new PlayerComparator();
         mkickerComparator = new KickerComparator();
         mPlayerSorter = new PlayerSorter();
+        mPlayerCell = new ArrayList< Player >();
 
         mPlayers = new ArrayList< Player >();
         mlastBet = 0;
@@ -59,8 +61,17 @@ public class Game  {
     }
 
     public void fold() {
-        mPlayers.remove(0);
+        mPlayerCell.add(mPlayers.remove(0));
         turnEnd();
+    }
+
+    public void refillPlayerArray() {
+        Integer number = mPlayerCell.size();
+        if( mPlayerCell.size() > 0 ) {
+            for( int i = 0; i < number; i ++ ) {
+                mPlayers.add( mPlayerCell.remove( 0 ));
+            }
+        }
     }
 
     public String seePlayersArray() {
@@ -98,54 +109,11 @@ public class Game  {
     }
 
     public void resetPlayers() {
-        mPlayers.removeAll(mPlayers);
+        Integer number = mPlayers.size();
+        for( int i = 0; i < number; i ++ ) {
+            mPlayers.remove(0);
+        }
     }
-
-//    public void pickWinner() {
-//
-//        Log.d( "Winner Array: ", mWinnerArray.get(0).name() );
-//        Log.d( "Winner Array: ", mWinnerArray.get(1).name() );
-//
-//
-//        Collections.sort(mWinnerArray, mPlayerComparator);
-//
-//        // from java prev ver:
-////        for( int i = 0; i < this.winnerArray.size() - 1; i++ ) {
-////            if( ( this.winnerArray.get( i ).seeScore() ).intValue() == ( this.winnerArray.get( i + 1 ).seeScore() ).intValue() ) {
-////                pickKicker();
-////            } else {
-////                this.handWinner = this.winnerArray.get( this.winnerArray.size() - 1 );
-////            }
-////        }
-//
-//        for( int i = 0; i < mWinnerArray.size() - 1; i++ ) {
-//            Integer arraySize = mWinnerArray.size();
-//            String size = arraySize.toString();
-//            Log.d( "Winner Array Size: ", size );
-//            Player firstPlayer = mWinnerArray.get(i);
-//            Player secondPlayer = mWinnerArray.get( i + 1 );
-//            Integer firstPlayerScore = firstPlayer.seeScore();
-//            Integer secondPlayerScore = secondPlayer.seeScore();
-//
-//            if( secondPlayerScore == 0 ) {
-//                mKickerArray.add( mWinnerArray.remove( i + 1 ) );
-//            }
-//
-//            if( (int) firstPlayerScore  ==  (int) secondPlayerScore ) {
-//
-//                pickKicker();
-//            } else {
-//                mHandWinner = mWinnerArray.get( mWinnerArray.size() - 1 );
-////                for( i = 0; i < mWinnerArray.size(); i++ ) {
-////                    mPlayers.add( mWinnerArray.remove(0) );
-//////                }
-////                if( mHandWinner != null ) {
-////                    mPlayers.add( mHandWinner );
-////                }
-//            }
-//        }
-//    }
-
 
     public void pickWinner() {
 
