@@ -16,9 +16,6 @@ public class Player extends AppCompatActivity {
     private int mLastBet;
     private Integer mScore;
     private Integer mKicker;
-    private boolean mFolded;
-    private boolean mFirstToBet;
-    private boolean mBigBlind;
 
     public Player(String name, int playerNumber) {
         mName = name;
@@ -29,33 +26,14 @@ public class Player extends AppCompatActivity {
         mScore = 0;
         mSmallBlindValue = 10;
         mBigBlindValue = 20;
-        mFolded = true;
         mLastBet = 0;
-        mBigBlind = false;
     }
 
     public Player clone() {
         return new Player( mName, mPlayerNumber );
     }
 
-    public void turnOnBigBlind() {
-        mBigBlind = true;
-    }
 
-    public void turnOffBigBlind() {
-        mBigBlind = false;
-    }
-
-    public boolean seeBlind() {
-        return mBigBlind;
-    }
-
-    public String seeFolded() {
-        if ( mFolded ) {
-            return "True";
-        }
-        return "False";
-    }
 
     public String name() {
         return mName;
@@ -65,17 +43,6 @@ public class Player extends AppCompatActivity {
         return mScore;
     }
 
-    public void fold() {
-        mFolded = true;
-    }
-
-    public void in() {
-        mFolded = false;
-    }
-
-    public boolean status() {
-        return mFolded;
-    }
 
     public void awardScore(Integer handScore) {
         mScore = handScore;
@@ -126,23 +93,13 @@ public class Player extends AppCompatActivity {
 
     public void call( Game game ) {
 
-        if( mBigBlind ) {
-            game.resetBets();
-            resetLastBet();
-            resetBet();
-            turnOffBigBlind();
-        } else {
-            int chips = game.seeLastBet() - mLastBet;
-            mChips -= chips;
-            mBet = chips;
-            mLastBet = chips;
-            resetLastBet();
-        }
+        int chips = game.seeLastBet() - mLastBet;
+        mChips -= chips;
+        mBet = chips;
+        resetLastBet();
+
     }
 
-    public int check() {
-        return mBet;
-    }
 
     public int giveBet() {
         return mBet;
@@ -164,13 +121,6 @@ public class Player extends AppCompatActivity {
         mLastBet = 0;
     }
 
-    public void setFirstBet() {
-        mFirstToBet = true;
-    }
-
-    public boolean seeFirstBet() {
-        return mFirstToBet;
-    }
 
     public void winChips(int chips) {
         mChips += chips;

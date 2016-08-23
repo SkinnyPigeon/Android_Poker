@@ -57,7 +57,9 @@ public class Game  {
     }
 
     public void turnEnd() {
-        Collections.rotate(mPlayers, 3);
+
+        Integer number = mPlayers.size() - 1;
+        Collections.rotate(mPlayers, number);
     }
 
     public void fold() {
@@ -147,6 +149,7 @@ public class Game  {
     }
 
 
+
     public void endHand() {
         Integer number = mPlayers.size();
         if( mPlayerStart == number ) {
@@ -186,6 +189,7 @@ public class Game  {
 
     public void handWon( Player player ) {
         player.winChips( mPot );
+        mPot = 0;
     }
 
     public int seeLastBet() {
@@ -203,6 +207,8 @@ public class Game  {
                 mSharedCards.remove(0);
             }
         }
+        mPot = 0;
+        resetBets();
     }
 
 }

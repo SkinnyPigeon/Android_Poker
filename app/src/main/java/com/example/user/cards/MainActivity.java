@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity{
     Button mFold;
     Button mWinner;
     TextView mWinnerName;
-    ArrayList< Player > mDefaultPlayers;
 
     TextView mPlayerBet;
 
@@ -69,26 +68,18 @@ public class MainActivity extends AppCompatActivity{
 
         mGame = new Game(4);
 
-        mDefaultPlayers = new ArrayList<Player>();
         mJeff = new Player("Jeff", 1);
-        mJeff.in();
 
         mSteve = new Player( "Steve", 2 );
-        mSteve.in();
 
         mDave = new Player( "Dave", 3 );
-        mDave.in();
 
         mBob = new Player( "Bob", 4 );
-        mBob.in();
 
-
-        mDefaultPlayers.add( mJeff );
-        mDefaultPlayers.add(mSteve);
-        mDefaultPlayers.add( mDave);
-        mDefaultPlayers.add(mBob);
-
-        cloner();
+        mGame.addPlayerToGame(mJeff);
+        mGame.addPlayerToGame(mSteve);
+        mGame.addPlayerToGame(mDave);
+        mGame.addPlayerToGame(mBob);
 
         mPlus = ( Button )findViewById( R.id.plus );
         mCall = ( Button )findViewById( R.id.call );
@@ -108,36 +99,16 @@ public class MainActivity extends AppCompatActivity{
 
         hideEverthing();
 
-
-
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                mCards = new TestCards();
 
-
-
-                mGame.accessPlayer(0).takeCard(mCards.deal());
-                mGame.accessPlayer(0).takeCard(mCards.deal());
-
-                mGame.accessPlayer(1).takeCard(mCards.deal());
-                mGame.accessPlayer(1).takeCard(mCards.deal());
-
-                mGame.accessPlayer(2).takeCard(mCards.deal());
-                mGame.accessPlayer(2).takeCard(mCards.deal());
-
-                mGame.accessPlayer(3).takeCard(mCards.deal());
-                mGame.accessPlayer(3).takeCard(mCards.deal());
-
+                startHand();
 
                 hideStart();
 
                 showEverything();
-
-                for( int i = 0; i < mGame.getArraySize(); i++ ) {
-                    mGame.accessPlayer(i).in();
-                }
 
                 mGame.firstTurn();
                 Integer pot = mGame.showPot();
@@ -171,6 +142,8 @@ public class MainActivity extends AppCompatActivity{
                 setText();
                 mCounter++;
                 checkCheck( mGame.getCurrentPlayer() );
+                Log.d("Call check: ", mGame.getCurrentPlayer().name());
+
             }
         });
 
@@ -182,6 +155,8 @@ public class MainActivity extends AppCompatActivity{
                 setText();
                 mCounter++;
                 checkCheck( mGame.getCurrentPlayer() );
+                Log.d("Bet check: ", mGame.getCurrentPlayer().name());
+
             }
         });
 
@@ -192,8 +167,11 @@ public class MainActivity extends AppCompatActivity{
                 mCheckCounter ++;
                 resetBets();
                 stageCheck();
+                mGame.turnEnd();
                 mCommunityCards.setVisibility(View.VISIBLE);
                 mCheck.setVisibility(View.INVISIBLE);
+                setText();
+                Log.d( "Check check: ", mGame.getCurrentPlayer().name() );
             }
         });
 
@@ -207,7 +185,11 @@ public class MainActivity extends AppCompatActivity{
                     mGame.handWon(mGame.getCurrentPlayer());
 //                    nextHand();
                 }
+                checkCheck( mGame.getCurrentPlayer() );
                 setText();
+
+                Log.d("Check check: ", mGame.getCurrentPlayer().name());
+
             }
         });
 
@@ -216,7 +198,6 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
 
                 logicCheck();
-
                 mGame.pickWinner();
                 Player winner = mGame.seeWinner();
                 mGame.handWon(winner);
@@ -226,30 +207,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
-
-    public void playerBet( Player player, Integer chips, TextView betText ) {
-        player.placeBet(chips);
-        mGame.addBet(player);
-        chips = 0;
-
-        String cash = "Bet: " + chips.toString();
-        betText.setText(cash);
-        Integer potInt = mGame.showPot();
-        String pot = "Pot: " + " " + potInt.toString();
-        mPotValue.setText(pot);
-    }
-
-//    public void playerSet() {
-//        if( mJeff.seeBlind() ) {
-//            mGame.setCurrentPlayer( mJeff );
-//        } else if ( mSteve.seeBlind() ) {
-//            mGame.setCurrentPlayer( mSteve );
-//        } else if ( mDave.seeBlind() ) {
-//            mGame.setCurrentPlayer( mDave );
-//        } else if ( mBob.seeBlind() ) {
-//            mGame.setCurrentPlayer( mBob );
-//        }
-//    }
 
     public void playerCall( Player player ) {
         player.call( mGame );
@@ -263,7 +220,7 @@ public class MainActivity extends AppCompatActivity{
     public void checkCheck( Player player ) {
 
         if( mGame.showPot() > 0 && mGame.seeLastBet() <= mGame.getCurrentPlayer().seeLastBet()
-                && mCounter == mGame.getArraySize() -1 ) {
+                && mCounter > 1 ) {
             mCheck.setVisibility(View.VISIBLE);
         } else {
             mCheck.setVisibility(View.INVISIBLE);
@@ -327,13 +284,12 @@ public class MainActivity extends AppCompatActivity{
         mGame.sortPlayers();
         mGame.resetHand();
         mGame.endHand();
-        Log.d( "Player Start: ", mGame.seePlayerStart().toString() );
+        Log.d("Player Start: ", mGame.seePlayerStart().toString());
         resetPlayerHands();
         mCommunityCards.setVisibility(View.INVISIBLE);
         startHand();
         mGame.firstTurn();
         setText();
-
     }
 
     public void hideEverthing() {
@@ -373,12 +329,6 @@ public class MainActivity extends AppCompatActivity{
     public void showStart() {
         hideEverthing();
         mStart.setVisibility(View.VISIBLE);
-    }
-
-    public void cloner() {
-        for( int i = 0; i < mDefaultPlayers.size(); i ++ ) {
-            mGame.addPlayerToGame( mDefaultPlayers.get(i).clone() );
-        }
     }
 
     public void flop() {
@@ -427,14 +377,15 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void startHand() {
-        TestCards cards = new TestCards();
-        cards.shuffle();
+        mCards = new TestCards();
+
+//        Shuffle the deck here
+
         for( int i = 0; i < mGame.getArraySize(); i ++ ) {
-            mGame.accessPlayer(i).takeCard( cards.deal() );
-            mGame.accessPlayer(i).takeCard( cards.deal() );
+            mGame.accessPlayer(i).takeCard( mCards.deal() );
+            mGame.accessPlayer(i).takeCard( mCards.deal() );
         }
     }
-
 
     public void stageCheck() {
         if (mCheckCounter == 1) {
@@ -445,6 +396,5 @@ public class MainActivity extends AppCompatActivity{
 //            river();
         }
     }
-
 
 }
