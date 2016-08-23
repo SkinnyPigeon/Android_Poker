@@ -333,11 +333,12 @@ public class MainActivity extends AppCompatActivity{
 
         mGame.refillPlayerArray();
         mGame.sortPlayers();
-
+        resetPlayerHands();
+        startHand();
 
         Log.d("Player's Hand: ", mGame.accessPlayer(0).seeHand().toString());
-        Log.d( "Player's Hand: ", mGame.accessPlayer(1).seeHand().toString() );
-        Log.d( "Player's Hand: ", mGame.accessPlayer(2).seeHand().toString() );
+        Log.d("Player's Hand: ", mGame.accessPlayer(1).seeHand().toString());
+        Log.d("Player's Hand: ", mGame.accessPlayer(2).seeHand().toString());
         Log.d( "Player's Hand: ", mGame.accessPlayer(3).seeHand().toString() );
 
         Log.d("Ending hand:", "OK");
@@ -426,6 +427,19 @@ public class MainActivity extends AppCompatActivity{
         String mGameCards = mGameCardOne + " " + mGameCardTwo + " " + mGameCardThree + " " + mGameCardFour + " " + mGameCardFive;
 
         mCommunityCards.setText(mGameCards);
+    }
+
+    public void resetPlayerHands() {
+        for( int i = 0; i < mGame.getArraySize(); i++ ) {
+            mGame.accessPlayer(i).resetHand();
+        }
+    }
+
+    public void startHand() {
+        for( int i = 0; i < mGame.getArraySize(); i ++ ) {
+            mGame.accessPlayer(i).takeCard( mCards.deal() );
+            mGame.accessPlayer(i).takeCard( mCards.deal() );
+        }
     }
 
     public void stageCheck() {
