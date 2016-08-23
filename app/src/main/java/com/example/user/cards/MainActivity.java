@@ -139,8 +139,7 @@ public class MainActivity extends AppCompatActivity{
                     mGame.accessPlayer(i).in();
                 }
 
-                mGame.megaCheck( mGame.accessPlayer(0), mGame.accessPlayer(1), mGame.accessPlayer(2), mGame.accessPlayer(3) );
-
+                mGame.firstTurn();
                 Integer pot = mGame.showPot();
                 String potText = "Pot: " + " " + pot.toString();
                 mPotValue.setText( potText );
@@ -240,17 +239,17 @@ public class MainActivity extends AppCompatActivity{
         mPotValue.setText(pot);
     }
 
-    public void playerSet() {
-        if( mJeff.seeBlind() ) {
-            mGame.setCurrentPlayer( mJeff );
-        } else if ( mSteve.seeBlind() ) {
-            mGame.setCurrentPlayer( mSteve );
-        } else if ( mDave.seeBlind() ) {
-            mGame.setCurrentPlayer( mDave );
-        } else if ( mBob.seeBlind() ) {
-            mGame.setCurrentPlayer( mBob );
-        }
-    }
+//    public void playerSet() {
+//        if( mJeff.seeBlind() ) {
+//            mGame.setCurrentPlayer( mJeff );
+//        } else if ( mSteve.seeBlind() ) {
+//            mGame.setCurrentPlayer( mSteve );
+//        } else if ( mDave.seeBlind() ) {
+//            mGame.setCurrentPlayer( mDave );
+//        } else if ( mBob.seeBlind() ) {
+//            mGame.setCurrentPlayer( mBob );
+//        }
+//    }
 
     public void playerCall( Player player ) {
         player.call( mGame );
@@ -307,7 +306,7 @@ public class MainActivity extends AppCompatActivity{
 
         Integer betInt = mBetValue;
         String betText = "Bet: " + betInt.toString();
-        mPlayerBet.setText( betText );
+        mPlayerBet.setText(betText);
 
         Integer chipCount = mGame.getCurrentPlayer().countChips();
         String chips = "Chips: " + chipCount.toString();
@@ -326,9 +325,13 @@ public class MainActivity extends AppCompatActivity{
 
         mGame.refillPlayerArray();
         mGame.sortPlayers();
+        mGame.resetHand();
+        mGame.endHand();
+        Log.d( "Player Start: ", mGame.seePlayerStart().toString() );
         resetPlayerHands();
+        mCommunityCards.setVisibility(View.INVISIBLE);
         startHand();
-        mGame.megaCheck(mGame.accessPlayer(0), mGame.accessPlayer(1), mGame.accessPlayer(2), mGame.accessPlayer(3) );
+        mGame.firstTurn();
         setText();
 
     }
@@ -431,6 +434,7 @@ public class MainActivity extends AppCompatActivity{
             mGame.accessPlayer(i).takeCard( cards.deal() );
         }
     }
+
 
     public void stageCheck() {
         if (mCheckCounter == 1) {
