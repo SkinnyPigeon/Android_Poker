@@ -117,21 +117,73 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="350dp"/>
 
-    <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/player_one_card_one"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="350dp"
-        android:onClick="onCheckboxClicked"/>
+     <!--Player card checkboxes-->
 
     <CheckBox
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/player_one_card_two"
+        android:id="@+id/player_card_one"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="350dp"
+        android:onClick="onPlayerSelect"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/player_card_two"
         android:layout_marginLeft="105dp"
         android:layout_marginTop="350dp"
-        android:onClick="onCheckboxClicked"/>
+        android:onClick="onPlayerSelect"/>
+
+    <!--Community card checkboxes-->
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/community_card_one"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="350dp"
+        android:onClick="onPlayerSelect"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/community_card_two"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="350dp"
+        android:onClick="onPlayerSelect"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/community_card_three"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="350dp"
+        android:onClick="onPlayerSelect"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/community_card_four"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="350dp"
+        android:onClick="onPlayerSelect"/>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/community_card_five"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="350dp"
+        android:onClick="onPlayerSelect"/>
+
+
+
+
+
+
+
+
 
     <TextView
         android:layout_width="wrap_content"

@@ -21,8 +21,15 @@ public class MainActivity extends AppCompatActivity{
 
     TextView mPlayerCards;
 
-    CheckBox mPlayerOneCardOne;
-    CheckBox mPlayerOneCardTwo;
+    CheckBox mPlayerCardOne;
+    CheckBox mPlayerCardTwo;
+
+    CheckBox mCommunityCardOne;
+    CheckBox mCommunityCardTwo;
+    CheckBox mCommunityCardThree;
+    CheckBox mCommunityCardFour;
+    CheckBox mCommunityCardFive;
+
 
     ArrayList<String> mPlayerSelectedCards;
     ArrayList<String> mCommunitySelectedCards;
@@ -63,8 +70,15 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mPlayerOneCardOne = ( CheckBox )findViewById( R.id.player_one_card_one );
-        mPlayerOneCardTwo = ( CheckBox )findViewById( R.id.player_one_card_two );
+        mPlayerCardOne = ( CheckBox )findViewById( R.id.player_card_one );
+        mPlayerCardTwo = ( CheckBox )findViewById( R.id.player_card_two );
+
+//        mCommunityCardOne = ( CheckBox )findViewById( R.id.community_card_one );
+//        mCommunityCardTwo = ( CheckBox )findViewById( R.id.community_card_two );
+//        mCommunityCardThree = ( CheckBox )findViewById( R.id.community_card_three );
+//        mCommunityCardFour = ( CheckBox )findViewById( R.id.community_card_four );
+//        mCommunityCardFive = ( CheckBox )findViewById( R.id.community_card_five );
+
 
         mPlayerName = ( TextView )findViewById( R.id.player_name);
 
@@ -106,6 +120,7 @@ public class MainActivity extends AppCompatActivity{
         mStart = ( Button )findViewById( R.id.start );
 
         mPlayerSelectedCards = new ArrayList<String>();
+        mCommunitySelectedCards = new ArrayList<String>();
 
 
         mBetValue = 0;
@@ -262,31 +277,27 @@ public class MainActivity extends AppCompatActivity{
 
     public void cardPickLogicCheck() {
 
-        Log.d( "Here:", "Hello ");
-
-        Log.d( "first card:" ,mPlayerSelectedCards.get(0));
-
-        Logic logic = new Logic( mPlayerSelectedCards, mGame.seeHand() );
+        Logic logic = new Logic( mPlayerSelectedCards, mCommunitySelectedCards );
         logic.combineCards();
         logic.setScore();
         mGame.getCurrentPlayer().awardScore(logic.seeScore());
         mGame.getCurrentPlayer().awardKicker(logic.seeKicker());
+
+        removePlayerSelectedCards();
+        removeCommunitySelectedCards();
     }
 
-    public void onCheckboxClicked(View view) {
-
+    public void onPlayerSelect(View view) {
 
         boolean checked = ((CheckBox) view).isChecked();
 
         switch ( view.getId() ) {
-            case R.id.player_one_card_one:
+            case R.id.player_card_one:
                 if( checked ) {
-                    Log.d( "Card: ", mGame.getCurrentPlayer().seeHand().get(0).toString());
                     mPlayerSelectedCards.add(mGame.getCurrentPlayer().seeHand().get(0).toString()) ;
-                    Log.d( "Card in array:", mPlayerSelectedCards.get(0) );
                 }
                 break;
-            case  R.id.player_one_card_two:
+            case  R.id.player_card_two:
                 if( checked ) {
                     mPlayerSelectedCards.add( mGame.getCurrentPlayer().seeHand().get(1).toString()) ;
                 }
@@ -429,7 +440,7 @@ public class MainActivity extends AppCompatActivity{
 
         for( int i = 0; i < mGame.getArraySize(); i ++ ) {
             mGame.accessPlayer(i).takeCard( mCards.deal() );
-            mGame.accessPlayer(i).takeCard( mCards.deal() );
+            mGame.accessPlayer(i).takeCard(mCards.deal());
         }
     }
 
@@ -440,6 +451,26 @@ public class MainActivity extends AppCompatActivity{
             turn();
         } else if( mCheckCounter == 3 ) {
             river();
+        }
+    }
+
+    public void removePlayerSelectedCards() {
+
+        int size = mPlayerSelectedCards.size();
+        if ( size > 0 ) {
+            for( int i = 0; i < size; i++ ) {
+                mPlayerSelectedCards.remove(0);
+            }
+        }
+    }
+
+    public void removeCommunitySelectedCards() {
+
+        int size = mCommunitySelectedCards.size();
+        if ( size > 0 ) {
+            for( int i = 0; i < size; i++ ) {
+                mCommunitySelectedCards.remove(0);
+            }
         }
     }
 
