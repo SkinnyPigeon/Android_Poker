@@ -12,7 +12,7 @@
         android:text="@string/start"
         android:id="@+id/start"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="195dp"
         android:textSize="30dp"
         android:background="@drawable/buttonshape"/>
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="See Winner"
         android:id="@+id/winner"
-        android:layout_marginTop="530dp"
+        android:layout_marginTop="580dp"
         android:layout_marginLeft="250dp"
         android:textSize="30dp"
         android:background="@drawable/buttonshape"/>
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="Fold"
         android:id="@+id/fold"
-        android:layout_marginTop="530dp"
+        android:layout_marginTop="580dp"
         android:layout_marginLeft="200dp"
         android:textSize="30dp"
         android:background="@drawable/buttonshape" />
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:text="@string/plus"
         android:id="@+id/plus"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="520dp"
         android:layout_marginLeft="150dp"
         android:textSize="30dp"
         android:background="@drawable/buttonshape" />
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:text="@string/call"
         android:id="@+id/call"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="520dp"
         android:textSize="30dp"
         android:background="@drawable/buttonshape"
         android:layout_centerHorizontal="true"/>
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:text="@string/place_bet"
         android:id="@+id/bet"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="520dp"
         android:textSize="30dp"
         android:background="@drawable/buttonshape"
         android:layout_marginLeft="360dp" />
@@ -85,7 +85,7 @@
         android:id="@+id/check"
         android:textSize="30dp"
         android:background="@drawable/buttonshape"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="520dp"
         android:layout_centerHorizontal="true"/>
 
 
@@ -97,7 +97,7 @@
         android:background="@drawable/buttonshape"
         android:layout_marginLeft="420dp"
         android:text="check cards"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="550dp"
         />
 
 
@@ -118,7 +118,7 @@
         android:id="@+id/to_call"
         android:textSize="30dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="155dp"/>
+        android:layout_marginTop="205dp"/>
 
 
     <TextView
@@ -128,29 +128,30 @@
         android:textSize="70dp"
 
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp"/>
+        android:layout_marginTop="400dp"/>
 
      <!--Player card checkboxes-->
 
     <CheckBox
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/player_card_one"
-        android:layout_marginLeft="25dp"
-        android:padding="0dp"
-
-        android:layout_marginTop="350dp"
+        android:layout_marginLeft="175dp"
+        android:padding="200dp"
+        android:layout_marginTop="390dp"
         android:onClick="onPlayerSelect"/>
 
     <CheckBox
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/player_card_two"
-        android:layout_marginLeft="105dp"
-        android:padding="0dp"
-
-        android:layout_marginTop="350dp"
+        android:layout_marginLeft="315dp"
+        android:padding="200dp"
+        android:layout_marginTop="390dp"
         android:onClick="onPlayerSelect"/>
+
+    <!--android:button="@android:color/transparent"-->
+
 
     <!--Community card checkboxes-->
 
@@ -160,8 +161,7 @@
         android:id="@+id/community_card_one"
         android:layout_marginLeft="25dp"
         android:padding="0dp"
-
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="550dp"
         android:onClick="onCommunitySelect"/>
 
     <CheckBox
@@ -170,8 +170,7 @@
         android:id="@+id/community_card_two"
         android:layout_marginLeft="105dp"
         android:padding="0dp"
-
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="550dp"
         android:onClick="onCommunitySelect"/>
 
     <CheckBox
@@ -180,8 +179,7 @@
         android:id="@+id/community_card_three"
         android:layout_marginLeft="185dp"
         android:padding="0dp"
-
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="550dp"
         android:onClick="onCommunitySelect"/>
 
     <CheckBox
@@ -190,8 +188,7 @@
         android:id="@+id/community_card_four"
         android:layout_marginLeft="265dp"
         android:padding="0dp"
-
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="550dp"
         android:onClick="onCommunitySelect"/>
 
     <CheckBox
@@ -200,8 +197,7 @@
         android:id="@+id/community_card_five"
         android:layout_marginLeft="345dp"
         android:padding="0dp"
-
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="550dp"
         android:onClick="onCommunitySelect"/>
 
 
@@ -237,13 +233,31 @@
         android:layout_marginTop="10dp"/>
 
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="70dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="220dp"
+        android:id="@+id/turn"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="70dp"
+        android:layout_marginLeft="425dp"
+        android:layout_marginTop="220dp"
+        android:id="@+id/river"/>
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/community_cards"
         android:textSize="70dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"/>
+        android:layout_marginTop="300dp"/>
 
 
 </RelativeLayout>

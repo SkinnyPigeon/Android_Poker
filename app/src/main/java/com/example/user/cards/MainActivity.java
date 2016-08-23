@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity{
     TextView mPlayerName;
 
     TextView mCommunityCards;
+    TextView mFlop;
+    TextView mRiver;
 
     TextView mPlayerCards;
 
@@ -225,7 +227,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-//                logicCheck();
+                logicCheck();
 
                 mGame.pickWinner();
                 Player winner = mGame.seeWinner();
@@ -240,7 +242,14 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 cardPickLogicCheck();
+                if( mPlayerCardOne.isChecked() ) {
+                    mPlayerCardOne.toggle();
+                }
+                if( mPlayerCardTwo.isChecked() ) {
+                    mPlayerCardTwo.toggle();
+                }
             }
+
         });
     }
 
@@ -303,12 +312,15 @@ public class MainActivity extends AppCompatActivity{
         switch ( view.getId() ) {
             case R.id.player_card_one:
                 if( checked ) {
-                    mPlayerSelectedCards.add(mGame.getCurrentPlayer().seeHand().get(0).toString()) ;
+                    mPlayerSelectedCards.add(mGame.getCurrentPlayer().seeHand().get(0).toString());
                 }
+
                 break;
+
             case  R.id.player_card_two:
-                if( checked ) {
-                    mPlayerSelectedCards.add( mGame.getCurrentPlayer().seeHand().get(1).toString()) ;
+                if( checked) {
+                    Log.d("Here:", "Clicked ");
+                    mPlayerSelectedCards.add(mGame.getCurrentPlayer().seeHand().get(1).toString()) ;
                 }
                 break;
         }
