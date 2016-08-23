@@ -318,7 +318,14 @@ public class MainActivity extends AppCompatActivity{
         logic.combineCards();
         logic.setScore();
         mGame.getCurrentPlayer().awardScore(logic.seeScore());
+
         mGame.getCurrentPlayer().awardKicker(logic.seeKicker());
+
+        Integer score = mGame.getCurrentPlayer().seeScore();
+        Integer kicker = mGame.getCurrentPlayer().seeKicker();
+
+        Log.d( "Score", score.toString() );
+        Log.d( "Kicker", kicker.toString() );
 
         removePlayerSelectedCards();
         removeCommunitySelectedCards();
@@ -352,6 +359,7 @@ public class MainActivity extends AppCompatActivity{
             case R.id.community_card_one:
                 if( checked && seeFlop() ) {
                     mCommunitySelectedCards.add( mGame.seeHand().get(0).toString() );
+                    Log.d( "Com card: ", mCommunitySelectedCards.get(0));
                 }
                 break;
             case R.id.community_card_two:
