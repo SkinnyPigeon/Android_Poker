@@ -250,7 +250,7 @@ public class Logic {
                 mProcessedCards.add( mPlayerCards.remove( 3 ) );
                 mProcessedCards.add( mPlayerCards.remove( 2 ) );
                 mProcessedCards.add( mPlayerCards.remove( 1 ) );
-                mProcessedCards.add( mPlayerCards.remove( 0 ) );
+                mProcessedCards.add(mPlayerCards.remove(0));
                 return true;
             }
         }
@@ -333,285 +333,333 @@ public class Logic {
     }
 
     public boolean straightFlushCheck( char firstNumber, char secondNumber, char thirdNumber, char fourthNumber, char fifthNumber ) {
-        if( straightCheck( firstNumber, secondNumber, thirdNumber, fourthNumber, fifthNumber) && flush() ) {
+        if( straightCheck(firstNumber, secondNumber, thirdNumber, fourthNumber, fifthNumber) && flush() ) {
             return true;
         }
         return false;
     }
 
-    public void setScore() {
-
-        if( straightFlushCheck( '1', 'A', 'J', 'K', 'Q' ) ) {
+    public void straightFlushPoints() {
+        if( straightFlushCheck('1', 'A', 'J', 'K', 'Q') ) {
             mAwardScore = 1000;
-        } else if( straightFlushCheck( '1', '9', 'J', 'K', 'Q' ) ) {
+        } else if( straightFlushCheck('1', '9', 'J', 'K', 'Q') ) {
             mAwardScore = 990;
-        } else if( straightFlushCheck( '1', '8', '9', 'J', 'Q' ) ) {
+        } else if( straightFlushCheck('1', '8', '9', 'J', 'Q') ) {
             mAwardScore = 980;
-        } else if( straightFlushCheck( '1', '7', '8', '9', 'J' ) ) {
+        } else if( straightFlushCheck('1', '7', '8', '9', 'J') ) {
             mAwardScore = 970;
-        } else if( straightFlushCheck( '1', '6', '7', '8', '9' ) ) {
+        } else if( straightFlushCheck('1', '6', '7', '8', '9') ) {
             mAwardScore = 960;
-        } else if( straightFlushCheck( '5', '6', '7', '8', '9' ) ) {
+        } else if( straightFlushCheck('5', '6', '7', '8', '9') ) {
             mAwardScore = 950;
-        } else if( straightFlushCheck( '4', '5', '6', '7', '8' ) ) {
+        } else if( straightFlushCheck('4', '5', '6', '7', '8') ) {
             mAwardScore = 940;
-        } else if( straightFlushCheck( '3', '4', '5', '6', '7' ) ) {
+        } else if( straightFlushCheck('3', '4', '5', '6', '7') ) {
             mAwardScore = 930;
-        } else if( straightFlushCheck( '2', '3', '4', '5', '6' ) ) {
+        } else if( straightFlushCheck('2', '3', '4', '5', '6') ) {
             mAwardScore = 920;
         } else if( straightFlushCheck( '2', '3', '4', '5', 'A' ) ) {
             mAwardScore = 910;
+        }
+    }
 
-        } else if ( fourCheck( 'A' ) ) {
+    public void fourPoints() {
+        if ( fourCheck('A') ) {
             mAwardScore = 813;
-        } else if ( fourCheck( 'K' ) ) {
+        } else if ( fourCheck('K') ) {
             mAwardScore = 812;
-        } else if ( fourCheck( 'Q' ) ) {
+        } else if ( fourCheck('Q') ) {
             mAwardScore = 811;
-        } else if ( fourCheck( 'J' ) ) {
+        } else if ( fourCheck('J') ) {
             mAwardScore = 810;
-        } else if ( fourCheck( '1' ) ) {
+        } else if ( fourCheck('1') ) {
             mAwardScore = 809;
-        } else if ( fourCheck( '9' ) ) {
+        } else if ( fourCheck('9') ) {
             mAwardScore = 808;
-        } else if ( fourCheck( '8' ) ) {
+        } else if ( fourCheck('8') ) {
             mAwardScore = 807;
-        } else if ( fourCheck( '7' ) ) {
+        } else if ( fourCheck('7') ) {
             mAwardScore = 806;
-        } else if ( fourCheck( '6' ) ) {
+        } else if ( fourCheck('6') ) {
             mAwardScore = 805;
-        } else if ( fourCheck( '5' ) ) {
+        } else if ( fourCheck('5') ) {
             mAwardScore = 804;
-        } else if ( fourCheck( '4' ) ) {
+        } else if ( fourCheck('4') ) {
             mAwardScore = 803;
-        } else if ( fourCheck( '3' ) ) {
+        } else if ( fourCheck('3') ) {
             mAwardScore = 802;
         } else if ( fourCheck( '2' ) ) {
             mAwardScore = 801;
+        }
+    }
 
-        } else if ( fullHouseCheck( 'A', 'K' ) ) {
+    public void fullPointsAce() {
+        if ( fullHouseCheck('A', 'K') ) {
             mAwardScore = 799;
-        } else if ( fullHouseCheck( 'A', 'Q' ) ) {
+        } else if ( fullHouseCheck('A', 'Q') ) {
             mAwardScore = 798;
-        } else if ( fullHouseCheck( 'A', 'J' ) ) {
+        } else if ( fullHouseCheck('A', 'J') ) {
             mAwardScore = 797;
-        } else if ( fullHouseCheck( 'A', '1' ) ) {
+        } else if ( fullHouseCheck('A', '1') ) {
             mAwardScore = 796;
-        } else if ( fullHouseCheck( 'A', '9' ) ) {
+        } else if ( fullHouseCheck('A', '9') ) {
             mAwardScore = 795;
-        } else if ( fullHouseCheck( 'A', '8' ) ) {
+        } else if ( fullHouseCheck('A', '8') ) {
             mAwardScore = 794;
-        } else if ( fullHouseCheck( 'A', '7' ) ) {
+        } else if ( fullHouseCheck('A', '7') ) {
             mAwardScore = 793;
-        } else if ( fullHouseCheck( 'A', '6' ) ) {
+        } else if ( fullHouseCheck('A', '6') ) {
             mAwardScore = 792;
-        } else if ( fullHouseCheck( 'A', '5' ) ) {
+        } else if ( fullHouseCheck('A', '5') ) {
             mAwardScore = 791;
-        } else if ( fullHouseCheck( 'A', '4' ) ) {
+        } else if ( fullHouseCheck('A', '4') ) {
             mAwardScore = 790;
-        } else if ( fullHouseCheck( 'A', '3' ) ) {
+        } else if ( fullHouseCheck('A', '3') ) {
             mAwardScore = 789;
-        } else if ( fullHouseCheck( 'A', '2' ) ) {
+        } else if ( fullHouseCheck('A', '2') ) {
             mAwardScore = 788;
+        }
+    }
 
-        } else if ( fullHouseCheck( 'K', 'Q' ) ) {
+    public void fullPointsKing() {
+        if ( fullHouseCheck('K', 'Q') ) {
             mAwardScore = 787;
-        } else if ( fullHouseCheck( 'K', 'J' ) ) {
+        } else if ( fullHouseCheck('K', 'J') ) {
             mAwardScore = 786;
-        } else if ( fullHouseCheck( 'K', '1' ) ) {
+        } else if ( fullHouseCheck('K', '1') ) {
             mAwardScore = 785;
-        } else if ( fullHouseCheck( 'K', '9' ) ) {
+        } else if ( fullHouseCheck('K', '9') ) {
             mAwardScore = 784;
-        } else if ( fullHouseCheck( 'K', '8' ) ) {
+        } else if ( fullHouseCheck('K', '8') ) {
             mAwardScore = 783;
-        } else if ( fullHouseCheck( 'K', '7' ) ) {
+        } else if ( fullHouseCheck('K', '7') ) {
             mAwardScore = 782;
-        } else if ( fullHouseCheck( 'K', '6' ) ) {
+        } else if ( fullHouseCheck('K', '6') ) {
             mAwardScore = 781;
-        } else if ( fullHouseCheck( 'K', '5' ) ) {
+        } else if ( fullHouseCheck('K', '5') ) {
             mAwardScore = 780;
-        } else if ( fullHouseCheck( 'K', '4' ) ) {
+        } else if ( fullHouseCheck('K', '4') ) {
             mAwardScore = 779;
-        } else if ( fullHouseCheck( 'K', '3' ) ) {
+        } else if ( fullHouseCheck('K', '3') ) {
             mAwardScore = 778;
-        } else if ( fullHouseCheck( 'K', '2' ) ) {
+        } else if ( fullHouseCheck('K', '2') ) {
             mAwardScore = 777;
+        }
+    }
 
-
-
-        } else if ( fullHouseCheck( 'Q', 'J' ) ) {
+    public void fullPointsQueen() {
+        if ( fullHouseCheck('Q', 'J') ) {
             mAwardScore = 776;
-        } else if ( fullHouseCheck( 'Q', '1' ) ) {
+        } else if ( fullHouseCheck('Q', '1') ) {
             mAwardScore = 775;
-        } else if ( fullHouseCheck( 'Q', '9' ) ) {
+        } else if ( fullHouseCheck('Q', '9') ) {
             mAwardScore = 774;
-        } else if ( fullHouseCheck( 'Q', '8' ) ) {
+        } else if ( fullHouseCheck('Q', '8') ) {
             mAwardScore = 773;
-        } else if ( fullHouseCheck( 'Q', '7' ) ) {
+        } else if ( fullHouseCheck('Q', '7') ) {
             mAwardScore = 772;
-        } else if ( fullHouseCheck( 'Q', '6' ) ) {
+        } else if ( fullHouseCheck('Q', '6') ) {
             mAwardScore = 771;
-        } else if ( fullHouseCheck( 'Q', '5' ) ) {
+        } else if ( fullHouseCheck('Q', '5') ) {
             mAwardScore = 770;
-        } else if ( fullHouseCheck( 'Q', '4' ) ) {
+        } else if ( fullHouseCheck('Q', '4') ) {
             mAwardScore = 769;
-        } else if ( fullHouseCheck( 'Q', '3' ) ) {
+        } else if ( fullHouseCheck('Q', '3') ) {
             mAwardScore = 768;
-        } else if ( fullHouseCheck( 'Q', '2' ) ) {
+        } else if ( fullHouseCheck('Q', '2') ) {
             mAwardScore = 767;
+        }
+    }
 
-        } else if ( fullHouseCheck( 'J', '1' ) ) {
+    public void fullPointsJack(){
+        if ( fullHouseCheck('J', '1') ) {
             mAwardScore = 766;
-        } else if ( fullHouseCheck( 'J', '9' ) ) {
+        } else if ( fullHouseCheck('J', '9') ) {
             mAwardScore = 765;
-        } else if ( fullHouseCheck( 'J', '8' ) ) {
+        } else if ( fullHouseCheck('J', '8') ) {
             mAwardScore = 764;
-        } else if ( fullHouseCheck( 'J', '7' ) ) {
+        } else if ( fullHouseCheck('J', '7') ) {
             mAwardScore = 763;
-        } else if ( fullHouseCheck( 'J', '6' ) ) {
+        } else if ( fullHouseCheck('J', '6') ) {
             mAwardScore = 762;
-        } else if ( fullHouseCheck( 'J', '5' ) ) {
+        } else if ( fullHouseCheck('J', '5') ) {
             mAwardScore = 761;
-        } else if ( fullHouseCheck( 'J', '4' ) ) {
+        } else if ( fullHouseCheck('J', '4') ) {
             mAwardScore = 760;
-        } else if ( fullHouseCheck( 'J', '3' ) ) {
+        } else if ( fullHouseCheck('J', '3') ) {
             mAwardScore = 759;
-        } else if ( fullHouseCheck( 'J', '2' ) ) {
+        } else if ( fullHouseCheck('J', '2') ) {
             mAwardScore = 758;
+        }
+    }
 
-
-        } else if ( fullHouseCheck( '1', '9' ) ) {
+    public void fullPointsTen() {
+        if ( fullHouseCheck('1', '9') ) {
             mAwardScore = 757;
-        } else if ( fullHouseCheck( '1', '8' ) ) {
+        } else if ( fullHouseCheck('1', '8') ) {
             mAwardScore = 756;
-        } else if ( fullHouseCheck( '1', '7' ) ) {
+        } else if ( fullHouseCheck('1', '7') ) {
             mAwardScore = 755;
-        } else if ( fullHouseCheck( '1', '6' ) ) {
+        } else if ( fullHouseCheck('1', '6') ) {
             mAwardScore = 754;
-        } else if ( fullHouseCheck( '1', '5' ) ) {
+        } else if ( fullHouseCheck('1', '5') ) {
             mAwardScore = 753;
-        } else if ( fullHouseCheck( '1', '4' ) ) {
+        } else if ( fullHouseCheck('1', '4') ) {
             mAwardScore = 752;
-        } else if ( fullHouseCheck( '1', '3' ) ) {
+        } else if ( fullHouseCheck('1', '3') ) {
             mAwardScore = 751;
-        } else if ( fullHouseCheck( '1', '2' ) ) {
+        } else if ( fullHouseCheck('1', '2') ) {
             mAwardScore = 750;
+        }
+    }
 
-        } else if ( fullHouseCheck( '9', '8' ) ) {
+    public void fullPointsNine() {
+        if ( fullHouseCheck('9', '8') ) {
             mAwardScore = 748;
-        } else if ( fullHouseCheck( '9', '7' ) ) {
+        } else if ( fullHouseCheck('9', '7') ) {
             mAwardScore = 747;
-        } else if ( fullHouseCheck( '9', '6' ) ) {
+        } else if ( fullHouseCheck('9', '6') ) {
             mAwardScore = 746;
-        } else if ( fullHouseCheck( '9', '5' ) ) {
+        } else if ( fullHouseCheck('9', '5') ) {
             mAwardScore = 745;
-        } else if ( fullHouseCheck( '9', '4' ) ) {
+        } else if ( fullHouseCheck('9', '4') ) {
             mAwardScore = 744;
-        } else if ( fullHouseCheck( '9', '3' ) ) {
+        } else if ( fullHouseCheck('9', '3') ) {
             mAwardScore = 743;
-        } else if ( fullHouseCheck( '9', '2' ) ) {
+        } else if ( fullHouseCheck('9', '2') ) {
             mAwardScore = 742;
+        }
+    }
 
-        } else if ( fullHouseCheck( '8', '7' ) ) {
+    public void fullPointsEight() {
+        if ( fullHouseCheck('8', '7') ) {
             mAwardScore = 741;
-        } else if ( fullHouseCheck( '8', '6' ) ) {
+        } else if ( fullHouseCheck('8', '6') ) {
             mAwardScore = 739;
-        } else if ( fullHouseCheck( '8', '5' ) ) {
+        } else if ( fullHouseCheck('8', '5') ) {
             mAwardScore = 738;
-        } else if ( fullHouseCheck( '8', '4' ) ) {
+        } else if ( fullHouseCheck('8', '4') ) {
             mAwardScore = 737;
-        } else if ( fullHouseCheck( '8', '3' ) ) {
+        } else if ( fullHouseCheck('8', '3') ) {
             mAwardScore = 736;
-        } else if ( fullHouseCheck( '8', '2' ) ) {
+        } else if ( fullHouseCheck('8', '2') ) {
             mAwardScore = 735;
+        }
+    }
 
-        } else if ( fullHouseCheck( '7', '6' ) ) {
+    public void fullPointsSeven() {
+        if ( fullHouseCheck('7', '6') ) {
             mAwardScore = 734;
-        } else if ( fullHouseCheck( '7', '5' ) ) {
+        } else if ( fullHouseCheck('7', '5') ) {
             mAwardScore = 733;
-        } else if ( fullHouseCheck( '7', '4' ) ) {
+        } else if ( fullHouseCheck('7', '4') ) {
             mAwardScore = 732;
-        } else if ( fullHouseCheck( '7', '3' ) ) {
+        } else if ( fullHouseCheck('7', '3') ) {
             mAwardScore = 731;
-        } else if ( fullHouseCheck( '7', '2' ) ) {
+        } else if ( fullHouseCheck('7', '2') ) {
             mAwardScore = 730;
+        }
+    }
 
-        } else if ( fullHouseCheck( '6', '5' ) ) {
+    public void fullPointsSix(){
+        if ( fullHouseCheck('6', '5') ) {
             mAwardScore = 729;
-        } else if ( fullHouseCheck( '6', '4' ) ) {
+        } else if ( fullHouseCheck('6', '4') ) {
             mAwardScore = 728;
-        } else if ( fullHouseCheck( '6', '3' ) ) {
+        } else if ( fullHouseCheck('6', '3') ) {
             mAwardScore = 727;
-        } else if ( fullHouseCheck( '6', '2' ) ) {
+        } else if ( fullHouseCheck('6', '2') ) {
             mAwardScore = 726;
+        }
+    }
 
-        } else if ( fullHouseCheck( '5', '4' ) ) {
+    public void fullPointsFive(){
+        if ( fullHouseCheck('5', '4') ) {
             mAwardScore = 725;
-        } else if ( fullHouseCheck( '5', '3' ) ) {
+        } else if ( fullHouseCheck('5', '3') ) {
             mAwardScore = 724;
-        } else if ( fullHouseCheck( '5', '2' ) ) {
+        } else if ( fullHouseCheck('5', '2') ) {
             mAwardScore = 723;
+        }
+    }
 
-        } else if ( fullHouseCheck( '4', '3' ) ) {
+
+    public void fullPointsFour(){
+        if ( fullHouseCheck('4', '3') ) {
             mAwardScore = 722;
-        } else if ( fullHouseCheck( '4', '2' ) ) {
+        } else if ( fullHouseCheck('4', '2') ) {
             mAwardScore = 721;
+        }
+    }
 
-        } else if ( fullHouseCheck( '3', '2' ) ) {
+    public void fullPointsThree(){
+        if ( fullHouseCheck('3', '2') ) {
             mAwardScore = 720;
+        }
+    }
 
-        } else if ( flush() ) {
+    public void flushPoints() {
+        if ( flush() ) {
             mAwardScore = 600;
+        }
+    }
 
-        } else if ( straightCheck( '1', 'A', 'J', 'K', 'Q' ) ) {
+    public void straightPoints() {
+        if ( straightCheck('1', 'A', 'J', 'K', 'Q') ) {
             mAwardScore = 590;
-        } else if ( straightCheck( '1', '9', 'J', 'K', 'Q' ) ) {
+        } else if ( straightCheck('1', '9', 'J', 'K', 'Q') ) {
             mAwardScore = 580;
-        } else if ( straightCheck( '1', '8', '9', 'J', 'Q' ) ) {
+        } else if ( straightCheck('1', '8', '9', 'J', 'Q') ) {
             mAwardScore = 570;
-        } else if ( straightCheck( '1', '7', '8', '9', 'J' ) ) {
+        } else if ( straightCheck('1', '7', '8', '9', 'J') ) {
             mAwardScore = 560;
-        } else if ( straightCheck( '1', '6', '7', '8', '9' ) ) {
+        } else if ( straightCheck('1', '6', '7', '8', '9') ) {
             mAwardScore = 550;
-        } else if ( straightCheck( '5', '6', '7', '8', '9' ) ) {
+        } else if ( straightCheck('5', '6', '7', '8', '9') ) {
             mAwardScore = 540;
-        } else if ( straightCheck( '4', '5', '6', '7', '8' ) ) {
+        } else if ( straightCheck('4', '5', '6', '7', '8') ) {
             mAwardScore = 530;
-        } else if ( straightCheck( '3', '4', '5', '6', '7' ) ) {
+        } else if ( straightCheck('3', '4', '5', '6', '7') ) {
             mAwardScore = 520;
-        } else if ( straightCheck( '2', '3', '4', '5', '6' ) ) {
+        } else if ( straightCheck('2', '3', '4', '5', '6') ) {
             mAwardScore = 510;
         } else if ( straightCheck( '2', '3', '4', '5', 'A' ) ) {
             mAwardScore = 500;
+        }
+    }
 
-        } else if ( threeCheck( 'A' ) ) {
+    public void threePoints() {
+        if (threeCheck('A')) {
             mAwardScore = 512;
-        } else if ( threeCheck( 'K' ) ) {
+        } else if (threeCheck('K')) {
             mAwardScore = 511;
-        } else if ( threeCheck( 'Q' ) ) {
+        } else if (threeCheck('Q')) {
             mAwardScore = 510;
-        } else if ( threeCheck( 'J' ) ) {
+        } else if (threeCheck('J')) {
             mAwardScore = 509;
-        } else if ( threeCheck( '1' ) ) {
+        } else if (threeCheck('1')) {
             mAwardScore = 508;
-        } else if ( threeCheck( '9' ) ) {
+        } else if (threeCheck('9')) {
             mAwardScore = 507;
-        } else if ( threeCheck( '8' ) ) {
+        } else if (threeCheck('8')) {
             mAwardScore = 506;
-        } else if ( threeCheck( '7' ) ) {
+        } else if (threeCheck('7')) {
             mAwardScore = 505;
-        } else if ( threeCheck( '6' ) ) {
+        } else if (threeCheck('6')) {
             mAwardScore = 504;
-        } else if ( threeCheck( '5' ) ) {
+        } else if (threeCheck('5')) {
             mAwardScore = 503;
-        } else if ( threeCheck( '4' ) ) {
+        } else if (threeCheck('4')) {
             mAwardScore = 502;
-        } else if ( threeCheck( '3' ) ) {
+        } else if (threeCheck('3')) {
             mAwardScore = 501;
-        } else if ( threeCheck( '2' ) ) {
+        } else if (threeCheck('2')) {
             mAwardScore = 500;
+        }
+    }
 
-        } else if ( twoPairCheck( 'A') && twoPairCheck( 'K') ) {
+    public void twoPointsAce() {
+        if ( twoPairCheck( 'A') && twoPairCheck( 'K') ) {
             mAwardScore = 449;
         } else if ( twoPairCheck( 'A') && twoPairCheck( 'Q') ) {
             mAwardScore = 448;
@@ -635,8 +683,11 @@ public class Logic {
             mAwardScore = 439;
         } else if ( twoPairCheck( 'A') && twoPairCheck( '2') ) {
             mAwardScore = 438;
+        }
+    }
 
-        } else if ( twoPairCheck( 'K') && twoPairCheck( 'Q') ) {
+    public void twoPointsKing(){
+        if ( twoPairCheck( 'K') && twoPairCheck( 'Q') ) {
             mAwardScore = 437;
         } else if ( twoPairCheck( 'K') && twoPairCheck( 'J') ) {
             mAwardScore = 436;
@@ -658,8 +709,11 @@ public class Logic {
             mAwardScore = 428;
         } else if ( twoPairCheck( 'K') && twoPairCheck( '2') ) {
             mAwardScore = 427;
+        }
+    }
 
-        } else if ( twoPairCheck( 'Q') && twoPairCheck( 'J') ) {
+    public void twoPointsQueen() {
+        if ( twoPairCheck( 'Q') && twoPairCheck( 'J') ) {
             mAwardScore = 426;
         } else if ( twoPairCheck( 'Q') && twoPairCheck( '1') ) {
             mAwardScore = 425;
@@ -679,8 +733,12 @@ public class Logic {
             mAwardScore = 418;
         } else if ( twoPairCheck( 'Q') && twoPairCheck( '2') ) {
             mAwardScore = 417;
+        }
+    }
 
-        } else if ( twoPairCheck( 'J') && twoPairCheck( '1') ) {
+
+    public void twoPointsJack() {
+        if ( twoPairCheck( 'J') && twoPairCheck( '1') ) {
             mAwardScore = 416;
         } else if ( twoPairCheck( 'J') && twoPairCheck( '9') ) {
             mAwardScore = 415;
@@ -698,8 +756,11 @@ public class Logic {
             mAwardScore = 409;
         } else if ( twoPairCheck( 'J') && twoPairCheck( '2') ) {
             mAwardScore = 408;
+        }
+    }
 
-        } else if ( twoPairCheck( '1') && twoPairCheck( '9') ) {
+    public void twoPointsTen() {
+        if ( twoPairCheck( '1') && twoPairCheck( '9') ) {
             mAwardScore = 407;
         } else if ( twoPairCheck( '1') && twoPairCheck( '8') ) {
             mAwardScore = 406;
@@ -715,8 +776,11 @@ public class Logic {
             mAwardScore = 401;
         } else if ( twoPairCheck( '1') && twoPairCheck( '2') ) {
             mAwardScore = 400;
+        }
+    }
 
-        } else if ( twoPairCheck( '9') && twoPairCheck( '8') ) {
+    public void twoPointsNine() {
+        if ( twoPairCheck( '9') && twoPairCheck( '8') ) {
             mAwardScore = 399;
         } else if ( twoPairCheck( '9') && twoPairCheck( '7') ) {
             mAwardScore = 398;
@@ -730,8 +794,11 @@ public class Logic {
             mAwardScore = 394;
         } else if ( twoPairCheck( '9') && twoPairCheck( '2') ) {
             mAwardScore = 393;
+        }
+    }
 
-        } else if ( twoPairCheck( '8') && twoPairCheck( '7') ) {
+    public void twoPointsEight(){
+        if ( twoPairCheck( '8') && twoPairCheck( '7') ) {
             mAwardScore = 392;
         } else if ( twoPairCheck( '8') && twoPairCheck( '6') ) {
             mAwardScore = 391;
@@ -743,8 +810,11 @@ public class Logic {
             mAwardScore = 388;
         } else if ( twoPairCheck( '8') && twoPairCheck( '2') ) {
             mAwardScore = 387;
+        }
+    }
 
-        } else if ( twoPairCheck( '7') && twoPairCheck( '6') ) {
+    public void twoPointsSeven() {
+        if ( twoPairCheck( '7') && twoPairCheck( '6') ) {
             mAwardScore = 386;
         } else if ( twoPairCheck( '7') && twoPairCheck( '5') ) {
             mAwardScore = 385;
@@ -754,8 +824,11 @@ public class Logic {
             mAwardScore = 383;
         } else if ( twoPairCheck( '7') && twoPairCheck( '2') ) {
             mAwardScore = 382;
+        }
+    }
 
-        } else if ( twoPairCheck( '6') && twoPairCheck( '5') ) {
+    public void twoPointsSix() {
+        if ( twoPairCheck( '6') && twoPairCheck( '5') ) {
             mAwardScore = 381;
         } else if ( twoPairCheck( '6') && twoPairCheck( '4') ) {
             mAwardScore = 380;
@@ -763,33 +836,45 @@ public class Logic {
             mAwardScore = 379;
         } else if ( twoPairCheck( '6') && twoPairCheck( '2') ) {
             mAwardScore = 378;
+        }
+    }
 
-        } else if ( twoPairCheck( '5') && twoPairCheck( '4') ) {
+    public void twoPointsFive() {
+        if ( twoPairCheck( '5') && twoPairCheck( '4') ) {
             mAwardScore = 377;
         } else if ( twoPairCheck( '5') && twoPairCheck( '3') ) {
             mAwardScore = 376;
         } else if ( twoPairCheck( '5') && twoPairCheck( '2') ) {
             mAwardScore = 375;
+        }
+    }
 
-        } else if ( twoPairCheck( '4') && twoPairCheck( '3') ) {
+    public void twoPointsFour() {
+        if ( twoPairCheck( '4') && twoPairCheck( '3') ) {
             mAwardScore = 374;
         } else if ( twoPairCheck( '4') && twoPairCheck( '2') ) {
-            mAwardScore = 373;
+            mAwardScore = 373;}
+    }
 
-        } else if ( twoPairCheck( '3') && twoPairCheck( '2') ) {
+    public void twoPointsThree() {
+        if ( twoPairCheck( '3') && twoPairCheck( '2') ) {
             mAwardScore = 372;
+        }
 
-        } else if ( pairCheck( 'A' ) ) {
+    }
+
+    public void pairPoints() {
+        if ( pairCheck( 'A' ) ) {
             mAwardScore = 212;
         } else if ( pairCheck( 'K' ) ) {
             mAwardScore = 211;
         } else if ( pairCheck( 'Q' ) ) {
             mAwardScore = 210;
-        } else if ( pairCheck( 'J' ) ) {
+        } else if (pairCheck( 'J' ) ) {
             mAwardScore = 209;
         } else if ( pairCheck( '1' ) ) {
             mAwardScore = 208;
-        } else if ( pairCheck( '9' ) ) {
+        } else if ( pairCheck('9' ) ) {
             mAwardScore = 207;
         } else if ( pairCheck( '8' ) ) {
             mAwardScore = 206;
@@ -797,7 +882,7 @@ public class Logic {
             mAwardScore = 205;
         } else if ( pairCheck( '6' ) ) {
             mAwardScore = 204;
-        } else if ( pairCheck( '5' ) ) {
+        } else if (pairCheck( '5' ) ) {
             mAwardScore = 203;
         } else if ( pairCheck( '4' ) ) {
             mAwardScore = 202;
@@ -805,15 +890,43 @@ public class Logic {
             mAwardScore = 201;
         } else if ( pairCheck( '2' ) ) {
             mAwardScore = 200;
-
-        } else {
-            mAwardScore = 0;
-            countPoints();
         }
     }
 
+    public void setScore() {
 
-
+        straightFlushPoints();
+        fourPoints();
+        fullPointsAce();
+        fullPointsKing();
+        fullPointsQueen();
+        fullPointsJack();
+        fullPointsTen();
+        fullPointsNine();
+        fullPointsEight();
+        fullPointsSeven();
+        fullPointsSix();
+        fullPointsFive();
+        fullPointsFour();
+        fullPointsThree();
+        flushPoints();
+        straightPoints();
+        threePoints();
+        twoPointsAce();
+        twoPointsKing();
+        twoPointsQueen();
+        twoPointsJack();
+        twoPointsTen();
+        twoPointsNine();
+        twoPointsEight();
+        twoPointsSeven();
+        twoPointsSix();
+        twoPointsFive();
+        twoPointsFour();
+        twoPointsThree();
+        pairPoints();
+        countPoints();
+    }
 }
 
 

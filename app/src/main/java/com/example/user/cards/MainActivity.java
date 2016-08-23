@@ -40,11 +40,6 @@ public class MainActivity extends AppCompatActivity{
 
     TextView mPlayerChips;
 
-//    Switch mPOneTog;
-//    Switch mPTwoTog;
-//    Switch mPThreeTog;
-//    Switch mPFourTog;
-
     boolean mPOneReady;
     boolean mPTwoReady;
     boolean mPThreeReady;
@@ -59,6 +54,8 @@ public class MainActivity extends AppCompatActivity{
     TestCards mCards;
 
     private static Integer mBetValue;
+    private static Integer mCounter;
+    private static Integer mCheckCounter;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
@@ -80,62 +77,21 @@ public class MainActivity extends AppCompatActivity{
         mGame = new Game(4);
 
         mDefaultPlayers = new ArrayList<Player>();
-//        mPOneTog = ( Switch )findViewById( R.id.p_one_toggle );
-//        mPTwoTog = ( Switch )findViewById( R.id.p_two_toggle );
-//        mPThreeTog = ( Switch )findViewById( R.id.p_three_toggle );
-//        mPFourTog = ( Switch )findViewById( R.id.p_four_toggle );
+        mJeff = new Player("Jeff", 1);
+        mJeff.in();
 
-//        mPOneTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    mPOneReady = true;
-                    mJeff = new Player("Jeff", 1);
-                    mJeff.in();
+        mSteve = new Player( "Steve", 2 );
+        mSteve.in();
 
-//                    mGame.addPlayerToGame(mJeff);
-//                }
-//            }
-//        });
-//
-//        mPTwoTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if( isChecked ) {
-//                    mPTwoReady = true;
-                    mSteve = new Player( "Steve", 2 );
-                    mSteve.in();
-//                    mGame.addPlayerToGame( mSteve );
-//                }
-//            }
-//        });
-//
-//        mPThreeTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if( isChecked ) {
-//                    mPThreeReady = true;
-                    mDave = new Player( "Dave", 3 );
-                    mDave.in();
-//                    mGame.addPlayerToGame( mDave );
-//                }
-//            }
-//        });
-//
-//        mPFourTog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if( isChecked ) {
-//                    mPFourReady = true;
-                    mBob = new Player( "Bob", 4 );
-                    mBob.in();
-//                    mGame.addPlayerToGame( mBob );
-//                }
-//            }
-//        });
+        mDave = new Player( "Dave", 3 );
+        mDave.in();
+
+        mBob = new Player( "Bob", 4 );
+        mBob.in();
+
 
         mDefaultPlayers.add( mJeff );
-        mDefaultPlayers.add( mSteve );
+        mDefaultPlayers.add(mSteve);
         mDefaultPlayers.add( mDave);
         mDefaultPlayers.add(mBob );
 
@@ -154,47 +110,33 @@ public class MainActivity extends AppCompatActivity{
         mStart = ( Button )findViewById( R.id.start );
 
         mBetValue = 0;
+        mCounter = 0;
+        mCheckCounter = 0;
 
         hideEverthing();
+
+        mCards = new TestCards();
+//        mCards.shuffle();
 
 
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                mCards = new TestCards();
 
-//                if (mPOneReady) {
-                    mGame.accessPlayer(0).takeCard(mCards.deal());
-                    mGame.accessPlayer(0).takeCard(mCards.deal());
-//                }
 
-//                if (mPTwoReady) {
-                    mGame.accessPlayer(1).takeCard(mCards.deal());
-                    mGame.accessPlayer(1).takeCard(mCards.deal());
-//                }
+                mGame.accessPlayer(0).takeCard(mCards.deal());
+                mGame.accessPlayer(0).takeCard(mCards.deal());
 
-//                if (mPThreeReady) {
-                    mGame.accessPlayer(2).takeCard(mCards.deal());
-                    mGame.accessPlayer(2).takeCard(mCards.deal());
-//                }
+                mGame.accessPlayer(1).takeCard(mCards.deal());
+                mGame.accessPlayer(1).takeCard(mCards.deal());
 
-//                if (mPFourReady) {
-                    mGame.accessPlayer(3).takeCard(mCards.deal());
-                    mGame.accessPlayer(3).takeCard(mCards.deal());
-//                }
+                mGame.accessPlayer(2).takeCard(mCards.deal());
+                mGame.accessPlayer(2).takeCard(mCards.deal());
 
-                mGame.takeCard(mCards.deal());
-                mGame.takeCard(mCards.deal());
-                mGame.takeCard(mCards.deal());
+                mGame.accessPlayer(3).takeCard(mCards.deal());
+                mGame.accessPlayer(3).takeCard(mCards.deal());
 
-                String mGameCardOne = mGame.seeHand().get(0).toString();
-                String mGameCardTwo = mGame.seeHand().get(1).toString();
-                String mGameCardThree = mGame.seeHand().get(2).toString();
-
-                String mGameCards = mGameCardOne + " " + mGameCardTwo + " " + mGameCardThree;
-
-                mCommunityCards.setText(mGameCards);
 
                 hideStart();
 
@@ -235,6 +177,7 @@ public class MainActivity extends AppCompatActivity{
                 mGame.turnEnd();
 
                 setText();
+                mCounter++;
                 checkCheck( mGame.getCurrentPlayer() );
             }
         });
@@ -245,6 +188,7 @@ public class MainActivity extends AppCompatActivity{
 
                 bet();
                 setText();
+                mCounter++;
                 checkCheck( mGame.getCurrentPlayer() );
             }
         });
@@ -252,8 +196,10 @@ public class MainActivity extends AppCompatActivity{
         mCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mCounter = 0;
+                mCheckCounter ++;
                 resetBets();
+                stageCheck();
                 mCommunityCards.setVisibility(View.VISIBLE);
                 mCheck.setVisibility(View.INVISIBLE);
             }
@@ -278,13 +224,12 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
 
                 logicCheck();
-                mGame.addPlayer();
 
                 mGame.pickWinner();
-                mGame.handWon(mGame.seeWinner());
+                Player winner = mGame.seeWinner();
+                Log.d("tag", winner.name());
+                mGame.handWon(winner);
                 mWinnerName.setText(mGame.seeWinner().name());
-
-//                Log.d("Array", mGame.seePlayersArray().toString() );
 
 //                nextHand();
             }
@@ -326,7 +271,8 @@ public class MainActivity extends AppCompatActivity{
 
     public void checkCheck( Player player ) {
 
-        if( mGame.showPot() > 0 && mGame.seeLastBet() <= mGame.getCurrentPlayer().seeLastBet() ) {
+        if( mGame.showPot() > 0 && mGame.seeLastBet() <= mGame.getCurrentPlayer().seeLastBet()
+                && mCounter == mGame.getArraySize() -1 ) {
             mCheck.setVisibility(View.VISIBLE);
         } else {
             mCheck.setVisibility(View.INVISIBLE);
@@ -346,10 +292,16 @@ public class MainActivity extends AppCompatActivity{
     public void logicCheck() {
 
         for( int i = 0; i < mGame.getArraySize(); i ++ ) {
-            Logic logic = new Logic( mGame.seeHand(), mGame.accessPlayer(i).seeHand() );
+            Log.d( "Player Hand:", mGame.accessPlayer(i).seeHand().toString() );
+            Log.d("Game Hand:", mGame.seeHand().toString());
+
+
+            Logic logic = new Logic( mGame.accessPlayer(i).seeHand(), mGame.seeHand() );
             logic.combineCards();
             logic.setScore();
             mGame.accessPlayer(i).awardScore(logic.seeScore());
+            Log.d("Player Hand:", mGame.accessPlayer(i).seeScore().toString());
+
             mGame.accessPlayer(i).awardKicker(logic.seeKicker());
         }
     }
@@ -431,25 +383,67 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void hideStart() {
-//        mPOneTog.setVisibility(View.INVISIBLE);
-//        mPTwoTog.setVisibility(View.INVISIBLE);
-//        mPThreeTog.setVisibility(View.INVISIBLE);
-//        mPFourTog.setVisibility(View.INVISIBLE);
         mStart.setVisibility(View.INVISIBLE);
     }
 
     public void showStart() {
         hideEverthing();
-//        mPOneTog.setVisibility(View.VISIBLE);
-//        mPTwoTog.setVisibility(View.VISIBLE);
-//        mPThreeTog.setVisibility(View.VISIBLE);
-//        mPFourTog.setVisibility(View.VISIBLE);
         mStart.setVisibility(View.VISIBLE);
     }
 
     public void cloner() {
         for( int i = 0; i < mDefaultPlayers.size(); i ++ ) {
             mGame.addPlayerToGame( mDefaultPlayers.get(i).clone() );
+        }
+    }
+
+    public void flop() {
+        mGame.takeCard(mCards.deal());
+        mGame.takeCard(mCards.deal());
+        mGame.takeCard(mCards.deal());
+        String mGameCardOne = mGame.seeHand().get(0).toString();
+        String mGameCardTwo = mGame.seeHand().get(1).toString();
+        String mGameCardThree = mGame.seeHand().get(2).toString();
+
+        String mGameCards = mGameCardOne + " " + mGameCardTwo + " " + mGameCardThree;
+
+        mCommunityCards.setText(mGameCards);
+    }
+
+    public void turn() {
+        mGame.takeCard(mCards.deal());
+        mGame.takeCard(mCards.deal());
+        String mGameCardOne = mGame.seeHand().get(0).toString();
+        String mGameCardTwo = mGame.seeHand().get(1).toString();
+        String mGameCardThree = mGame.seeHand().get(2).toString();
+        String mGameCardFour = mGame.seeHand().get(3).toString();
+
+        String mGameCards = mGameCardOne + " " + mGameCardTwo + " " + mGameCardThree + " " + mGameCardFour;
+
+        mCommunityCards.setText(mGameCards);
+    }
+
+    public void river() {
+        mGame.takeCard(mCards.deal());
+        String mGameCardOne = mGame.seeHand().get(0).toString();
+        String mGameCardTwo = mGame.seeHand().get(1).toString();
+        String mGameCardThree = mGame.seeHand().get(2).toString();
+        String mGameCardFour = mGame.seeHand().get(3).toString();
+        String mGameCardFive = mGame.seeHand().get(4).toString();
+
+
+        String mGameCards = mGameCardOne + " " + mGameCardTwo + " " + mGameCardThree + " " + mGameCardFour + " " + mGameCardFive;
+
+        mCommunityCards.setText(mGameCards);
+    }
+
+    public void stageCheck() {
+        if (mCheckCounter == 1) {
+            flop();
+//        } else if ( mCheckCounter ==  2 ) {
+//            turn();
+//        } else if( mCheckCounter == 3 ) {
+//            river();
         }
     }
 
