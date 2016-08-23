@@ -89,6 +89,18 @@
         android:layout_centerHorizontal="true"/>
 
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/win"
+        android:textSize="30dp"
+        android:background="@drawable/buttonshape"
+        android:layout_marginLeft="420dp"
+        android:text="check cards"
+        android:layout_marginTop="500dp"
+        />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,68 +126,83 @@
         android:layout_height="wrap_content"
         android:id="@+id/player_cards"
         android:textSize="70dp"
+
         android:layout_centerHorizontal="true"
         android:layout_marginTop="350dp"/>
 
      <!--Player card checkboxes-->
 
     <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/player_card_one"
         android:layout_marginLeft="25dp"
+        android:padding="0dp"
+
         android:layout_marginTop="350dp"
         android:onClick="onPlayerSelect"/>
 
     <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/player_card_two"
         android:layout_marginLeft="105dp"
+        android:padding="0dp"
+
         android:layout_marginTop="350dp"
         android:onClick="onPlayerSelect"/>
 
     <!--Community card checkboxes-->
 
     <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/community_card_one"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="350dp"
-        android:onClick="onPlayerSelect"/>
+        android:padding="0dp"
+
+        android:layout_marginTop="500dp"
+        android:onClick="onCommunitySelect"/>
 
     <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/community_card_two"
         android:layout_marginLeft="105dp"
-        android:layout_marginTop="350dp"
-        android:onClick="onPlayerSelect"/>
+        android:padding="0dp"
+
+        android:layout_marginTop="500dp"
+        android:onClick="onCommunitySelect"/>
 
     <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/community_card_three"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="350dp"
-        android:onClick="onPlayerSelect"/>
+        android:layout_marginLeft="185dp"
+        android:padding="0dp"
+
+        android:layout_marginTop="500dp"
+        android:onClick="onCommunitySelect"/>
 
     <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/community_card_four"
-        android:layout_marginLeft="105dp"
-        android:layout_marginTop="350dp"
-        android:onClick="onPlayerSelect"/>
+        android:layout_marginLeft="265dp"
+        android:padding="0dp"
+
+        android:layout_marginTop="500dp"
+        android:onClick="onCommunitySelect"/>
 
     <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/community_card_five"
-        android:layout_marginLeft="105dp"
-        android:layout_marginTop="350dp"
-        android:onClick="onPlayerSelect"/>
+        android:layout_marginLeft="345dp"
+        android:padding="0dp"
+
+        android:layout_marginTop="500dp"
+        android:onClick="onCommunitySelect"/>
 
 
 

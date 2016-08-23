@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity{
     Button mCheck;
     Button mFold;
     Button mWinner;
+
+    Button mWin;
     TextView mWinnerName;
 
 
@@ -73,12 +75,13 @@ public class MainActivity extends AppCompatActivity{
         mPlayerCardOne = ( CheckBox )findViewById( R.id.player_card_one );
         mPlayerCardTwo = ( CheckBox )findViewById( R.id.player_card_two );
 
-//        mCommunityCardOne = ( CheckBox )findViewById( R.id.community_card_one );
-//        mCommunityCardTwo = ( CheckBox )findViewById( R.id.community_card_two );
-//        mCommunityCardThree = ( CheckBox )findViewById( R.id.community_card_three );
-//        mCommunityCardFour = ( CheckBox )findViewById( R.id.community_card_four );
-//        mCommunityCardFive = ( CheckBox )findViewById( R.id.community_card_five );
+        mCommunityCardOne = ( CheckBox )findViewById( R.id.community_card_one );
+        mCommunityCardTwo = ( CheckBox )findViewById( R.id.community_card_two );
+        mCommunityCardThree = ( CheckBox )findViewById( R.id.community_card_three );
+        mCommunityCardFour = ( CheckBox )findViewById( R.id.community_card_four );
+        mCommunityCardFive = ( CheckBox )findViewById( R.id.community_card_five );
 
+        mWin = ( Button )findViewById( R.id.win );
 
         mPlayerName = ( TextView )findViewById( R.id.player_name);
 
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity{
                 mGame.firstTurn();
                 Integer pot = mGame.showPot();
                 String potText = "Pot: " + " " + pot.toString();
-                mPotValue.setText( potText );
+                mPotValue.setText(potText);
 
                 setText();
             }
@@ -184,7 +187,7 @@ public class MainActivity extends AppCompatActivity{
                 bet();
                 setText();
                 mCounter++;
-                checkCheck( mGame.getCurrentPlayer() );
+                checkCheck(mGame.getCurrentPlayer());
             }
         });
 
@@ -213,7 +216,7 @@ public class MainActivity extends AppCompatActivity{
                     nextHand();
                 }
                 mCounter ++;
-                checkCheck( mGame.getCurrentPlayer() );
+                checkCheck(mGame.getCurrentPlayer());
                 setText();
             }
         });
@@ -223,14 +226,20 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
 
 //                logicCheck();
-                cardPickLogicCheck();
 
-//                mGame.pickWinner();
-//                Player winner = mGame.seeWinner();
-//                mGame.handWon(winner);
-//                mWinnerName.setText(mGame.seeWinner().name());
-//
-//                nextHand();
+                mGame.pickWinner();
+                Player winner = mGame.seeWinner();
+                mGame.handWon(winner);
+                mWinnerName.setText(mGame.seeWinner().name());
+
+                nextHand();
+            }
+        });
+
+        mWin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardPickLogicCheck();
             }
         });
     }
@@ -303,6 +312,59 @@ public class MainActivity extends AppCompatActivity{
                 }
                 break;
         }
+    }
+
+    public void onCommunitySelect( View view ) {
+        boolean checked = ((CheckBox) view).isChecked();
+
+        switch( view.getId() ) {
+            case R.id.community_card_one:
+                if( checked && seeFlop() ) {
+                    mCommunitySelectedCards.add( mGame.seeHand().get(0).toString() );
+                }
+                break;
+            case R.id.community_card_two:
+                if( checked && seeFlop() ) {
+                    mCommunitySelectedCards.add(mGame.seeHand().get(1).toString());
+                }
+                break;
+            case R.id.community_card_three:
+                if( checked && seeFlop() ) {
+                    mCommunitySelectedCards.add( mGame.seeHand().get(2).toString() );
+                }
+                break;
+            case R.id.community_card_four:
+                if( checked && seeTurn() ) {
+                    mCommunitySelectedCards.add( mGame.seeHand().get(3).toString() );
+                }
+                break;
+            case R.id.community_card_five:
+                if( checked && seeRiver() ) {
+                    mCommunitySelectedCards.add( mGame.seeHand().get(4).toString() );
+                }
+                break;
+        }
+    }
+
+    public boolean seeFlop() {
+        if( mGame.seeHand().size() == 3 ) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean seeTurn() {
+        if( mGame.seeHand().size() == 4 ) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean seeRiver() {
+        if( mGame.seeHand().size() == 5 ) {
+            return true;
+        }
+        return false;
     }
 
     public void setText() {
