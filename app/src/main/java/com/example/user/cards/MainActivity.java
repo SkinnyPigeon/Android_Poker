@@ -440,6 +440,13 @@ public class MainActivity extends AppCompatActivity{
         String name = mGame.getCurrentPlayer().name();
         mPlayerName.setText(name);
 
+        Integer lastBet = mGame.seeLastBet() - mGame.getCurrentPlayer().seeLastBet();
+        if( lastBet < 0 ) {
+            lastBet = 0;
+        }
+        String lastBetText = "To Call: " + lastBet.toString();
+        mToCall.setText( lastBetText );
+
         String cardOne = mGame.getCurrentPlayer().seeHand().get(0).toString();
         String cardTwo = mGame.getCurrentPlayer().seeHand().get(1).toString();
         mPlayerCOne.setText( cardOne );
@@ -502,6 +509,7 @@ public class MainActivity extends AppCompatActivity{
         mFold.setVisibility(View.INVISIBLE);
         mTurn.setVisibility(View.INVISIBLE);
         mRiver.setVisibility(View.INVISIBLE);
+        mToCall.setVisibility(View.INVISIBLE);
 
         mPlayerName.setVisibility(View.INVISIBLE);
         mPlayerBet.setVisibility(View.INVISIBLE);
@@ -525,6 +533,7 @@ public class MainActivity extends AppCompatActivity{
         mTurn.setVisibility(View.VISIBLE);
         mRiver.setVisibility(View.VISIBLE);
         mShowHand.setVisibility(View.VISIBLE);
+        mToCall.setVisibility(View.VISIBLE);
 
 
         mPlayerName.setVisibility(View.VISIBLE);
