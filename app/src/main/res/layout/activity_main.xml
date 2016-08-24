@@ -28,25 +28,7 @@
         />
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="See Winner"
-        android:id="@+id/winner"
-        android:layout_marginTop="580dp"
-        android:layout_marginLeft="250dp"
-        android:textSize="30dp"
-        android:background="@drawable/buttonshape"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fold"
-        android:id="@+id/fold"
-        android:layout_marginTop="580dp"
-        android:layout_marginLeft="200dp"
-        android:textSize="30dp"
-        android:background="@drawable/buttonshape" />
 
 
 
@@ -106,10 +88,21 @@
         android:id="@+id/win"
         android:textSize="30dp"
         android:background="@drawable/buttonshape"
-        android:layout_marginLeft="420dp"
-        android:text="check cards"
-        android:layout_marginTop="550dp"
+        android:layout_marginLeft="260dp"
+        android:text="Show Hand"
+        android:layout_marginTop="580dp"
         />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fold"
+        android:id="@+id/fold"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="160dp"
+        android:textSize="30dp"
+        android:background="@drawable/buttonshape" />
 
 
     <TextView

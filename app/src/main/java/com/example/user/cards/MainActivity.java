@@ -48,11 +48,10 @@ public class MainActivity extends AppCompatActivity{
     Button mStart;
     Button mCheck;
     Button mFold;
-    Button mWinner;
 
     TextView mPlayerReady;
 
-    Button mWin;
+    Button mShowHand;
     TextView mWinnerName;
 
 
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity{
         mCommunityCardFour = ( CheckBox )findViewById( R.id.community_card_four );
         mCommunityCardFive = ( CheckBox )findViewById( R.id.community_card_five );
 
-        mWin = ( Button )findViewById( R.id.win );
+        mShowHand = ( Button )findViewById( R.id.win );
 
         mPlayerName = ( TextView )findViewById( R.id.player_name);
 
@@ -131,7 +130,6 @@ public class MainActivity extends AppCompatActivity{
         mCall = ( Button )findViewById( R.id.call );
         mCheck = ( Button )findViewById( R.id.check );
         mFold = ( Button )findViewById( R.id.fold );
-        mWinner = ( Button )findViewById( R.id.winner );
         mWinnerName = ( TextView )findViewById( R.id.winner_name );
 
         mBet = ( Button )findViewById( R.id.bet );
@@ -254,20 +252,8 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        mWinner.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                winner();
-                hideEverthing();
-                showStart();
-                nextHand();
-                unBold();
-                unClick();
-                unDisable();
-            }
-        });
 
-        mWin.setOnClickListener(new View.OnClickListener() {
+        mShowHand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -456,10 +442,8 @@ public class MainActivity extends AppCompatActivity{
 
         String cardOne = mGame.getCurrentPlayer().seeHand().get(0).toString();
         String cardTwo = mGame.getCurrentPlayer().seeHand().get(1).toString();
-//        String cards = cardOne + " " + cardTwo;
         mPlayerCOne.setText( cardOne );
         mPlayerCTwo.setText( cardTwo );
-//        mPlayerCards.setText( cards );
 
         Integer potInt = mGame.showPot();
         String pot = "Pot: " + potInt.toString();
@@ -521,7 +505,6 @@ public class MainActivity extends AppCompatActivity{
         mFlopThree.setVisibility(View.INVISIBLE);
         mCheck.setVisibility(View.INVISIBLE);
         mFold.setVisibility(View.INVISIBLE);
-        mWinner.setVisibility(View.INVISIBLE);
         mTurn.setVisibility(View.INVISIBLE);
         mRiver.setVisibility(View.INVISIBLE);
 
@@ -530,6 +513,7 @@ public class MainActivity extends AppCompatActivity{
         mPlayerCOne.setVisibility(View.INVISIBLE);
         mPlayerCTwo.setVisibility(View.INVISIBLE);
         mPlayerChips.setVisibility(View.INVISIBLE);
+        mShowHand.setVisibility(View.INVISIBLE);
 
         mPlayerReady.setVisibility(View.INVISIBLE);
     }
@@ -540,12 +524,12 @@ public class MainActivity extends AppCompatActivity{
         mBet.setVisibility(View.VISIBLE);
         mPotValue.setVisibility(View.VISIBLE);
         mFold.setVisibility((View.VISIBLE));
-        mWinner.setVisibility(View.VISIBLE);
         mFlopOne.setVisibility(View.VISIBLE);
         mFlopTwo.setVisibility(View.VISIBLE);
         mFlopThree.setVisibility(View.VISIBLE);
         mTurn.setVisibility(View.VISIBLE);
         mRiver.setVisibility(View.VISIBLE);
+        mShowHand.setVisibility(View.VISIBLE);
 
 
         mPlayerName.setVisibility(View.VISIBLE);
