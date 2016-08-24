@@ -1,5 +1,6 @@
 package com.example.user.cards;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity{
     Button mCheck;
     Button mFold;
     Button mWinner;
+
+    TextView mPlayerReady;
 
     Button mWin;
     TextView mWinnerName;
@@ -128,6 +131,7 @@ public class MainActivity extends AppCompatActivity{
         mPotValue = ( TextView )findViewById( R.id.pot );
 
         mStart = ( Button )findViewById( R.id.start );
+        mPlayerReady = ( TextView )findViewById( R.id.player_ready );
 
         mPlayerSelectedCards = new ArrayList<String>();
         mCommunitySelectedCards = new ArrayList<String>();
@@ -136,24 +140,26 @@ public class MainActivity extends AppCompatActivity{
         mBetValue = 0;
         mCounter = 2;
         mCheckCounter = 0;
+        startHand();
+
 
         hideEverthing();
+
+        mGame.firstTurn();
+        Integer pot = mGame.showPot();
+        String potText = "Pot: " + " " + pot.toString();
+        mPotValue.setText(potText);
+
+        showStart();
+
 
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                startHand();
-
                 hideStart();
 
                 showEverything();
-
-                mGame.firstTurn();
-                Integer pot = mGame.showPot();
-                String potText = "Pot: " + " " + pot.toString();
-                mPotValue.setText(potText);
 
                 setText();
             }
@@ -181,8 +187,10 @@ public class MainActivity extends AppCompatActivity{
 
                 setText();
                 mCounter++;
-                checkCheck( mGame.getCurrentPlayer() );
+                checkCheck(mGame.getCurrentPlayer());
                 Log.d("Call check: ", mGame.getCurrentPlayer().name());
+                hideEverthing();
+                showStart();
 
             }
         });
@@ -195,6 +203,8 @@ public class MainActivity extends AppCompatActivity{
                 setText();
                 mCounter++;
                 checkCheck(mGame.getCurrentPlayer());
+                hideEverthing();
+                showStart();
             }
         });
 
@@ -209,6 +219,8 @@ public class MainActivity extends AppCompatActivity{
                 mCommunityCards.setVisibility(View.VISIBLE);
                 mCheck.setVisibility(View.INVISIBLE);
                 setText();
+                hideEverthing();
+                showStart();
             }
         });
 
@@ -225,6 +237,8 @@ public class MainActivity extends AppCompatActivity{
                 mCounter ++;
                 checkCheck(mGame.getCurrentPlayer());
                 setText();
+                hideEverthing();
+                showStart();
             }
         });
 
@@ -239,6 +253,8 @@ public class MainActivity extends AppCompatActivity{
                 mGame.handWon(winner);
                 mWinnerName.setText(mGame.seeWinner().name());
 
+                hideEverthing();
+                showStart();
                 nextHand();
             }
         });
@@ -269,8 +285,10 @@ public class MainActivity extends AppCompatActivity{
                     mCommunityCardFive.toggle();
                 }
 
-//                mGame.turnEnd();
-//                setText();
+                mGame.turnEnd();
+                setText();
+                hideEverthing();
+                showStart();
 
             }
 
@@ -290,6 +308,8 @@ public class MainActivity extends AppCompatActivity{
 
         if( mGame.showPot() > 0 && mGame.seeLastBet() <= mGame.getCurrentPlayer().seeLastBet()
                 && mCounter >= mGame.getArraySize() ) {
+            hideEverthing();
+            showStart();
             mCheck.setVisibility(View.VISIBLE);
         } else {
             mCheck.setVisibility(View.INVISIBLE);
@@ -344,6 +364,7 @@ public class MainActivity extends AppCompatActivity{
             case R.id.player_card_one:
                 if( checked ) {
                     mPlayerSelectedCards.add(mGame.getCurrentPlayer().seeHand().get(0).toString());
+                    mPlayerCards.setTypeface(null, Typeface.BOLD);
                 }
 
                 break;
@@ -467,11 +488,15 @@ public class MainActivity extends AppCompatActivity{
         mCheck.setVisibility(View.INVISIBLE);
         mFold.setVisibility(View.INVISIBLE);
         mWinner.setVisibility(View.INVISIBLE);
+        mTurn.setVisibility(View.INVISIBLE);
+        mRiver.setVisibility(View.INVISIBLE);
 
         mPlayerName.setVisibility(View.INVISIBLE);
         mPlayerBet.setVisibility(View.INVISIBLE);
         mPlayerCards.setVisibility(View.INVISIBLE);
         mPlayerChips.setVisibility(View.INVISIBLE);
+
+        mPlayerReady.setVisibility(View.INVISIBLE);
     }
 
     public void showEverything() {
@@ -481,19 +506,28 @@ public class MainActivity extends AppCompatActivity{
         mPotValue.setVisibility(View.VISIBLE);
         mFold.setVisibility((View.VISIBLE));
         mWinner.setVisibility(View.VISIBLE);
+        mCommunityCards.setVisibility(View.VISIBLE);
+        mTurn.setVisibility(View.VISIBLE);
+        mRiver.setVisibility(View.VISIBLE);
+
 
         mPlayerName.setVisibility(View.VISIBLE);
         mPlayerBet.setVisibility(View.VISIBLE);
         mPlayerCards.setVisibility(View.VISIBLE);
         mPlayerChips.setVisibility(View.VISIBLE);
+
+        checkCheck(mGame.getCurrentPlayer());
     }
 
     public void hideStart() {
+        mPlayerReady.setVisibility(View.INVISIBLE);
         mStart.setVisibility(View.INVISIBLE);
     }
 
     public void showStart() {
         hideEverthing();
+        nextPlayerText();
+        mPlayerReady.setVisibility(View.VISIBLE);
         mStart.setVisibility(View.VISIBLE);
     }
 
@@ -568,6 +602,13 @@ public class MainActivity extends AppCompatActivity{
                 mCommunitySelectedCards.remove(0);
             }
         }
+    }
+
+    public void nextPlayerText() {
+        String nextTurn = mGame.getCurrentPlayer().name();
+        String player = nextTurn + " Ready? ";
+
+        mPlayerReady.setText( player );
     }
 
 }

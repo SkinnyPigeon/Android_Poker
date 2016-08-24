@@ -11,10 +11,21 @@
         android:layout_height="wrap_content"
         android:text="@string/start"
         android:id="@+id/start"
-        android:layout_marginLeft="5dp"
         android:layout_marginTop="195dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:textSize="30dp"
         android:background="@drawable/buttonshape"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/player_ready"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        />
 
 
     <Button
@@ -129,7 +140,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="400dp"/>
 
-     <!--Player card checkboxes-->
+    <!--android:background="#CCFF00"-->
+
+    <!--Player card checkboxes-->
 
     <CheckBox
         android:layout_width="100dp"
@@ -137,8 +150,6 @@
         android:id="@+id/player_card_one"
         android:layout_marginLeft="175dp"
         android:padding="200dp"
-        android:button="@android:color/transparent"
-
         android:layout_marginTop="390dp"
         android:onClick="onPlayerSelect"/>
 
@@ -187,7 +198,6 @@
         android:layout_marginLeft="385dp"
         android:padding="200dp"
         android:button="@android:color/transparent"
-
         android:layout_marginTop="290dp"
         android:onClick="onCommunitySelect"/>
 
