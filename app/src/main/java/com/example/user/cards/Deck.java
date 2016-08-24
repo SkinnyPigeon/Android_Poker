@@ -13,50 +13,58 @@ public class Deck {
 
     public Deck() {
         mCards = new ArrayList< String>();
-        mCards.add( "A" + getEmijoByUnicode( 0x2660 ) );
-        mCards.add( "A" + getEmijoByUnicode( 0x2665 ) );
-        mCards.add( "A" + getEmijoByUnicode( 0x2663 ) );
-        mCards.add( "A" + getEmijoByUnicode( 0x2666 ) );
-        mCards.add( "K" + getEmijoByUnicode( 0x2660 ) );
-        mCards.add( "K" + getEmijoByUnicode( 0x2665 ) );
-        mCards.add( "K" + getEmijoByUnicode( 0x2663 ) );
-        mCards.add( "K" + getEmijoByUnicode( 0x2666 ) );
-        mCards.add( "10" + getEmijoByUnicode( 0x2660 ) );
-        mCards.add( "10" + getEmijoByUnicode( 0x2665 ) );
-        mCards.add( "10" + getEmijoByUnicode( 0x2663 ) );
-        mCards.add( "10" + getEmijoByUnicode( 0x2666 ) );
-        mCards.add( "9" + getEmijoByUnicode( 0x2660 ) );
-        mCards.add( "9" + getEmijoByUnicode( 0x2665 ) );
-        mCards.add( "9" + getEmijoByUnicode( 0x2663 ) );
-        mCards.add( "9" + getEmijoByUnicode( 0x2666 ) );
-        mCards.add( "8" + getEmijoByUnicode( 0x2660 ) );
-        mCards.add( "8" + getEmijoByUnicode( 0x2665 ) );
-        mCards.add( "8" + getEmijoByUnicode( 0x2663 ) );
-        mCards.add( "8" + getEmijoByUnicode( 0x2666 ) );
-        mCards.add( "7" + getEmijoByUnicode( 0x2660 ) );
-        mCards.add( "7" + getEmijoByUnicode( 0x2665 ) );
-        mCards.add( "7" + getEmijoByUnicode( 0x2663 ) );
-        mCards.add( "7" + getEmijoByUnicode( 0x2666 ) );
-        mCards.add( "6" + getEmijoByUnicode( 0x2660 ) );
-        mCards.add( "6" + getEmijoByUnicode( 0x2665 ) );
-        mCards.add( "6" + getEmijoByUnicode( 0x2663 ) );
-        mCards.add( "6" + getEmijoByUnicode( 0x2666 ) );
-        mCards.add( "5" + getEmijoByUnicode( 0x2660 ) );
-        mCards.add( "5" + getEmijoByUnicode( 0x2665 ) );
-        mCards.add( "5" + getEmijoByUnicode( 0x2663 ) );
-        mCards.add( "5" + getEmijoByUnicode( 0x2666 ) );
-        mCards.add( "4" + getEmijoByUnicode( 0x2660 ) );
-        mCards.add( "4" + getEmijoByUnicode( 0x2665 ) );
-        mCards.add( "4" + getEmijoByUnicode( 0x2663 ) );
-        mCards.add( "4" + getEmijoByUnicode( 0x2666 ) );
-        mCards.add( "3" + getEmijoByUnicode( 0x2660 ) );
-        mCards.add( "3" + getEmijoByUnicode( 0x2665 ) );
-        mCards.add( "3" + getEmijoByUnicode( 0x2663 ) );
-        mCards.add( "3" + getEmijoByUnicode( 0x2666 ) );
-        mCards.add( "2" + getEmijoByUnicode( 0x2660 ) );
-        mCards.add( "2" + getEmijoByUnicode( 0x2665 ) );
-        mCards.add( "2" + getEmijoByUnicode( 0x2663 ) );
-        mCards.add( "2" + getEmijoByUnicode( 0x2666 ) );
+        mCards.add( "A♠" );
+        mCards.add( "A♥" );
+        mCards.add( "A♣" );
+        mCards.add( "A♦" );
+        mCards.add( "K♠" );
+        mCards.add( "K♥" );
+        mCards.add( "K♣" );
+        mCards.add( "K♦" );
+        mCards.add( "Q♠" );
+        mCards.add( "Q♥" );
+        mCards.add( "Q♣" );
+        mCards.add( "Q♦" );
+        mCards.add( "J♠" );
+        mCards.add( "J♥" );
+        mCards.add( "J♣" );
+        mCards.add( "J♦" );
+        mCards.add( "10♠" );
+        mCards.add( "10♥" );
+        mCards.add( "10♣" );
+        mCards.add( "10♦" );
+        mCards.add( "9♠" );
+        mCards.add( "9♥" );
+        mCards.add( "9♣" );
+        mCards.add( "9♦" );
+        mCards.add( "8♠" );
+        mCards.add( "8♥" );
+        mCards.add( "8♣" );
+        mCards.add( "8♦" );
+        mCards.add( "7♠" );
+        mCards.add( "7♥" );
+        mCards.add( "7♣" );
+        mCards.add( "7♦" );
+        mCards.add( "6♠" );
+        mCards.add( "6♥" );
+        mCards.add( "6♣" );
+        mCards.add( "6♦" );
+        mCards.add( "5♠" );
+        mCards.add( "5♥" );
+        mCards.add( "5♣" );
+        mCards.add( "5♦" );
+        mCards.add( "4♠" );
+        mCards.add( "4♥" );
+        mCards.add( "4♣" );
+        mCards.add( "4♦" );
+        mCards.add( "3♠" );
+        mCards.add( "3♥" );
+        mCards.add( "3♣" );
+        mCards.add( "3♦" );
+        mCards.add( "2♠" );
+        mCards.add( "2♥" );
+        mCards.add( "2♣" );
+        mCards.add( "2♦" );
     }
 
     public int cardLength() {
@@ -79,10 +87,6 @@ public class Deck {
     public String deal() {
         pickCard();
         return mDealtCard;
-    }
-
-    public String getEmijoByUnicode(int unicode){
-        return new String(Character.toChars(unicode));
     }
 
 

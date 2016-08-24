@@ -1,5 +1,6 @@
 package com.example.user.cards;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -194,7 +195,7 @@ public class MainActivity extends AppCompatActivity{
 
                 setText();
                 mCounter++;
-                checkCheck(mGame.getCurrentPlayer());
+                checkCheck();
                 Log.d("Call check: ", mGame.getCurrentPlayer().name());
                 hideEverthing();
                 showStart();
@@ -208,7 +209,7 @@ public class MainActivity extends AppCompatActivity{
                 bet();
                 setText();
                 mCounter++;
-                checkCheck(mGame.getCurrentPlayer());
+                checkCheck();
                 hideEverthing();
                 showStart();
             }
@@ -240,7 +241,7 @@ public class MainActivity extends AppCompatActivity{
                     nextHand();
                 } else {
                     mCounter ++;
-                    checkCheck(mGame.getCurrentPlayer());
+                    checkCheck();
                     setText();
                     hideEverthing();
                     showStart();
@@ -281,12 +282,10 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-    public void checkCheck( Player player ) {
+    public void checkCheck() {
 
         if( mGame.showPot() > 0 && mGame.seeLastBet() <= mGame.getCurrentPlayer().seeLastBet()
                 && mCounter >= mGame.getArraySize() ) {
-//            hideEverthing();
-//            showStart();
             unBold();
             unClick();
             unDisable();
@@ -303,18 +302,6 @@ public class MainActivity extends AppCompatActivity{
         }
         mGame.resetBets();
         mBetValue = 0;
-    }
-
-
-    public void logicCheck() {
-
-        for( int i = 0; i < mGame.getArraySize(); i ++ ) {
-            Logic logic = new Logic( mGame.accessPlayer(i).seeHand(), mGame.seeHand() );
-            logic.combineCards();
-            logic.setScore();
-            mGame.accessPlayer(i).awardScore(logic.seeScore());
-            mGame.accessPlayer(i).awardKicker(logic.seeKicker());
-        }
     }
 
     public void cardPickLogicCheck() {
@@ -409,27 +396,6 @@ public class MainActivity extends AppCompatActivity{
 
 //need to check how to sort the call out for the score setter. perhaps reverse the order everything is called in"
 
-    public boolean seeFlop() {
-        if( mGame.seeHand().size() == 3 ) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean seeTurn() {
-        if( mGame.seeHand().size() == 4 ) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean seeRiver() {
-        if( mGame.seeHand().size() == 5 ) {
-            return true;
-        }
-        return false;
-    }
-
     public void setText() {
         String name = mGame.getCurrentPlayer().name();
         mPlayerName.setText(name);
@@ -443,8 +409,16 @@ public class MainActivity extends AppCompatActivity{
 
         String cardOne = mGame.getCurrentPlayer().seeHand().get(0).toString();
         String cardTwo = mGame.getCurrentPlayer().seeHand().get(1).toString();
+
+
+        int cardOneColor = colorChanger( cardOne );
+        int cardTwoColor = colorChanger( cardTwo );
+
         mPlayerCOne.setText( cardOne );
         mPlayerCTwo.setText( cardTwo );
+
+        mPlayerCOne.setTextColor(cardOneColor);
+        mPlayerCTwo.setTextColor( cardTwoColor );
 
         Integer potInt = mGame.showPot();
         String pot = "Pot: " + potInt.toString();
@@ -536,7 +510,7 @@ public class MainActivity extends AppCompatActivity{
         mPlayerCTwo.setVisibility(View.VISIBLE);
         mPlayerChips.setVisibility(View.VISIBLE);
 
-        checkCheck(mGame.getCurrentPlayer());
+        checkCheck();
     }
 
     public void hideStart() {
@@ -560,22 +534,37 @@ public class MainActivity extends AppCompatActivity{
         String mGameCardTwo = mGame.seeHand().get(1).toString();
         String mGameCardThree = mGame.seeHand().get(2).toString();
 
-        mFlopOne.setText(mGameCardOne);
-        mFlopTwo.setText(mGameCardTwo);
-        mFlopThree.setText(mGameCardThree);
+        int cardOneColor = colorChanger( mGameCardOne );
+        int cardTwoColor = colorChanger( mGameCardTwo );
+        int cardThreeColor = colorChanger( mGameCardThree );
+
+        mFlopOne.setText( mGameCardOne );
+        mFlopTwo.setText( mGameCardTwo );
+        mFlopThree.setText( mGameCardThree );
+
+        mFlopOne.setTextColor(cardOneColor);
+        mFlopTwo.setTextColor( cardTwoColor );
+        mFlopThree.setTextColor( cardThreeColor );
+
 
     }
 
     public void turn() {
         mGame.takeCard(mDeck.deal());
         String mGameCardFour = mGame.seeHand().get(3).toString();
+        int cardOneColor = colorChanger(mGameCardFour);
+
         mTurn.setText(mGameCardFour);
+        mTurn.setTextColor( cardOneColor );
     }
 
     public void river() {
         mGame.takeCard(mDeck.deal());
         String mGameCardFive = mGame.seeHand().get(4).toString();
+        int cardOneColor = colorChanger( mGameCardFive );
+
         mRiver.setText( mGameCardFive );
+        mRiver.setTextColor( cardOneColor );
     }
 
     public void resetPlayerHands() {
@@ -714,6 +703,21 @@ public class MainActivity extends AppCompatActivity{
         mTurn.setText("");
         mRiver.setText("");
 
+    }
+
+    public int colorChanger( String card ) {
+        if( card.charAt( 1 ) == '♦' || card.charAt( 1 ) == '♥') {
+            String red = "#d52828";
+            return Color.parseColor( red );
+        }
+        if( card.length() > 2) {
+           if( card.charAt( 2 ) == '♦' || card.charAt( 2 ) == '♥') {
+               String red = "#d52828";
+               return Color.parseColor( red );
+           }
+        }
+        String black = "#2c2828";
+        return Color.parseColor( black );
     }
 
 
