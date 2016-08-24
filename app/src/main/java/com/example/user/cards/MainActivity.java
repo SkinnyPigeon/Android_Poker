@@ -198,7 +198,6 @@ public class MainActivity extends AppCompatActivity{
                 Log.d("Call check: ", mGame.getCurrentPlayer().name());
                 hideEverthing();
                 showStart();
-                betweenPlayers();
             }
         });
 
@@ -212,7 +211,6 @@ public class MainActivity extends AppCompatActivity{
                 checkCheck(mGame.getCurrentPlayer());
                 hideEverthing();
                 showStart();
-                betweenPlayers();
             }
         });
 
@@ -228,7 +226,6 @@ public class MainActivity extends AppCompatActivity{
                 setText();
                 hideEverthing();
                 showStart();
-                betweenPlayers();
             }
         });
 
@@ -247,7 +244,6 @@ public class MainActivity extends AppCompatActivity{
                     setText();
                     hideEverthing();
                     showStart();
-                    betweenPlayers();
                 }
             }
         });
@@ -268,9 +264,7 @@ public class MainActivity extends AppCompatActivity{
                     setText();
                     hideEverthing();
                     showStart();
-                    unBold();
-                    unClick();
-                    unDisable();
+
                 }
 
             }
