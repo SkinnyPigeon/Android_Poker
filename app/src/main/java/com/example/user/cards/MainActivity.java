@@ -372,14 +372,14 @@ public class MainActivity extends AppCompatActivity{
 
         switch( view.getId() ) {
             case R.id.community_card_one:
-                if( checked && seeFlop() ) {
+                if( checked ) {
                     mCommunitySelectedCards.add(mGame.seeHand().get(0).toString());
                     mFlopOne.setTypeface(null, Typeface.BOLD);
                     mCommunityCardOne.setEnabled( false );
                 }
                 break;
             case R.id.community_card_two:
-                if( checked && seeFlop() ) {
+                if( checked ) {
                     mCommunitySelectedCards.add(mGame.seeHand().get(1).toString());
                     mFlopTwo.setTypeface(null, Typeface.BOLD);
                     mCommunityCardTwo.setEnabled(false);
@@ -387,7 +387,7 @@ public class MainActivity extends AppCompatActivity{
                 }
                 break;
             case R.id.community_card_three:
-                if( checked && seeFlop() ) {
+                if( checked ) {
                     mCommunitySelectedCards.add( mGame.seeHand().get(2).toString() );
                     mFlopThree.setTypeface(null, Typeface.BOLD);
                     mCommunityCardThree.setEnabled(false);
@@ -395,7 +395,7 @@ public class MainActivity extends AppCompatActivity{
                 }
                 break;
             case R.id.community_card_four:
-                if( checked && seeTurn() ) {
+                if( checked ) {
                     mCommunitySelectedCards.add( mGame.seeHand().get(3).toString() );
                     mTurn.setTypeface(null, Typeface.BOLD);
                     mCommunityCardFour.setEnabled(false);
@@ -403,7 +403,7 @@ public class MainActivity extends AppCompatActivity{
                 }
                 break;
             case R.id.community_card_five:
-                if( checked && seeRiver() ) {
+                if( checked ) {
                     mCommunitySelectedCards.add( mGame.seeHand().get(4).toString() );
                     mRiver.setTypeface(null, Typeface.BOLD);
                     mCommunityCardFive.setEnabled(false);
@@ -478,11 +478,6 @@ public class MainActivity extends AppCompatActivity{
         Log.d("Player to start:", number.toString());
         resetPlayerHands();
         resetBets();
-        mFlopOne.setVisibility(View.INVISIBLE);
-        mFlopTwo.setVisibility(View.INVISIBLE);
-        mFlopThree.setVisibility(View.INVISIBLE);
-        mTurn.setVisibility(View.INVISIBLE);
-        mRiver.setVisibility(View.INVISIBLE);
         startHand();
         hideEverthing();
         betweenPlayers();
@@ -547,6 +542,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void showStart() {
+        disable();
         hideEverthing();
         nextPlayerText();
         mPlayerReady.setVisibility(View.VISIBLE);
@@ -554,9 +550,9 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void flop() {
-        mGame.takeCard(mCards.deal());
-        mGame.takeCard(mCards.deal());
-        mGame.takeCard(mCards.deal());
+        mGame.takeCard(mDeck.deal());
+        mGame.takeCard(mDeck.deal());
+        mGame.takeCard(mDeck.deal());
         String mGameCardOne = mGame.seeHand().get(0).toString();
         String mGameCardTwo = mGame.seeHand().get(1).toString();
         String mGameCardThree = mGame.seeHand().get(2).toString();
@@ -568,13 +564,13 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void turn() {
-        mGame.takeCard(mCards.deal());
+        mGame.takeCard(mDeck.deal());
         String mGameCardFour = mGame.seeHand().get(3).toString();
         mTurn.setText(mGameCardFour);
     }
 
     public void river() {
-        mGame.takeCard(mCards.deal());
+        mGame.takeCard(mDeck.deal());
         String mGameCardFive = mGame.seeHand().get(4).toString();
         mRiver.setText( mGameCardFive );
     }
@@ -586,14 +582,14 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void startHand() {
-        mCards = new TestCards();
-//        mDeck = new Deck();
-//        mDeck.shuffle();
+//        mCards = new TestCards();
+        mDeck = new Deck();
+        mDeck.shuffle();
 //        Shuffle the deck here
 
         for( int i = 0; i < mGame.getArraySize(); i ++ ) {
-            mGame.accessPlayer(i).takeCard( mCards.deal() );
-            mGame.accessPlayer(i).takeCard(mCards.deal());
+            mGame.accessPlayer(i).takeCard( mDeck.deal() );
+            mGame.accessPlayer(i).takeCard(mDeck.deal());
         }
     }
 
@@ -679,6 +675,17 @@ public class MainActivity extends AppCompatActivity{
         mCommunityCardFive.setEnabled( true );
     }
 
+    public void disable() {
+        mPlayerCardOne.setEnabled( false );
+        mPlayerCardTwo.setEnabled( false );
+
+        mCommunityCardOne.setEnabled( false );
+        mCommunityCardTwo.setEnabled( false );
+        mCommunityCardThree.setEnabled( false );
+        mCommunityCardFour.setEnabled( false );
+        mCommunityCardFive.setEnabled( false );
+    }
+
     public void betweenPlayers() {
         unBold();
         unClick();
@@ -701,6 +708,8 @@ public class MainActivity extends AppCompatActivity{
         mFlopOne.setText("");
         mFlopTwo.setText("");
         mFlopThree.setText("");
+        mTurn.setText("");
+        mRiver.setText("");
 
     }
 
