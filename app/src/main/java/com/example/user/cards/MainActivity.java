@@ -305,8 +305,8 @@ public class MainActivity extends AppCompatActivity{
 
         if( mGame.showPot() > 0 && mGame.seeLastBet() <= mGame.getCurrentPlayer().seeLastBet()
                 && mCounter >= mGame.getArraySize() ) {
-            hideEverthing();
-            showStart();
+//            hideEverthing();
+//            showStart();
             unBold();
             unClick();
             mCheck.setVisibility(View.VISIBLE);
@@ -489,8 +489,9 @@ public class MainActivity extends AppCompatActivity{
         mGame.endHand();
 
         Integer number = mGame.seePlayerStart();
-        Log.d( "Player to start:", number.toString() );
+        Log.d("Player to start:", number.toString());
         resetPlayerHands();
+        resetBets();
         mFlopOne.setVisibility(View.INVISIBLE);
         mFlopTwo.setVisibility(View.INVISIBLE);
         mFlopThree.setVisibility(View.INVISIBLE);
@@ -498,12 +499,12 @@ public class MainActivity extends AppCompatActivity{
         mRiver.setVisibility(View.INVISIBLE);
         startHand();
         hideEverthing();
-        showStart();
         betweenPlayers();
         mCheckCounter = 0;
         mHandsShown = 0;
         mCounter = 2;
         mGame.firstTurn();
+        showStart();
         setText();
     }
 
@@ -707,7 +708,7 @@ public class MainActivity extends AppCompatActivity{
 
         mGame.resetWinner();
         nextHand();
-//        showStart();
     }
+
 
 }
