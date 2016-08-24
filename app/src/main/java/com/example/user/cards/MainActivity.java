@@ -309,6 +309,7 @@ public class MainActivity extends AppCompatActivity{
 //            showStart();
             unBold();
             unClick();
+            unDisable();
             mCheck.setVisibility(View.VISIBLE);
         } else {
             mCheck.setVisibility(View.INVISIBLE);
@@ -486,6 +487,7 @@ public class MainActivity extends AppCompatActivity{
         mGame.refillPlayerArray();
         mGame.sortPlayers();
         mGame.resetHand();
+        Log.d( "Game cards: ", mGame.seeHand().toString());
         mGame.endHand();
 
         Integer number = mGame.seePlayerStart();
@@ -503,6 +505,7 @@ public class MainActivity extends AppCompatActivity{
         mCheckCounter = 0;
         mHandsShown = 0;
         mCounter = 2;
+        resetFlop();
         mGame.firstTurn();
         showStart();
         setText();
@@ -708,6 +711,13 @@ public class MainActivity extends AppCompatActivity{
 
         mGame.resetWinner();
         nextHand();
+    }
+
+    public void resetFlop() {
+        mFlopOne.setText("");
+        mFlopTwo.setText("");
+        mFlopThree.setText("");
+
     }
 
 
