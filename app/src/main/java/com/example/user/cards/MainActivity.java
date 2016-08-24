@@ -18,13 +18,16 @@ public class MainActivity extends AppCompatActivity{
 
     TextView mPlayerName;
 
-    TextView mCommunityCards;
+    TextView mFlopOne;
+    TextView mFlopTwo;
+    TextView mFlopThree;
     TextView mTurn;
     TextView mRiver;
 
     Deck mDeck;
 
-    TextView mPlayerCards;
+    TextView mPlayerCOne;
+    TextView mPlayerCTwo;
 
     CheckBox mPlayerCardOne;
     CheckBox mPlayerCardTwo;
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity{
     private static Integer mBetValue;
     private static Integer mCounter;
     private static Integer mCheckCounter;
+    private static Integer mHandsShown;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
@@ -94,13 +98,16 @@ public class MainActivity extends AppCompatActivity{
 
         mPlayerBet = (TextView)findViewById( R.id.player_bet );
 
-        mPlayerCards = (TextView)findViewById( R.id.player_cards );
+        mPlayerCOne = (TextView )findViewById( R.id.player_cone );
+        mPlayerCTwo = ( TextView )findViewById( R.id.player_ctwo );
 
         mPlayerChips = (TextView )findViewById( R.id.player_chips );
 
         mToCall = ( TextView )findViewById( R.id.to_call );
 
-        mCommunityCards = ( TextView )findViewById( R.id.community_cards );
+        mFlopOne = ( TextView )findViewById( R.id.flop_one );
+        mFlopTwo = ( TextView )findViewById( R.id.flop_two );
+        mFlopThree = (TextView )findViewById( R.id.flop_three );
         mTurn = ( TextView )findViewById( R.id.turn );
         mRiver = ( TextView )findViewById( R.id.river );
 
@@ -140,6 +147,7 @@ public class MainActivity extends AppCompatActivity{
         mBetValue = 0;
         mCounter = 2;
         mCheckCounter = 0;
+        mHandsShown = 0;
         startHand();
 
 
@@ -162,6 +170,7 @@ public class MainActivity extends AppCompatActivity{
                 showEverything();
 
                 setText();
+                betweenPlayers();
             }
         });
 
@@ -191,7 +200,7 @@ public class MainActivity extends AppCompatActivity{
                 Log.d("Call check: ", mGame.getCurrentPlayer().name());
                 hideEverthing();
                 showStart();
-
+                betweenPlayers();
             }
         });
 
@@ -205,6 +214,7 @@ public class MainActivity extends AppCompatActivity{
                 checkCheck(mGame.getCurrentPlayer());
                 hideEverthing();
                 showStart();
+                betweenPlayers();
             }
         });
 
@@ -216,11 +226,11 @@ public class MainActivity extends AppCompatActivity{
                 resetBets();
                 stageCheck();
                 mGame.turnEnd();
-                mCommunityCards.setVisibility(View.VISIBLE);
                 mCheck.setVisibility(View.INVISIBLE);
                 setText();
                 hideEverthing();
                 showStart();
+                betweenPlayers();
             }
         });
 
@@ -233,62 +243,49 @@ public class MainActivity extends AppCompatActivity{
                 if( mGame.getArraySize() == 1 ) {
                     mGame.handWon(mGame.getCurrentPlayer());
                     nextHand();
+                } else {
+                    mCounter ++;
+                    checkCheck(mGame.getCurrentPlayer());
+                    setText();
+                    hideEverthing();
+                    showStart();
+                    betweenPlayers();
                 }
-                mCounter ++;
-                checkCheck(mGame.getCurrentPlayer());
-                setText();
-                hideEverthing();
-                showStart();
             }
         });
 
         mWinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                logicCheck();
-
-                mGame.pickWinner();
-                Player winner = mGame.seeWinner();
-                mGame.handWon(winner);
-                mWinnerName.setText(mGame.seeWinner().name());
-
+                winner();
                 hideEverthing();
                 showStart();
                 nextHand();
+                unBold();
+                unClick();
+                unDisable();
             }
         });
 
         mWin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cardPickLogicCheck();
-                if( mPlayerCardOne.isChecked() ) {
-                    mPlayerCardOne.toggle();
-                }
-                if( mPlayerCardTwo.isChecked() ) {
-                    mPlayerCardTwo.toggle();
-                }
-                if( mCommunityCardOne.isChecked() ) {
-                    mCommunityCardOne.toggle();
-                }
-                if( mCommunityCardTwo.isChecked() ) {
-                    mCommunityCardTwo.toggle();
-                }
-                if( mCommunityCardThree.isChecked() ) {
-                    mCommunityCardThree.toggle();
-                }
-                if( mCommunityCardFour.isChecked() ) {
-                    mCommunityCardFour.toggle();
-                }
-                if( mCommunityCardFive.isChecked() ) {
-                    mCommunityCardFive.toggle();
-                }
 
-                mGame.turnEnd();
-                setText();
-                hideEverthing();
-                showStart();
+                mHandsShown++;
+                cardPickLogicCheck();
+
+                if( mHandsShown == mGame.getArraySize() ) {
+                    winner();
+                } else {
+                    unClick();
+                    mGame.turnEnd();
+                    setText();
+                    hideEverthing();
+                    showStart();
+                    unBold();
+                    unClick();
+                    unDisable();
+                }
 
             }
 
@@ -310,6 +307,8 @@ public class MainActivity extends AppCompatActivity{
                 && mCounter >= mGame.getArraySize() ) {
             hideEverthing();
             showStart();
+            unBold();
+            unClick();
             mCheck.setVisibility(View.VISIBLE);
         } else {
             mCheck.setVisibility(View.INVISIBLE);
@@ -364,7 +363,8 @@ public class MainActivity extends AppCompatActivity{
             case R.id.player_card_one:
                 if( checked ) {
                     mPlayerSelectedCards.add(mGame.getCurrentPlayer().seeHand().get(0).toString());
-                    mPlayerCards.setTypeface(null, Typeface.BOLD);
+                    mPlayerCOne.setTypeface(null, Typeface.BOLD);
+                    mPlayerCardOne.setEnabled(false);
                 }
 
                 break;
@@ -373,6 +373,8 @@ public class MainActivity extends AppCompatActivity{
                 if( checked) {
                     Log.d("Here:", "Clicked ");
                     mPlayerSelectedCards.add(mGame.getCurrentPlayer().seeHand().get(1).toString()) ;
+                    mPlayerCTwo.setTypeface(null, Typeface.BOLD);
+                    mPlayerCardTwo.setEnabled( false );
                 }
                 break;
         }
@@ -385,27 +387,39 @@ public class MainActivity extends AppCompatActivity{
             case R.id.community_card_one:
                 if( checked && seeFlop() ) {
                     mCommunitySelectedCards.add(mGame.seeHand().get(0).toString());
+                    mFlopOne.setTypeface(null, Typeface.BOLD);
+                    mCommunityCardOne.setEnabled( false );
                 }
                 break;
             case R.id.community_card_two:
                 if( checked && seeFlop() ) {
                     mCommunitySelectedCards.add(mGame.seeHand().get(1).toString());
+                    mFlopTwo.setTypeface(null, Typeface.BOLD);
+                    mCommunityCardTwo.setEnabled(false);
+
                 }
                 break;
             case R.id.community_card_three:
                 if( checked && seeFlop() ) {
                     mCommunitySelectedCards.add( mGame.seeHand().get(2).toString() );
+                    mFlopThree.setTypeface(null, Typeface.BOLD);
+                    mCommunityCardThree.setEnabled(false);
+
                 }
                 break;
             case R.id.community_card_four:
                 if( checked && seeTurn() ) {
                     mCommunitySelectedCards.add( mGame.seeHand().get(3).toString() );
+                    mTurn.setTypeface(null, Typeface.BOLD);
+                    mCommunityCardFour.setEnabled(false);
+
                 }
                 break;
             case R.id.community_card_five:
                 if( checked && seeRiver() ) {
                     mCommunitySelectedCards.add( mGame.seeHand().get(4).toString() );
-                    Log.d("Com card: ", mCommunitySelectedCards.get(0));
+                    mRiver.setTypeface(null, Typeface.BOLD);
+                    mCommunityCardFive.setEnabled(false);
 
                 }
                 break;
@@ -441,8 +455,10 @@ public class MainActivity extends AppCompatActivity{
 
         String cardOne = mGame.getCurrentPlayer().seeHand().get(0).toString();
         String cardTwo = mGame.getCurrentPlayer().seeHand().get(1).toString();
-        String cards = cardOne + " " + cardTwo;
-        mPlayerCards.setText( cards );
+//        String cards = cardOne + " " + cardTwo;
+        mPlayerCOne.setText( cardOne );
+        mPlayerCTwo.setText( cardTwo );
+//        mPlayerCards.setText( cards );
 
         Integer potInt = mGame.showPot();
         String pot = "Pot: " + potInt.toString();
@@ -471,10 +487,22 @@ public class MainActivity extends AppCompatActivity{
         mGame.sortPlayers();
         mGame.resetHand();
         mGame.endHand();
+
+        Integer number = mGame.seePlayerStart();
+        Log.d( "Player to start:", number.toString() );
         resetPlayerHands();
-        mCommunityCards.setVisibility(View.INVISIBLE);
+        mFlopOne.setVisibility(View.INVISIBLE);
+        mFlopTwo.setVisibility(View.INVISIBLE);
+        mFlopThree.setVisibility(View.INVISIBLE);
+        mTurn.setVisibility(View.INVISIBLE);
+        mRiver.setVisibility(View.INVISIBLE);
         startHand();
+        hideEverthing();
+        showStart();
+        betweenPlayers();
         mCheckCounter = 0;
+        mHandsShown = 0;
+        mCounter = 2;
         mGame.firstTurn();
         setText();
     }
@@ -484,7 +512,9 @@ public class MainActivity extends AppCompatActivity{
         mCall.setVisibility(View.INVISIBLE);
         mBet.setVisibility(View.INVISIBLE);
         mPotValue.setVisibility(View.INVISIBLE);
-        mCommunityCards.setVisibility(View.INVISIBLE);
+        mFlopOne.setVisibility(View.INVISIBLE);
+        mFlopTwo.setVisibility(View.INVISIBLE);
+        mFlopThree.setVisibility(View.INVISIBLE);
         mCheck.setVisibility(View.INVISIBLE);
         mFold.setVisibility(View.INVISIBLE);
         mWinner.setVisibility(View.INVISIBLE);
@@ -493,7 +523,8 @@ public class MainActivity extends AppCompatActivity{
 
         mPlayerName.setVisibility(View.INVISIBLE);
         mPlayerBet.setVisibility(View.INVISIBLE);
-        mPlayerCards.setVisibility(View.INVISIBLE);
+        mPlayerCOne.setVisibility(View.INVISIBLE);
+        mPlayerCTwo.setVisibility(View.INVISIBLE);
         mPlayerChips.setVisibility(View.INVISIBLE);
 
         mPlayerReady.setVisibility(View.INVISIBLE);
@@ -506,14 +537,17 @@ public class MainActivity extends AppCompatActivity{
         mPotValue.setVisibility(View.VISIBLE);
         mFold.setVisibility((View.VISIBLE));
         mWinner.setVisibility(View.VISIBLE);
-        mCommunityCards.setVisibility(View.VISIBLE);
+        mFlopOne.setVisibility(View.VISIBLE);
+        mFlopTwo.setVisibility(View.VISIBLE);
+        mFlopThree.setVisibility(View.VISIBLE);
         mTurn.setVisibility(View.VISIBLE);
         mRiver.setVisibility(View.VISIBLE);
 
 
         mPlayerName.setVisibility(View.VISIBLE);
         mPlayerBet.setVisibility(View.VISIBLE);
-        mPlayerCards.setVisibility(View.VISIBLE);
+        mPlayerCOne.setVisibility(View.VISIBLE);
+        mPlayerCTwo.setVisibility(View.VISIBLE);
         mPlayerChips.setVisibility(View.VISIBLE);
 
         checkCheck(mGame.getCurrentPlayer());
@@ -539,15 +573,16 @@ public class MainActivity extends AppCompatActivity{
         String mGameCardTwo = mGame.seeHand().get(1).toString();
         String mGameCardThree = mGame.seeHand().get(2).toString();
 
-        String mGameCards = mGameCardOne + " " + mGameCardTwo + " " + mGameCardThree;
+        mFlopOne.setText(mGameCardOne);
+        mFlopTwo.setText(mGameCardTwo);
+        mFlopThree.setText(mGameCardThree);
 
-        mCommunityCards.setText(mGameCards);
     }
 
     public void turn() {
         mGame.takeCard(mCards.deal());
         String mGameCardFour = mGame.seeHand().get(3).toString();
-        mTurn.setText( mGameCardFour );
+        mTurn.setText(mGameCardFour);
     }
 
     public void river() {
@@ -609,6 +644,70 @@ public class MainActivity extends AppCompatActivity{
         String player = nextTurn + " Ready? ";
 
         mPlayerReady.setText( player );
+    }
+
+    public void unBold() {
+        mPlayerCOne.setTypeface( null, Typeface.NORMAL );
+        mPlayerCTwo.setTypeface( null, Typeface.NORMAL );
+        mFlopOne.setTypeface( null, Typeface.NORMAL );
+        mFlopTwo.setTypeface( null, Typeface.NORMAL );
+        mFlopThree.setTypeface( null, Typeface.NORMAL );
+        mTurn.setTypeface( null, Typeface.NORMAL );
+        mRiver.setTypeface(null, Typeface.NORMAL);
+    }
+
+    public void unClick() {
+        if( mPlayerCardOne.isChecked() ) {
+            mPlayerCardOne.toggle();
+        }
+        if( mPlayerCardTwo.isChecked() ) {
+            mPlayerCardTwo.toggle();
+        }
+        if( mCommunityCardOne.isChecked() ) {
+            mCommunityCardOne.toggle();
+        }
+        if( mCommunityCardTwo.isChecked() ) {
+            mCommunityCardTwo.toggle();
+        }
+        if( mCommunityCardThree.isChecked() ) {
+            mCommunityCardThree.toggle();
+        }
+        if( mCommunityCardFour.isChecked() ) {
+            mCommunityCardFour.toggle();
+        }
+        if( mCommunityCardFive.isChecked() ) {
+            mCommunityCardFive.toggle();
+        }
+    }
+
+    public void unDisable() {
+        mPlayerCardOne.setEnabled( true );
+        mPlayerCardTwo.setEnabled( true );
+
+        mCommunityCardOne.setEnabled( true );
+        mCommunityCardTwo.setEnabled( true );
+        mCommunityCardThree.setEnabled( true );
+        mCommunityCardFour.setEnabled( true );
+        mCommunityCardFive.setEnabled( true );
+    }
+
+    public void betweenPlayers() {
+        unBold();
+        unClick();
+        unDisable();
+        removePlayerSelectedCards();
+        removeCommunitySelectedCards();
+    }
+
+    public void winner() {
+        mGame.pickWinner();
+        Player winner = mGame.seeWinner();
+        mGame.handWon(winner);
+        mWinnerName.setText(mGame.seeWinner().name());
+
+        mGame.resetWinner();
+        nextHand();
+//        showStart();
     }
 
 }

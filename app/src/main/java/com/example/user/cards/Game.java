@@ -147,7 +147,10 @@ public class Game  {
         for( int i = 0; i < mPlayers.size(); i++ ) {
             if( mPlayers.get(0).number() != mPlayerStart ) {
                 turnEnd();
+            } else {
+                break;
             }
+
         }
         mPlayers.get(0).smallBlind();
         addBet(mPlayers.get(0));
@@ -188,6 +191,11 @@ public class Game  {
         }
         mPot = 0;
         resetBets();
+    }
+
+    public void resetWinner() {
+        mHandWinner = null;
+        mKickerWinner = null;
     }
 
 }
